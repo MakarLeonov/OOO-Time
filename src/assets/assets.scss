@@ -1,0 +1,44 @@
+
+
+body {
+    background-color: black;
+}
+
+$fon: #333333;
+$textactive: #0088CC;
+
+$orange: #ffaf00;
+$yellow: #fdd947;
+
+// 35. Pinkberry Gum
+$pink: #EF4666;
+$darkgrey: #394359;
+$grey: #6A7384;
+$lightgrey: #C6C4C5;
+$white: #F5F5F5;
+
+// 12. Orange Blossom
+$white: #FAFAFE;
+$lightgrey: #E3E1E4;
+$grey: #676465;
+$black: #34333C;
+$red: #EF3F34;
+
+
+%container {
+    width: 90%;
+    margin: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    text-decoration: none;
+    font-family: 'Rubik', sans-serif;
+    color: $white;
+}
+
+
+
