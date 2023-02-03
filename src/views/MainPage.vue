@@ -1,20 +1,24 @@
 <template>
     <div>
-        <p>There is a main page</p>
+        <!-- <my-title>Main page</my-title> -->
+        <v-popular-services />
+        
+
+        
     </div>
 </template>
 <script>
+import MyTitle from "@/components/UI/MyTitle.vue"
+import vPopularServices from "@/components/MainPage/vPopularServices.vue" 
 export default {
+    name: 'MainPage',
+    components: {
+        MyTitle, vPopularServices
+    }
     
 }
 </script>
 <style lang="scss" scoped>
 @import '@/assets/assets.scss';
-
-    p {
-        text-align: center;
-        margin-top: 50px;
-        font-size: 22px;
-    }
 
 </style>

@@ -17,13 +17,14 @@ export default {
     
     @import '@/assets/assets.scss';
     .sidebar {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    
-    background-color: #fff;
-    // background-color: $fon;
-    padding-top: 50px;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        // background-color: $fon;
+        padding-top: 50px;
+
+        z-index: 1000;
     }
 
     nav {

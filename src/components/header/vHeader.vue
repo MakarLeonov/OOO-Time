@@ -37,6 +37,7 @@ header {
   background-color: $fon;
   display: flex;
   align-items: center;
+  
 
   .container {
     @extend %container;
