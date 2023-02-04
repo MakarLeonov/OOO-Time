@@ -131,13 +131,13 @@ export default {
 
     @media (max-width: 700px) {
         .item {
-            width: 32% ;
+            width: 32%;
         }
     }
 
     @media (max-width: 500px) {
         .item {
-            width: 48% ;
+            width: 50% ;
         }
     }
 

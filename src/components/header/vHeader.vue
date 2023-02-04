@@ -108,8 +108,39 @@ header {
 
 
 
-.burger{
-  position: relative;
+// .burger{
+//   position: relative;
+// }
+
+
+@media (max-width: 1300px) {
+  header .container .logo[data-v-efe28a9e] {
+    font-size: 30px;
+    }
+}
+
+@media (max-width: 900px) {
+  header .container .logo[data-v-efe28a9e] {
+    font-size: 29px;
+    }
+}
+
+@media (max-width: 750px) {
+  header .container .logo[data-v-efe28a9e] {
+    font-size: 28px;
+    }
+}
+
+@media (max-width: 500px) {
+  header .container .logo[data-v-efe28a9e] {
+    font-size: 27px;
+    }
+}
+
+@media (max-width: 400px) {
+  header .container .logo[data-v-efe28a9e] {
+    font-size: 25px;
+    }
 }
 
 </style>
