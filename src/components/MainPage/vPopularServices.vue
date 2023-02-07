@@ -55,6 +55,7 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         margin-top: 10px;
+        padding-bottom: 30px;
     }
 
     .item {

@@ -1,17 +1,18 @@
 <template>
-  <div>
-    <v-header />
+  <v-header />
     
-    <router-view />
-  </div>
+    <router-view class="main"/>
+
+    <v-footer />
 </template>
 
 <script>
 import vHeader from '@/components/header/vHeader.vue'
+import vFooter from '@/components/footer/vFooter.vue'
 
   export default {
     components: {
-      vHeader,
+      vHeader, vFooter
     },
 
     data() {
@@ -34,6 +35,10 @@ import vHeader from '@/components/header/vHeader.vue'
 
 <style lang="scss">
 @import '@/assets/assets.scss';
+
+.main {
+  flex-grow: 1;
+}
 
 .sidebar {
   position: fixed;

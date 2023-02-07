@@ -14,7 +14,7 @@ export default {
 
     button {
         padding: 13px 18px;
-        float: right;
+        
 
         background: #FFFFFF;
         border: 1.5px solid #000000;
@@ -28,11 +28,13 @@ export default {
         line-height: 18px;
 
         color: #000000;
+        
+        transition: all .2s ease-in;
 
         &:hover {
             background-color: $fon;
             color: #fff;
-            transition: all .2s ease-in-out;
+            transition: all .23s ease-out;
         }
     }
 

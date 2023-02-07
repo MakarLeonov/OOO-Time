@@ -28,7 +28,7 @@
                         <p class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</p>
                     </div>
 
-                    <my-button>Оставить заявку</my-button>
+                    <my-button class="btn">Оставить заявку</my-button>
 
                 </form>
             </div>
@@ -166,6 +166,10 @@ export default {
         margin-left: 7px;
 
         color: #000000;
+    }
+
+    .btn {
+        float: right;
     }
 
     
