@@ -11,9 +11,9 @@
 </template>
 <script>
 import MyTitle from "@/components/UI/MyTitle.vue"
-import vPopularServices from "@/components/MainPage/vPopularServices.vue" 
-import vTitleCarusel from "@/components/MainPage/vTitleCarusel.vue"
-import vCurrentPromotions from "@/components/MainPage/vCurrentPromotions.vue"
+import vPopularServices from "@/components/MainPage/PopularServices/vPopularServices.vue" 
+import vTitleCarusel from "@/components/MainPage/TitleCarusel/vTitleCarusel.vue"
+import vCurrentPromotions from "@/components/MainPage/CurrentPromotions/vCurrentPromotions.vue"
 export default {
     name: 'MainPage',
     components: {

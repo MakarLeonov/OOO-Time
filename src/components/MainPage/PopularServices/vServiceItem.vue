@@ -1,63 +1,18 @@
 <template>
-    <div>
-        <my-title>Популярные виды услуг</my-title>
-        <div class="container">
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Автосервис</p>
-            </div>
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Диагностика</p>
-            </div>
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Шиномонтаж</p>
-            </div>
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Прочие услуги</p>
-            </div>
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Автосервис</p>
-            </div>
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Автосервис</p>
-            </div>
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Автосервис</p>
-            </div>
-            <div class="item">
-                <img src="@/assets/img1.png" alt="img">
-                <p class="title">Автосервис</p>
-            </div>
-        </div>
+    <div class="item">
+        <img src="@/assets/img1.png" alt="img">
+        <p class="title">
+            <slot></slot>
+        </p>
     </div>
 </template>
 <script>
-import MyTitle from "@/components/UI/MyTitle.vue"
 export default {
-    name: 'vPopularServices',
-    components: {
-        MyTitle,
-    }
-    
+    name: 'vServiceItem',
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/assets.scss';    
-.container {
-        @extend %content-container;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-top: 10px;
-        padding-bottom: 30px;
-    }
-
+@import '@/assets/assets.scss'; 
     .item {
             
             height: fit-content; 
@@ -92,7 +47,7 @@ export default {
             }
         }
 
-    @media (max-width: 940px) {
+        @media (max-width: 940px) {
         .title {
             font-size: 19px !important;
         }

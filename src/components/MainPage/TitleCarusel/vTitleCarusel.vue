@@ -36,7 +36,7 @@
     </div>
 </template>
 <script> 
-import vCaruselItem from "@/components/MainPage/vCaruselItem.vue";
+import vCaruselItem from "@/components/MainPage/TitleCarusel/vCaruselItem.vue";
 import MyInput from "@/components/UI/MyInput.vue";
 import MyCheckbox from "@/components/UI/MyCheckbox.vue";
 import MyButton from "@/components/UI/MyButton.vue";

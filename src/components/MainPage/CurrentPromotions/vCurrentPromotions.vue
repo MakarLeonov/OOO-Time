@@ -5,29 +5,28 @@
             <my-button class="btn">Показать все акции</my-button>
         </div>
         <div class="body">
-            <div class="item">
-                <p class="item-title">Бесплатная диагностика ходовой части</p>
-            </div>
+            <v-promotion-item>
+                Бесплатная диагностика ходовой части
+            </v-promotion-item>
 
-            <div class="item">
-                <p class="item-title">Бесплатная замена масла ДВС и фильтра</p>
-            </div>
+            <v-promotion-item>
+                Бесплатная замена масла ДВС и фильтра
+            </v-promotion-item>
 
-            <div class="item">
-                <p class="item-title">Ремонт авто в рассрочку</p>
-            </div>
-
-            
+            <v-promotion-item>
+                Ремонт авто в рассрочку
+            </v-promotion-item>
         </div>
     </div>
 </template>
 <script>
 import MyButton from "@/components/UI/MyButton.vue";
 import MyTitle from "@/components/UI/MyTitle.vue";
+import vPromotionItem from "@/components/MainPage/CurrentPromotions/vPromotionItem.vue";
 export default {
     name: "vCurrentPromotions",
     components: {
-        MyButton, MyTitle,
+        MyButton, MyTitle, vPromotionItem,
     }
 }
 </script>
