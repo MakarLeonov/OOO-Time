@@ -1,12 +1,8 @@
 <template>
     <div>
-        <!-- <my-title>Main page</my-title> -->
         <v-title-carusel></v-title-carusel>
         <v-popular-services />
         <v-current-promotions></v-current-promotions>
-        
-
-        
     </div>
 </template>
 <script>

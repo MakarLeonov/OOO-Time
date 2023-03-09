@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>There is a services page</p>
+        <p>This is a services page</p>
     </div>
 </template>
 <script>

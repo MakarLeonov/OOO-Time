@@ -48,9 +48,12 @@ header {
     .logo{
       font-weight: 500;
       font-size: 32px;
-      // color: #fff;
       // -webkit-filter: invert(100%);
       // filter: invert(100%);
+
+      & > a {
+        color: #fff;
+      }
 
       & > a:hover {
         @extend %linkshover;
@@ -61,6 +64,7 @@ header {
       font-size: 22px;
       font-weight: 400;
       margin-left: 50px;
+      color: #fff;
 
       &:hover {
        @extend %linkshover;

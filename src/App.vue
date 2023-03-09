@@ -1,8 +1,6 @@
 <template>
-  <v-header />
-    
+    <v-header />
     <router-view class="main"/>
-
     <v-footer />
 </template>
 

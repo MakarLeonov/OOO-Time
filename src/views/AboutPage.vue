@@ -1,13 +1,21 @@
 <template>
     <div>
-        <p>There is a about page</p>
+        <!-- <p>About page</p> -->
+
+        <v-marks-carusel />
     </div>
 </template>
 <script>
+import vMarksCarusel from "@/components/CommonComponents/vMarksCarusel.vue";
 export default {
+    name: "AboutPage",
+    components: {
+        vMarksCarusel,
+    }
     
 }
 </script>
+
 <style lang="scss" scoped>
 @import '@/assets/assets.scss';
 

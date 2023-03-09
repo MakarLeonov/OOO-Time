@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>There is a prices page</p>
+        <p>This is a prices page</p>
     </div>
 </template>
 <script>
