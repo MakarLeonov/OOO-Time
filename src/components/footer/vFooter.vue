@@ -76,33 +76,71 @@ export default {
     .footer {
         width: 100%;
         height: 520px;
+        height: fit-content;
         color: #fff !important;
         background-color: $fon;
         
         display: flex;
         justify-content: center;
         align-items: center;
+    }
 
-        .container {
-            width: 1670px;
-            height: 100%;
-            padding: 60px;
-            .info {
-                display: flex;
-            }
+    .container {
+        width: 1670px;
+        height: 100%;
+        padding: 60px 60px 15px;
+    }
 
+    .hr {
+        width: 100%;
+        height: 1px;
+        background: #868D89;
+        margin-top: 80px;
+    }
 
-            .title {
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 500;
-                font-size: 32px;
-                line-height: 38px;
-                color: #FFFFFF;
-                margin-bottom: 16px;
-            }
+    .copyright{
+        text-align: center;
+        margin-top: 15px;
 
-            .info_column {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+
+        color: #868D89;
+    }
+
+    .info {
+        display: flex;
+    }
+
+    .title {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 38px;
+        color: #FFFFFF;
+        margin-bottom: 16px;
+    }
+
+    .footer_link {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        margin-bottom: 18px;
+
+        color: #868D89;
+
+        &:hover {
+            @extend %linkshover;
+        }
+    }
+
+    .info_column {
                 width: 340px;
                 .info_p {
                 display: flex;
@@ -143,41 +181,216 @@ export default {
                 gap: 16px;
             }
 
-            .footer_link {
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 21px;
-                margin-bottom: 18px;
 
-                color: #868D89;
+ @media (max-width: 1600px) {
 
-                &:hover {
-                    @extend %linkshover;
-                }
-            }
-
-            .hr {
-                width: 100%;
-                height: 1px;
-                background: #868D89;
-                margin-top: 80px;
-            }
-
-            .copyright{
-                text-align: center;
-                margin-top: 15px;
-
-                font-family: 'Rubik';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 21px;
-
-                color: #868D89;
-            }
+        .info_column {
+            width: 320px;
+        }
+        .promotion_column {
+            width: 450px;
         }
     }
+
+
+    @media (max-width: 1500px) {
+
+        .info_column {
+            width: 290px;
+        }
+        .service_column {
+            width: 410px;
+        }
+
+        .promotion_column {
+            width: 430px;
+        }
+
+        .footer_link {
+            font-size: 17px;
+        }
+
+        .title {
+            font-size: 31px;
+        }
+
+        .info_column .info_p > p{
+            font-size: 17px;
+        }
+        .copyright{
+            font-size: 17px;
+        }
+    }
+
+    @media (max-width: 1415px) {
+
+        .info {
+            flex-wrap: wrap;
+        }
+
+        .info_column {
+            width: 25%;
+        }
+        .service_column {
+            width: 35%;
+        }
+
+        .promotion_column {
+            width: 40%;
+        }
+
+        .user_column {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            width: 100%;
+            justify-content: flex-end;
+            margin-top: -40px;
+        }
+
+        // .hr {
+        //     margin-top: 65px;
+        // }
+
+        .container {
+            padding: 60px 45px 15px;
+        }
+    }
+
+
+    @media (max-width: 1100px) {
+
+        .info {
+            justify-content: center;
+        }
+
+        .info_column {
+            width: 50%;
+            // margin-left: 15%;
+        }
+        .service_column {
+            width: 50%;
+        }
+
+        .promotion_column {
+            width: 50%;
+        }
+
+        .user_column {
+            flex-direction: column;
+            padding: 0 10%;
+            width: 50%;
+        }
+
+        // .hr {
+        //     margin-top: 65px;
+        // }
+
+        .container {
+            padding: 60px 60px 15px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .info_column {
+            width: 45%;
+            // margin-left: 15%;
+        }
+        .service_column {
+            width: 55%;
+        }
+
+        .promotion_column {
+            width: 60%;
+        }
+
+        .user_column {
+            flex-direction: column;
+            padding: 0;
+            width: 40%;
+        }
+
+        .container {
+            padding: 60px 50px 15px;
+        }
+    }
+
+    @media (max-width: 750px) {
+        .info_column {
+            width: 50%;
+            // margin-left: 15%;
+        }
+        .service_column {
+            width: 50%;
+        }
+
+        .promotion_column {
+            width: 60%;
+        }
+
+        .user_column {
+            flex-direction: column;
+            padding: 0;
+            width: 40%;
+        }
+
+        .container {
+            padding: 60px 40px 15px;
+        }
+
+        .title {
+            font-size: 30px;
+        }
+
+        .footer_link {
+            margin-bottom: 16px;
+        }
+
+        
+    }
+
+    @media (max-width: 650px) {
+
+        .container {
+            padding: 60px 30px 15px;
+        }
+
+        .title {
+            font-size: 29px;
+        }
+    }
+
+    @media (max-width: 550px) {
+
+    .container {
+        padding: 50px 50px 15px;
+    }
+
+    .info_column {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .service_column {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .promotion_column {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .user_column {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            padding-top: 25px;
+            width: 100%;
+        }
+
+        .hr {
+            margin-top: 20px;
+        }
+}
 
 </style>
