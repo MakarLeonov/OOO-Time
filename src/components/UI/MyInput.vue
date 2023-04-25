@@ -1,14 +1,20 @@
 <template>
     <div class="input">
-        <input type="text" class="form-input" placeholder=" ">
+        <input type="text" class="form-input" placeholder=" " v-model="value" @change="this.$emit('value', value)">
         <label class="form-label">
             <slot></slot>
         </label>
+        {{ value }}
     </div>
 </template>
 <script>
 export default {
     name: 'MyInput',
+    data() {
+        return {
+            value: '',
+        }
+    },
     
 }
 </script>
@@ -21,7 +27,7 @@ export default {
 }
     .input {
             position: relative;
-            margin-bottom: 37px;
+            
             z-index: 0;
 
             .form-label {

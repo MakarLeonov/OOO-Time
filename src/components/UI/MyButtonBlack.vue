@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    name: "MyButton",
+    name: "MyButtonBlack",
     
 }
 </script>
@@ -16,8 +16,8 @@ export default {
         padding: 13px 18px;
         
 
-        background: #FFFFFF;
-        border: 1.5px solid #000000;
+        background: $fon;
+        border: 1.5px solid #FFFFFF;
         border-radius: 4px;
         cursor: pointer;
 
@@ -27,13 +27,13 @@ export default {
         font-size: 15px;
         line-height: 18px;
 
-        color: #000000;
+        color: #fff;
         
         transition: all .2s ease-in;
 
         &:hover {
-            background-color: $fon;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
             transition: all .23s ease-out;
         }
     }

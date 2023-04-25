@@ -9,6 +9,7 @@
           <router-link to="services">Услуги</router-link>
           <router-link to="prices">Цены</router-link>
           <router-link to="about">О нас</router-link>
+          <my-button-black>Авторизоваться</my-button-black>
         </nav>
         <v-burger-element v-else @click="this.$store.commit('showSidebar')" />
       </div>
@@ -20,11 +21,12 @@
 <script>
 import vSidebar from "@/components/header/vSidebar.vue"
 import vBurgerElement from "@/components/header/vBurgerElement.vue"
+import MyButtonBlack from "@/components/UI/MyButtonBlack.vue";
 
 export default {
   name: 'vHeader',
   components: {
-    vSidebar, vBurgerElement
+    vSidebar, vBurgerElement, MyButtonBlack
   },
 }
 </script>
@@ -63,7 +65,7 @@ header {
     nav > a {
       font-size: 22px;
       font-weight: 400;
-      margin-left: 50px;
+      margin-right: 40px;
       color: #fff;
 
       &:hover {

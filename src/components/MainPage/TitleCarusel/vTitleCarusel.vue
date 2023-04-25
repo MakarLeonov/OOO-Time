@@ -16,33 +16,17 @@
                     :key="index" 
                     v-show="currentSlide === index"
                 ></v-carusel-item>
-                <form class="form">
-                    <p class="form-title">Получить персональную консультацию</p>
-
-                    <my-input>Вваше имя:</my-input>
-
-                    <my-input>Ваш email:</my-input>
-                    
-                    <div class="confirm">
-                        <my-checkbox />
-                        <p class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</p>
-                    </div>
-
-                    <my-button class="btn">Оставить заявку</my-button>
-
-                </form>
+                <v-carusel-form />
             </div>
         </div >
     </div>
 </template>
 <script> 
 import vCaruselItem from "@/components/MainPage/TitleCarusel/vCaruselItem.vue";
-import MyInput from "@/components/UI/MyInput.vue";
-import MyCheckbox from "@/components/UI/MyCheckbox.vue";
-import MyButton from "@/components/UI/MyButton.vue";
+import vCaruselForm from '@/components/MainPage/TitleCarusel/vCaruselForm.vue'
 export default {
     name: 'vTitleCarusel',
-    components: { vCaruselItem, MyInput, MyCheckbox, MyButton },
+    components: { vCaruselItem, vCaruselForm },
     data() {
         return {
             sectionHeight: 0,
@@ -101,30 +85,7 @@ export default {
         color: #000;
     }
 
-    .form {
-        position: absolute;
-        width: 450px;
-        left: 1189px;
-        top: 25%;
-        box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.25);
-
-        background: #FFFFFF;
-        border-radius: 4px;
-        padding: 30px;
-
-        .form-title{
-
-            font-weight: 500;
-            font-size: 24px;
-            line-height: 29px;
-            margin-bottom: 60px;
-            
-
-            color: #000000;
-        }
-
-        
-    }
+    
 
     .section {
         // background-color: antiquewhite;
@@ -151,26 +112,7 @@ export default {
 
     }
 
-    .confirm {
-        display: flex;
-        margin-bottom: 20px;
-    }
-
-    .checkbock-p {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        margin-left: 7px;
-
-        color: #000000;
-    }
-
-    .btn {
-        float: right;
-    }
+    
 
     
 </style>
