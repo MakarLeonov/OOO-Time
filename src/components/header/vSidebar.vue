@@ -22,7 +22,8 @@ export default {
         height: 100%;
         background-color: #fff;
         // background-color: $fon;
-        padding-top: 50px;
+        margin-top: 80px;
+        padding-top: 25px;
 
         z-index: 1000;
     }

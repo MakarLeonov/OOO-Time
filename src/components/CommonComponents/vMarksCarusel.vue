@@ -7,14 +7,16 @@
                 <br> {{ screenWidthNow }}
 			</p>
 		</header>
+		<div class="caruserl">
+			<span class="move_button" @click="leftMove">&#139;</span>
 		<section>
             <div class="product" v-for="(mark, index) in marksList" :key="index" >
                 <img class="slider_img" src="@/assets/img1.png" alt="img">
 				<!-- {{ mark }} -->
-
             </div>
-			
 		</section>
+		<span class="move_button" @click="rightMove">&#155;</span>
+		</div>
 	</main>
 </template>
 <script>
@@ -183,9 +185,8 @@ export default {
 		}
 		section{
 			width: 80%;
-			height: 600px;
+			height: 230px;
 			/*background: red;*/
-			margin: auto;
 			display: flex;
 			align-items: center;
 			overflow-x: auto;
@@ -196,9 +197,9 @@ export default {
 		section .product{
 			min-width: 24%;
 			// height: 90%;
-			background: whitesmoke;
+			// background: whitesmoke;
 			margin:  0 20px  0 0;
-			padding: 10px;
+			padding: 55px;
 			border-radius: 20px;
 			position: relative;
 			left: 0;
@@ -252,6 +253,33 @@ export default {
 		    font-size: 25px;
 		    color: #808080;
 		}
+
+		.caruserl {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.move_button {
+			font-size: 45px;
+		    cursor: pointer;
+		    color: #555;
+		     width: 30px;
+		    height: 30px;
+		    display: inline-block;
+		    line-height: 19px;
+		    text-align: center;
+		    border-radius: 3px;
+			font-weight: bold;
+
+			-webkit-touch-callout: none; 
+    		-webkit-user-select: none; 
+     		-khtml-user-select: none; 
+       		-moz-user-select: none; 
+        	-ms-user-select: none; 
+            user-select: none;
+		}
+
 		@media (max-width: 1000px) {
 			.text h1{
 				font-size: 35px;
