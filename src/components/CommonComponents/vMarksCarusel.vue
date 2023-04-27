@@ -1,18 +1,20 @@
 <template>
+	<my-title class="title">Обслуживаемые марки</my-title>
     <main>
-		<header>
+		<!-- <header>
 			<p>
 				<span @click="leftMove">&#139;</span>
 				<span @click="rightMove">&#155;</span>
                 <br> {{ screenWidthNow }}
 			</p>
-		</header>
+		</header> -->
 		<div class="caruserl">
 			<span class="move_button" @click="leftMove">&#139;</span>
 		<section>
             <div class="product" v-for="(mark, index) in marksList" :key="index" >
-                <img class="slider_img" src="@/assets/img1.png" alt="img">
-				<!-- {{ mark }} -->
+                <!-- <img class="slider_img" src="'@/assets/img/marks/' + mark" alt="img"> -->
+                <img class="slider_img" :src="getImgUrl(mark)" alt="img">
+				<!-- {{ mark.src }} -->
             </div>
 		</section>
 		<span class="move_button" @click="rightMove">&#155;</span>
@@ -30,18 +32,33 @@ export default {
     data() {
         return {
             marksList: [
-                "01",
-                "02",
-                "03",
-                "04",
-                "05",
-                "06",
-                "07",
-                "08",
-                "09",
-                "10",
-                "11",
-                "12",
+				// 'bmw.png',
+				// 'kia.png',
+				// 'mercedes.png',
+				// 'toyota.png',
+				// 'suzuki.png',
+				// 'volvo.png',
+				// 'skoda.png',
+				// 'skoda2.png',
+				// 'wolkswagen.png',
+				// 'ford.png',
+				// 'honda.png',
+				// 'mitsubishi.png',
+				'ford.png',
+				'volkswagen2.png',
+				'toyota2.jpeg',
+				// 'toyota.jpg',
+				'honda2.jpg',
+				// 'honda.avif',
+				'chevolet2.png',
+				// 'chevrolet.jpg',
+				'kia2.jpg',
+				// 'kia.jpeg',
+				'bmw.jpg',
+				'mitsubishi.jpg',
+				'skoda.png',
+				'mercedes3.jpg',
+				'mercedes2.jpg',
             ],
 			tail: 4,
             l: 0,
@@ -91,7 +108,12 @@ export default {
 	            this.maxMove = 203;
 				this.tail = 4;
             }
-        }
+        },
+
+		getImgUrl(pic) {
+			// return require('../assets/' + pic);
+			return require('../../assets/img/marks2/' + pic);
+		},
     },
 
     mounted() {
@@ -133,176 +155,155 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/assets.scss";
     
-		main{
-			width: 100%;
-			height: 840px;
-			/*background: red;*/
-			margin: 10px auto;
-			position: relative;
-			padding: 5px 0;
+	main{
+		width: 100%;
+		/*background: red;*/
+		margin: 10px auto;
+		position: relative;
+		padding: 5px 0 30px;
+	}
+	main .text{
+		padding: 10px;
+		text-align: center;
+		/*font-size: 30px;*/
+		color: #554;
+	}
+	.text h1{
+		font-size: 50px;
+	}
+	.text p{
+		width: 60%;
+		padding: 5px;
+		margin: auto;
+		line-height: 30px;
+	}
+	
+	section{
+		width: 80%;
+		// height: 230px;
+		/*background: red;*/
+		display: flex;
+		align-items: center;
+		overflow-x: auto;
+	}
+	section::-webkit-scrollbar{
+		display: none;
+	}
+	section .product{
+		min-width: 24%;
+		// height: 90%;
+		// background: whitesmoke;
+		margin:  0 20px  0 0;
+		padding: 15px 55px;
+		border-radius: 20px;
+		position: relative;
+		left: 0;
+		transition: 1s;
+
+		& > .slider_img {
+			width: 80%;  // v1
+
+
+			width: 90%;  // v2
+			padding: 15px;
+			border: 1px solid #b3b3b366;
+			border-radius: 8px;
 		}
-		main .text{
-			padding: 10px;
-			text-align: center;
-			/*font-size: 30px;*/
-			color: #554;
-		}
+	}
+	
+	
+
+	picture{
+		width: 100%;
+		height: 70%;
+		padding: 20px;
+		/*background: green;*/
+		display: flex;
+		overflow: hidden;
+		margin-bottom: 20px;
+	}
+	picture img{
+		width: 100%;
+	}
+	.detail,
+	.button{
+		width: 90%;
+		/*background: red;*/
+		margin: auto;
+		padding: 5px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 50px;
+		font-size: 20px;
+		color: #444;
+	}
+	small{color: #555;}
+	a{
+		text-decoration: none;
+		padding: 6px 14px;
+		font-size: 15px;
+		margin: 5px 0 0 20px;
+		display: inline-block;
+		background: #6773ff;
+		color: white;
+	}
+	p.star{
+		margin: 5px auto;
+		width: 65%;
+		font-size: 25px;
+		color: #808080;
+	}
+
+	.caruserl {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.move_button {
+		font-size: 45px;
+		cursor: pointer;
+		color: #555;
+			width: 30px;
+		height: 30px;
+		display: inline-block;
+		line-height: 19px;
+		text-align: center;
+		border-radius: 3px;
+		font-weight: bold;
+
+		-webkit-touch-callout: none; 
+		-webkit-user-select: none; 
+		-khtml-user-select: none; 
+		-moz-user-select: none; 
+		-ms-user-select: none; 
+		user-select: none;
+	}
+
+	@media (max-width: 1000px) {
 		.text h1{
-			font-size: 50px;
+			font-size: 35px;
 		}
 		.text p{
-			width: 60%;
-			padding: 5px;
-			margin: auto;
-			line-height: 30px;
+			width: 90%;
 		}
-		main header{
-			width: 98%;
-			height: 60px;
-			margin: 0 auto;
-			/*background: gray;*/
-			display: flex;
-			align-items: center;
-			padding: 20px;
-			justify-content: space-between;
-			border-bottom: 2px solid #ddd;
+		header h1{
+			font-size: 25px;
 		}
 		header p span{
-			font-size: 40px;
-		    margin: 0 5px;
-		    cursor: pointer;
-		    color: #555;
-		     width: 30px;
-		    height: 30px;
-		    display: inline-block;
-		    line-height: 19px;
-		    text-align: center;
-		    border-radius: 3px;
+			font-size: 30px;
 		}
-		header p span:hover{
-			background: #222;
-    		color: white;
+		section .product {
+			min-width: 49%;
+			margin:  0 10px  0 0;
 		}
-		section{
-			width: 80%;
-			height: 230px;
-			/*background: red;*/
-			display: flex;
-			align-items: center;
-			overflow-x: auto;
+		.detail, .button{
+			font-size: 16px;
 		}
-		section::-webkit-scrollbar{
-			display: none;
-		}
-		section .product{
-			min-width: 24%;
-			// height: 90%;
-			// background: whitesmoke;
-			margin:  0 20px  0 0;
-			padding: 55px;
-			border-radius: 20px;
-			position: relative;
-			left: 0;
-			transition: 1s;
-
-			& > .slider_img {
-				width: 100%;
-			}
-		}
-		
-		
-
-		picture{
-			width: 100%;
-			height: 70%;
-			padding: 20px;
-			/*background: green;*/
-			display: flex;
-			overflow: hidden;
-			margin-bottom: 20px;
-		}
-		picture img{
-			width: 100%;
-		}
-		.detail,
-		.button{
-			width: 90%;
-			/*background: red;*/
-			margin: auto;
-			padding: 5px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			height: 50px;
-			font-size: 20px;
-			color: #444;
-		}
-		small{color: #555;}
 		a{
-			text-decoration: none;
-			padding: 6px 14px;
-		    font-size: 15px;
-		    margin: 5px 0 0 20px;
-		    display: inline-block;
-		    background: #6773ff;
-		    color: white;
+			padding: 6px 10px;
 		}
-		p.star{
-			margin: 5px auto;
-		    width: 65%;
-		    font-size: 25px;
-		    color: #808080;
-		}
-
-		.caruserl {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.move_button {
-			font-size: 45px;
-		    cursor: pointer;
-		    color: #555;
-		     width: 30px;
-		    height: 30px;
-		    display: inline-block;
-		    line-height: 19px;
-		    text-align: center;
-		    border-radius: 3px;
-			font-weight: bold;
-
-			-webkit-touch-callout: none; 
-    		-webkit-user-select: none; 
-     		-khtml-user-select: none; 
-       		-moz-user-select: none; 
-        	-ms-user-select: none; 
-            user-select: none;
-		}
-
-		@media (max-width: 1000px) {
-			.text h1{
-				font-size: 35px;
-			}
-			.text p{
-				width: 90%;
-			}
-			header h1{
-				font-size: 25px;
-			}
-			header p span{
-				font-size: 30px;
-			}
-			section .product {
-				min-width: 49%;
-				margin:  0 10px  0 0;
-			}
-			.detail, .button{
-				font-size: 16px;
-			}
-			a{
-				padding: 6px 10px;
-			}
-		}
+	}
     
 </style>
