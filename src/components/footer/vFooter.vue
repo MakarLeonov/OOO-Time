@@ -18,7 +18,7 @@
                     <br>
                     <div class="info_p">
                         <img class="adress" src="@/assets/img/icons/adress.png" alt="adress">
-                        <p>пр. Стачки 51</p>
+                        <p>пр. Стачки 227</p>
                     </div>
                     <div class="info_p">
                         <img src="@/assets/img/icons/time.png" alt="time">
