@@ -96,6 +96,7 @@ export default {
         height: 1px;
         background: #868D89;
         margin-top: 80px;
+        border-radius: 3px;
     }
 
     .copyright{

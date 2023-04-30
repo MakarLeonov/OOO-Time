@@ -180,6 +180,7 @@ export default {
 	
 	section{
 		width: 80%;
+		width: 64%;
 		// height: 230px;
 		/*background: red;*/
 		display: flex;
