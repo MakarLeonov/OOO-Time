@@ -7,7 +7,6 @@
         <nav v-if="this.$store.state.screenWidth > 1000">
           <router-link to="main">Главная</router-link>
           <router-link to="services">Услуги</router-link>
-          <router-link to="prices">Цены</router-link>
           <router-link to="about">О нас</router-link>
           <my-button-black>Авторизоваться</my-button-black>
         </nav>

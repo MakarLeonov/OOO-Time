@@ -37,8 +37,6 @@
                     <img src="@/assets/img/icons/email.png" alt="email">
                     <p>triotime@gmail.com</p>
                 </div>
-
-                
             </div>
         </div>
     </div>
@@ -53,7 +51,7 @@ export default {
     .container {
         width: 64%;
         margin: 0 auto;
-        padding-top: 25px;
+        padding: 25px 0 40px;
 
         & > div {
             display: flex;
@@ -83,7 +81,7 @@ export default {
                 font-family: 'Rubik';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 18px;
+                font-size: 17px;
                 line-height: 21px;
 
                 color: #868D89;
@@ -109,7 +107,7 @@ export default {
         width: 100%;
         font-family: 'Rubik';
         text-align: left;
-        font-size: 30px;
+        font-size: 28px;
         font-weight: regular;
         color: #494949;
         margin-bottom: 10px;

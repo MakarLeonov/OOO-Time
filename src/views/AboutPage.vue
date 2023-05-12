@@ -1,10 +1,8 @@
 <template>
     <div>
         <v-info />
-
-        <v-map-section></v-map-section>
-
         <v-marks-carusel />
+        <v-map-section />
     </div>
 </template>
 <script>
