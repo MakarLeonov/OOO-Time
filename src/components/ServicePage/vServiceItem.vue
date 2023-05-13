@@ -5,8 +5,6 @@
             <img class="arrow" :style="[isOpen ? {'transform': 'rotate(90deg)'} : {'transform': 'rotate(0deg)'}]" src="@/assets/img/icons/arrow.png" alt=">">
         </div>
         <div class="service_list" :style= "[isOpen ? {'max-height': 3*50 + 'px'} : {'max-height': '0px'}]">
-            <!-- <div class="service_list_link"><router-link to="#" class="service_link">Замена масла и фильтров</router-link></div>
-            <div class="service_list_link"><router-link to="#" class="service_link">Замена масла и фильтров</router-link></div> -->
             <router-link to="#" class="service_link2">Замена масла и фильтров</router-link>
             <router-link to="#" class="service_link2">Замена масла и фильтров</router-link>
             <router-link to="#" class="service_link2">Замена масла и фильтров</router-link>
