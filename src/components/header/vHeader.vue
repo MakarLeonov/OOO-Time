@@ -2,7 +2,9 @@
     <header>
       <div class="container">
         <div class="logo">
-          <router-link to="main">ООО Тайм</router-link>
+          <router-link to="main">
+            <!-- <img src="@/assets/img/log o.png" alt="logo"> -->
+            ООО Тайм</router-link>
         </div>
         <nav v-if="this.$store.state.screenWidth > 1000">
           <router-link to="main">Главная</router-link>

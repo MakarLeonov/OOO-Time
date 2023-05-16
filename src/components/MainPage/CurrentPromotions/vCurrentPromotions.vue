@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <section class="container">
         <div class="header">
             <my-title class="title">Акции</my-title>
             <my-button class="btn">Показать все акции</my-button>
@@ -17,7 +17,7 @@
                 Ремонт авто в рассрочку
             </v-promotion-item>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 import MyButton from "@/components/UI/MyButton.vue";

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <section>
         <my-title>Популярные виды услуг</my-title>
         <div class="container">
 
@@ -13,7 +13,7 @@
             <v-service-item>Шиномонтаж</v-service-item>
             <v-service-item>Прочие услуги</v-service-item>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 import MyTitle from "@/components/UI/MyTitle.vue"
@@ -34,7 +34,6 @@ export default {
         flex-wrap: wrap;
         justify-content: space-around;
         margin-top: 10px;
-        padding-bottom: 30px;
     }
 
     
