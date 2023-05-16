@@ -1,5 +1,5 @@
 <template>
-    <div 
+    <section 
         class="section" 
         :style="{height: sectionHeight + 'px'}"
         >
@@ -19,7 +19,7 @@
                 <v-carusel-form />
             </div>
         </div >
-    </div>
+    </section>
 </template>
 <script> 
 import vCaruselItem from "@/components/MainPage/TitleCarusel/vCaruselItem.vue";

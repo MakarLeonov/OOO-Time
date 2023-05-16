@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <section class="container">
         <div class="photo">
             <img src="@/assets/about.jpg" alt="photo">
         </div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 export default {

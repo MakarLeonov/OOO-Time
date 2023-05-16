@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <section class="container">
         <div class="title">Где нас найти?</div>
         <div>
             <div class="map">
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script>
 export default {

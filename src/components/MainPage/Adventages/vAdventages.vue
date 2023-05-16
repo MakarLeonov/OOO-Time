@@ -52,7 +52,7 @@ export default {
         @extend %content-container;
         display: flex;
         justify-content: space-between;
-        margin-top: 10px;
+        margin-top: 20px;
         padding: 20px 0;
 
         & > img {
@@ -91,7 +91,7 @@ export default {
         font-family: 'Rubik';
         font-style: normal;
         font-weight: 300;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 28px;
 
         color: #494949;

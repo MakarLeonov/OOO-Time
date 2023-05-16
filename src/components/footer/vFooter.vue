@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <footer>
         <div class="container">
             <div class="info">
                 <div class="info_column">
@@ -60,7 +60,7 @@
             <div class="hr"></div>
             <p class="copyright">© 2023, все права защищены.</p>
         </div>
-    </div>
+    </footer>
 </template>
 <script>
 import MyButtonBlack from "@/components/UI/MyButtonBlack.vue";
@@ -73,7 +73,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/assets.scss";
 
-    .footer {
+    footer {
         width: 100%;
         height: 520px;
         height: fit-content;
