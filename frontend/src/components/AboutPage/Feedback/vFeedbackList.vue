@@ -72,7 +72,7 @@
                 <p class="date">22.03.2023</p>
             </div>
         </div>
-        <my-button class="button" >Оставить отзыв</my-button>
+        <my-button class="button" @click="this.$store.commit('changeFeedbackModalWindowstatus')">Оставить отзыв</my-button>
     </section>
 </template>
 <script>
