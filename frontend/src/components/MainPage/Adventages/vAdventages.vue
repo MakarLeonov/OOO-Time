@@ -42,7 +42,11 @@ export default {
     name: "v-adventages",
     components: {
         MyTitle
-    }
+    },
+    mounted() {
+        this.$store.dispatch('GET_ADVANTAGES')
+        console.log(this.$store.state.advantages)
+    },
 }
 </script>
 <style lang="scss" scoped>
@@ -96,5 +100,4 @@ export default {
 
         color: #494949;
     }
-    
 </style>
