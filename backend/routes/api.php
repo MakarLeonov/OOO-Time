@@ -2,6 +2,7 @@
 
 use App\Models\Advantages;
 use App\Http\Controllers\AdventagesController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,18 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('advantages', AdventagesController::class);
+// Route::resource('advantages', AdventagesController::class);
 
-// Route::get('/advantages', [AdventagesController::class, 'index']);
-// Route::get('/advantages/{id}', [AdventagesController::class, 'show']);
-// Route::post('/advantages', [AdventagesController::class, 'store']);
-// Route::post('/advantages/{id}', [AdventagesController::class, 'update']);
-// Route::post('/advantages/{id}', [AdventagesController::class, 'destroy']);
+// Public routes
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/advantages', [AdventagesController::class, 'index']);
+Route::get('/advantages/{id}', [AdventagesController::class, 'show']);
 
-// Route::get('/advantages', function(){
-//     return 'advantages...';
-// });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Protected routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/advantages', [AdventagesController::class, 'store']);
+    Route::put('/advantages/{id}', [AdventagesController::class, 'update']);
+    Route::delete('/advantages/{id}', [AdventagesController::class, 'destroy']);
 });
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
