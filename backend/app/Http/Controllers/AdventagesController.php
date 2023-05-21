@@ -32,7 +32,7 @@ class AdventagesController extends Controller
      */
     public function show(string $id)
     {
-        return new AdventagesResource(Advantages::find($id));
+        return new AdventagesResource(Advantages::findOrFail($id));
     }
 
     /*
