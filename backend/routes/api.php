@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/advantages', [AdventagesController::class, 'index']);
-Route::get('/advantages/{id}', [AdventagesController::class, 'show']);
-Route::post('/advantages', [AdventagesController::class, 'store']);
-Route::post('/advantages/{id}', [AdventagesController::class, 'update']);
-Route::post('/advantages/{id}', [AdventagesController::class, 'destroy']);
+Route::resource('advantages', AdventagesController::class);
+
+// Route::get('/advantages', [AdventagesController::class, 'index']);
+// Route::get('/advantages/{id}', [AdventagesController::class, 'show']);
+// Route::post('/advantages', [AdventagesController::class, 'store']);
+// Route::post('/advantages/{id}', [AdventagesController::class, 'update']);
+// Route::post('/advantages/{id}', [AdventagesController::class, 'destroy']);
 
 // Route::get('/advantages', function(){
 //     return 'advantages...';

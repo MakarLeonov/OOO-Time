@@ -40,19 +40,19 @@ class AdventagesController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-   public function update(AdvantagesRequest $request, Advantages $entry)
+   public function update(AdvantagesRequest $request, $id)
    {
-       $entry->update($request->validated());
-
-       return new AdventagesResource($promo);
+        $entry = Advantages::find($id);
+        $entry->update($request->all());
+        return new AdventagesResource($entry);
    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Advantages $entry)
+    public function destroy($id)
     {
-        $entry->delete();
+        Advantages::destroy($id);
         return 'Запись успешно удалена!';
     }
 }
