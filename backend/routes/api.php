@@ -3,9 +3,11 @@
 use App\Models\Advantages;
 use App\Models\Promotion;
 use App\Models\Feedback;
+use App\Models\Consultation;
 use App\Http\Controllers\AdventagesController;
 use App\Http\Controllers\PromotionsController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +34,7 @@ Route::get('/advantages', [AdventagesController::class, 'index']);
 Route::get('/advantages/{id}', [AdventagesController::class, 'show']);
 Route::get('/feedback', [FeedbackController::class, 'index']);
 Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
-
+Route::post('/consultation', [ConsultationController::class, 'store']);
 
 
 // Protected routes
@@ -46,6 +48,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/promotions/{id}', [PromotionsController::class, 'destroy']);
     Route::post('/feedback', [FeedbackController::class, 'store']);
     Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy']);
+    Route::get('/consultation', [ConsultationController::class, 'index']);
+    Route::get('/consultation/{id}', [ConsultationController::class, 'show']);
+    Route::delete('/consultation/{id}', [ConsultationController::class, 'destroy']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
