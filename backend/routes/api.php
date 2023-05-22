@@ -2,8 +2,10 @@
 
 use App\Models\Advantages;
 use App\Models\Promotion;
+use App\Models\Feedback;
 use App\Http\Controllers\AdventagesController;
 use App\Http\Controllers\PromotionsController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,9 @@ Route::get('/promotions', [PromotionsController::class, 'index']);
 Route::get('/promotions/{id}', [PromotionsController::class, 'show']);
 Route::get('/advantages', [AdventagesController::class, 'index']);
 Route::get('/advantages/{id}', [AdventagesController::class, 'show']);
+Route::get('/feedback', [FeedbackController::class, 'index']);
+Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
+
 
 
 // Protected routes
@@ -39,6 +44,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/promotions', [PromotionsController::class, 'store']);
     Route::put('/promotions/{id}', [PromotionsController::class, 'update']);
     Route::delete('/promotions/{id}', [PromotionsController::class, 'destroy']);
+    Route::post('/feedback', [FeedbackController::class, 'store']);
+    Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
