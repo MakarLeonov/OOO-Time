@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    advantages: {},
+    advantages: [],
     screenWidth: 0,
     isSidebarActive: false,
     isFeedbackModalWindowActive: false,
@@ -39,22 +39,10 @@ export default createStore({
   },
   actions: {
     async GET_ADVANTAGES({commit}) {
-      // return axios('http://127.0.0.1:8000/api/advantages', {
-      //   method: 'GET',
-      // })
-      //   .then((advantages) => {
-      //     commit('SET_ADVANTAGES_TO_STATE', advantages);
-      //     return advantages;
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     return error;
-      //   })
-
-      let response = await fetch('http://127.0.0.1:8000/api/advantages');
-      let advantages = await response.json();
-      commit('SET_ADVANTAGES_TO_STATE', advantages);
-      // return advantages;
+      axios.get('http://127.0.0.1:8000/api/advantages')
+      .then(response => {
+        commit('SET_ADVANTAGES_TO_STATE', response.data.data);
+      })
     }
   },
   modules: {

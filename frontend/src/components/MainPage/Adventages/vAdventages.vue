@@ -3,33 +3,12 @@
         <my-title>Наши преимущества</my-title>
         <div class="container">
             <div class="adventages">
-                <div class="adventage_item">
+                <div class="adventage_item" v-for="(advantage, index) in advantages" :key="index" >
                     <img src="@/assets/img/icons/adventage.png" alt="adventage image">
                     <div class="adventage_info">
-                        <p class="title">Профессиональные механики</p>
-                        <p class="description">В нашем автосервисе работают только профессиональные механики, которые имеют опыт и знания в ремонте автомобилей разных марок и моделей</p>
-                    </div>
-                </div>
-                <div class="adventage_item">
-                    <img src="@/assets/img/icons/adventage.png" alt="adventage image">
-                    <div class="adventage_info">
-                        <p class="title">Профессиональные механики</p>
-                        <p class="description">В нашем автосервисе работают только профессиональные механики, которые имеют опыт и знания в ремонте автомобилей разных марок и моделей</p>
-                    </div>
-                </div>
-                <div class="adventage_item">
-                    <img src="@/assets/img/icons/adventage.png" alt="adventage image">
-                    <div class="adventage_info">
-                        <p class="title">Профессиональные механики</p>
-                        <p class="description">В нашем автосервисе работают только профессиональные механики, которые имеют опыт и знания в ремонте автомобилей разных марок и моделей</p>
-                    </div>
-                </div>
-                <div class="adventage_item">
-                    <img src="@/assets/img/icons/adventage.png" alt="adventage image">
-                    <div class="adventage_info">
-                        <p class="title">Профессиональные механики</p>
-                        <p class="description">В нашем автосервисе работают только профессиональные механики, которые имеют опыт и знания в ремонте автомобилей разных марок и моделей</p>
-                    </div>
+                        <p class="title">{{ advantage.title }}</p>
+                        <p class="description">{{ advantage.description }}</p>
+                    </div>\
                 </div>
             </div>
             <img src="@/assets/about.jpg" alt="image">
@@ -43,9 +22,15 @@ export default {
     components: {
         MyTitle
     },
+    
     mounted() {
         this.$store.dispatch('GET_ADVANTAGES')
-        console.log(this.$store.state.advantages)
+    },
+
+    computed: {
+        advantages() {
+            return this.$store.state.advantages;
+        }
     },
 }
 </script>
