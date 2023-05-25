@@ -65,7 +65,6 @@ export default createStore({
     GET_FEEDBACK({commit}) {
       axios.get('http://127.0.0.1:8000/api/feedback')
       .then(response => {
-        console.log(response.data.data)
         commit('SET_FEEDBACK_TO_STATE', response.data.data);
       })
     },

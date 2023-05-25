@@ -6,15 +6,15 @@
                 <p class="name">{{ feedbackInfo.author }}</p>
                 <p class="stars">
                     <img 
-                        src="@/assets/img/icons/fully_star.png" 
+                        :src="getImgUrl(index, feedbackInfo.rating)"
                         alt="⭐"
-                        v-for="(star, index) in feedbackInfo.rating" 
+                        v-for="index in 5" 
                         :key="index">
                 </p>
             </div>
         </div>
         <p class="feedback">{{ feedbackInfo.feedback_text }}</p>
-        <p class="date">{{ feedbackInfo.date }}</p>
+        <p class="date">{{ getDate(feedbackInfo.date) }}</p>
     </div>
 </template>
 <script>
@@ -22,7 +22,24 @@ export default {
     props: {
         feedbackInfo: Object,
         required: true,
-    }
+    },
+
+    methods: {
+
+        getImgUrl(index, rating) {
+            if (index <= rating) {
+                return require('../../../assets/img/icons/fully_star.png');
+            } else {
+                return require('../../../assets/img/icons/empty_star.png');
+            }
+		},
+
+        getDate(date) {
+            return date[8] + date[9] + '.' + date[5] + date[6] + '.' + date[0] + date[1] + date[2] + date[3];
+        }
+    },
+    // src="@/assets/img/icons/fully_star.png" 
+
 }
 </script>
 <style lang="scss" scoped>

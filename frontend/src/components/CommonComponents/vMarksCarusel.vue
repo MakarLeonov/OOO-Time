@@ -1,25 +1,27 @@
 <template>
-	<my-title class="title">Обслуживаемые марки</my-title>
-    <main>
-		<!-- <header>
-			<p>
-				<span @click="leftMove">&#139;</span>
-				<span @click="rightMove">&#155;</span>
-                <br> {{ screenWidthNow }}
-			</p>
-		</header> -->
-		<div class="caruserl">
-			<span class="move_button" @click="leftMove">&#139;</span>
-		<section>
-            <div class="product" v-for="(mark, index) in marksList" :key="index" >
-                <!-- <img class="slider_img" src="'@/assets/img/marks/' + mark" alt="img"> -->
-                <img class="slider_img" :src="getImgUrl(mark)" alt="img">
-				<!-- {{ mark.src }} -->
-            </div>
-		</section>
-		<span class="move_button" @click="rightMove">&#155;</span>
-		</div>
-	</main>
+	<div>
+		<my-title class="title">Обслуживаемые марки</my-title>
+		<main>
+			<!-- <header>
+				<p>
+					<span @click="leftMove">&#139;</span>
+					<span @click="rightMove">&#155;</span>
+					<br> {{ screenWidthNow }}
+				</p>
+			</header> -->
+			<div class="caruserl">
+				<span class="move_button" @click="leftMove">&#139;</span>
+			<section>
+				<div class="product" v-for="(mark, index) in marksList" :key="index" >
+					<!-- <img class="slider_img" src="'@/assets/img/marks/' + mark" alt="img"> -->
+					<img class="slider_img" :src="getImgUrl(mark)" alt="img">
+					<!-- {{ mark.src }} -->
+				</div>
+			</section>
+			<span class="move_button" @click="rightMove">&#155;</span>
+			</div>
+		</main>
+	</div>
 </template>
 <script>
 import MyTitle from "@/components/UI/MyTitle.vue";
