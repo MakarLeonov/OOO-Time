@@ -5,6 +5,7 @@ export default createStore({
   state: {
     advantages: [],
     promotions: [],
+    feedback: [],
     screenWidth: 0,
     isSidebarActive: false,
     isFeedbackModalWindowActive: false,
@@ -41,6 +42,10 @@ export default createStore({
     SET_PROMOTIONS_TO_STATE: (state, payload) => {
       state.promotions = payload;
     },
+
+    SET_FEEDBACK_TO_STATE: (state, payload) => {
+      state.feedback = payload;
+    },
   },
   actions: {
     GET_ADVANTAGES({commit}) {
@@ -56,7 +61,14 @@ export default createStore({
         commit('SET_PROMOTIONS_TO_STATE', response.data.data);
       })
     },
+    
+    GET_FEEDBACK({commit}) {
+      axios.get('http://127.0.0.1:8000/api/feedback')
+      .then(response => {
+        console.log(response.data.data)
+        commit('SET_FEEDBACK_TO_STATE', response.data.data);
+      })
+    },
+
   },
-  modules: {
-  }
 })

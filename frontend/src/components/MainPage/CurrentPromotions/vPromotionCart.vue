@@ -5,13 +5,17 @@
                 >
                 <p class="promotion-title">
                     {{ promotion.title }}
-                    <!-- какой-то заголовок -->
                 </p>
 
                 <transition name="fade">
                     <p class="promotion-description" v-show="upHere">
-                        {{ promotion.title }}
-                        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum consequuntur reprehenderit architecto, voluptas corporis atque accusantium deleniti tempora pariatur consectetur delectus hic quaerat nulla, voluptatibus magni, mollitia sed saepe necessitatibus. -->
+                        {{ promotion.description }}
+                    </p>
+                </transition>
+                
+                <transition name="fade">
+                    <p class="promotion-date" v-show="upHere">
+                        Срок окончания акции: {{ promotion.ending }}
                     </p>
                 </transition>
                 
@@ -62,10 +66,16 @@ export default {
         margin-bottom: 15px;
     }
 
-    .promotion-description {
+    .promotion-description, .promotion-date {
         font-size: 20px;
         color: #e0e0e0;
         font-weight: 400;
+    }
+
+    .promotion-date {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
     }
 }
 
