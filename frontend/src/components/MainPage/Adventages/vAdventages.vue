@@ -2,13 +2,13 @@
     <section>
         <my-title>Наши преимущества</my-title>
         <div class="container">
-            <div class="adventages">
-                <div class="adventage_item" v-for="(advantage, index) in advantages" :key="index" >
-                    <img src="@/assets/img/icons/adventage.png" alt="adventage image">
+            <div class="advantages">
+                <div class="advantage_item" v-for="(advantage, index) in advantages" :key="index" >
+                    <img src="@/assets/img/icons/adventage.png" alt="advantage image">
                     <div class="adventage_info">
                         <p class="title">{{ advantage.title }}</p>
                         <p class="description">{{ advantage.description }}</p>
-                    </div>\
+                    </div>
                 </div>
             </div>
             <img src="@/assets/about.jpg" alt="image">
@@ -24,7 +24,7 @@ export default {
     },
     
     mounted() {
-        this.$store.dispatch('GET_ADVANTAGES')
+        this.$store.dispatch('GET_ADVANTAGES');
     },
 
     computed: {
@@ -48,10 +48,18 @@ export default {
             width: 430px;
             // height: 630px;
             border-radius: 5px;
+            margin-bottom: 17px;
         }
     }
 
-    .adventage_item {
+    .advantages {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-right: 10px;
+    }
+
+    .advantage_item {
         display: flex;
         margin-bottom: 17px;
 
