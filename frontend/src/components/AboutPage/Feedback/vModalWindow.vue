@@ -10,23 +10,23 @@
             <div class="modal-window-body">
                 <div class="form-group">
                     <p class="label">Ваше имя: </p>
-                    <input type="text" class="input">
+                    <input type="text" class="input" v-model="author">
                 </div>
                 <div class="form-group">
                     <p class="label">Ваша оценка: </p>
-                    <select class="input">
-                        <option value="1">⭐ ⭐ ⭐ ⭐ ⭐</option>
-                        <option value="1">⭐ ⭐ ⭐ ⭐</option>
-                        <option value="1">⭐ ⭐ ⭐</option>
-                        <option value="1">⭐ ⭐</option>
+                    <select class="input" v-model="rating">
+                        <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
+                        <option value="4">⭐ ⭐ ⭐ ⭐</option>
+                        <option value="3">⭐ ⭐ ⭐</option>
+                        <option value="2">⭐ ⭐</option>
                         <option value="1">⭐</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <p class="label">Ваш отзыв: </p>
-                    <textarea class="textarea" ></textarea>
+                    <textarea class="textarea" v-model="feedback"></textarea>
                 </div>
-                <my-button @click="this.$store.commit('changeFeedbackModalWindowstatus')">Оставить отзыв</my-button>
+                <my-button @click="sendFeedback(), this.$store.commit('changeFeedbackModalWindowstatus')">Оставить отзыв</my-button>
             </div>
         </div>
     </div>
@@ -37,7 +37,25 @@ export default {
     name: 'v-modal-window',
     components: {
         MyButton,
-    }
+    },
+
+    data() {
+        return {
+            author: '',
+            rating: '',
+            feedback: '',
+        }
+    },
+
+    methods: {
+        sendFeedback() {
+
+            let date = new Date()
+            let url = `http://127.0.0.1:8000/api/feedback?author=${ this.author }&rating=${ this.rating }&feedback_text=${ this.feedback }&date=${ date.toISOString().split('T')[0] }`;
+
+            this.$store.dispatch('ADD_FEEDBACK', url);
+        }
+    },
     
 }
 </script>

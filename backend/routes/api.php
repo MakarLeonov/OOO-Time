@@ -41,6 +41,7 @@ Route::get('/advantages/{id}', [AdventagesController::class, 'show']);
 
 Route::get('/feedback', [FeedbackController::class, 'index']);
 Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
+Route::post('/feedback', [FeedbackController::class, 'store']);
 
 Route::post('/consultation', [ConsultationController::class, 'store']);
 
@@ -57,6 +58,7 @@ Route::put('/service/{id}', [ServiceController::class, 'update']);
 Route::delete('/service/{id}', [ServiceController::class, 'destroy']);
 
 
+
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -66,7 +68,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/promotions', [PromotionsController::class, 'store']);
     Route::put('/promotions/{id}', [PromotionsController::class, 'update']);
     Route::delete('/promotions/{id}', [PromotionsController::class, 'destroy']);
-    Route::post('/feedback', [FeedbackController::class, 'store']);
+    // Route::post('/feedback', [FeedbackController::class, 'store']);
     Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy']);
     Route::get('/consultation', [ConsultationController::class, 'index']);
     Route::get('/consultation/{id}', [ConsultationController::class, 'show']);

@@ -69,5 +69,18 @@ export default createStore({
       })
     },
 
+    ADD_FEEDBACK({dispatch}, payload) {
+      console.log(payload)
+      axios.post(payload)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+      
+      dispatch('GET_FEEDBACK');
+    },
+
   },
 })
