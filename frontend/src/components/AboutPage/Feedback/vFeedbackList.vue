@@ -2,6 +2,7 @@
     <section class="container">
         <my-title>Отзывы клиентов</my-title>
         <p class="feedback_p">Благодарные отзывы наших клиентов - лучшее подтверждение высокого качества наших работ</p>
+        <my-loader v-if="!feedback.length"/>
         <div class="feedback_list">
             <v-feedback-cart
                 v-for="(feedbackInfo, index) in feedback" 
@@ -15,12 +16,13 @@
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue';
 import MyButton from '@/components/UI/MyButton.vue';
+import MyLoader from '@/components/UI/MyLoader.vue';
 import vFeedbackCart from '@/components/AboutPage/Feedback/vFeedbackCart.vue'
 
 export default {
     name: 'v-feedback-list',
     components: {
-        MyTitle, MyButton, vFeedbackCart
+        MyTitle, MyButton, vFeedbackCart, MyLoader
     },
 
     mounted() {

@@ -5,7 +5,7 @@
             <my-button class="btn">Показать все акции</my-button>
         </div>
         <div class="body">
-
+            <my-loader v-if="!promotions.length"/>
             <v-promotion-cart 
                 v-for="(promotion, index) in promotions" 
                 :key="index" 
@@ -20,11 +20,12 @@
 <script>
 import MyButton from "@/components/UI/MyButton.vue";
 import MyTitle from "@/components/UI/MyTitle.vue";
+import MyLoader from '@/components/UI/MyLoader.vue';
 import vPromotionCart from "@/components/MainPage/CurrentPromotions/vPromotionCart.vue"
 export default {
     name: "vCurrentPromotions",
     components: {
-        MyButton, MyTitle, vPromotionCart
+        MyButton, MyTitle, MyLoader, vPromotionCart
     },
 
     computed: {

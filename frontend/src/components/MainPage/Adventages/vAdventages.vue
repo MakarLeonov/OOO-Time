@@ -2,7 +2,10 @@
     <section>
         <my-title>Наши преимущества</my-title>
         <div class="container">
-            <div class="advantages">
+            <div class="loader" v-if="!advantages.length">
+                <my-loader />
+            </div>
+            <div class="advantages" v-else>
                 <div class="advantage_item" v-for="(advantage, index) in advantages" :key="index" >
                     <img src="@/assets/img/icons/adventage.png" alt="advantage image">
                     <div class="adventage_info">
@@ -17,10 +20,11 @@
 </template>
 <script>
 import MyTitle from "@/components/UI/MyTitle.vue";
+import MyLoader from '@/components/UI/MyLoader.vue';
 export default {
     name: "v-adventages",
     components: {
-        MyTitle
+        MyTitle, MyLoader
     },
     
     mounted() {
@@ -50,6 +54,14 @@ export default {
             border-radius: 5px;
             margin-bottom: 17px;
         }
+    }
+
+    .loader {
+        width: 100%;
+        height: 550px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .advantages {
