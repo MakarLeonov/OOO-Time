@@ -43,16 +43,16 @@
 
                 <div class="promotion_column">
                     <p class="title">Акции</p>
-                        <router-link to="#" class="footer_link">Бесплатная диагностика автомобиля</router-link>
+                        <router-link to="#" class="footer_link" v-for="(promotion, index) in promotions" :key="index" >{{ promotion.title }}</router-link>
+                        <!-- <router-link to="#" class="footer_link">Бесплатная диагностика автомобиля</router-link>
                         <router-link to="#" class="footer_link">Бесплатная проверка и зарядка аккумулятора</router-link>
                         <router-link to="#" class="footer_link">Скидка на ремонт подвески</router-link>
                         <router-link to="#" class="footer_link">Скидка замену масла</router-link>
-                        <router-link to="#" class="footer_link">Скидка постоянным клиентам</router-link>
+                        <router-link to="#" class="footer_link">Скидка постоянным клиентам</router-link> -->
                 </div>
 
                 <div class="user_column">
                     <my-button-black>Авторизоваться</my-button-black>
-                    <my-button-black>Личный кабинет</my-button-black>
                     <my-button-black>Панель администратора</my-button-black>
                 </div>
             </div>
@@ -66,7 +66,17 @@
 import MyButtonBlack from "@/components/UI/MyButtonBlack.vue";
 export default {
     name: "vFooter",
-    components: { MyButtonBlack }
+    components: { MyButtonBlack },
+
+    computed: {
+        promotions() {
+            return this.$store.state.promotions;
+        }
+    },
+
+    mounted() {
+        this.$store.dispatch('GET_PROMOTIONS');
+    }
     
 }
 </script>

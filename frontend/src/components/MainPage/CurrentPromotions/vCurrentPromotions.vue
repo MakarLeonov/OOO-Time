@@ -10,7 +10,7 @@
                 v-for="(promotion, index) in promotions" 
                 :key="index" 
                 :promotion="promotion"
-                />
+            />
 
         </div>
 
@@ -33,10 +33,6 @@ export default {
             return this.$store.state.promotions;
         }
     },
-
-    mounted() {
-        this.$store.dispatch('GET_PROMOTIONS');
-    }
 }
 </script>
 <style lang="scss" scoped>
