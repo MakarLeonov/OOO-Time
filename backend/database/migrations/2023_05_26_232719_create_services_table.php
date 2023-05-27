@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('cost');
+            $table->integer('is_popular');
             $table->text('description');
             $table->foreignId('repair_types_id')->constrained();
             $table->timestamps();
