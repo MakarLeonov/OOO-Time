@@ -69,8 +69,12 @@ header {
       margin-right: 40px;
       color: #fff;
 
-      &:hover {
-       @extend %linkshover;
+      // &:hover {
+      //  @extend %linkshover;
+      // }
+
+      &.router-link-active {
+        @extend %linkshover;
       }
     }
 

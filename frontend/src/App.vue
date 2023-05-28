@@ -1,6 +1,11 @@
 <template>
     <v-header />
-    <router-view class="main"/>
+    <!-- <router-view class="main"/> -->
+    <router-view v-slot="{ Component }" class="main">
+      <transition :name="[(this.$store.getters.screenWidth > 1000) ? 'fade' : !'fade']" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
     <v-footer />
 </template>
 
@@ -45,6 +50,19 @@ import vFooter from '@/components/footer/vFooter.vue'
   background-color: #fff;
 }
 
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s ease-in;
+}
 
+@media (max-width: 1000px) {
+  header .container .logo[data-v-efe28a9e] {
+    font-size: 30px;
+    }
+}
 </style>

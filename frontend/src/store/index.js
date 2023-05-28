@@ -17,6 +17,10 @@ export default createStore({
       return state.isFeedbackModalWindowActive;
     },
 
+    screenWidth (state) {
+      return state.screenWidth;
+    },
+
     ADVANTAGES(state) {
       return state.adventages;
     }
