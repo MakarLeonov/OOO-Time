@@ -1,12 +1,12 @@
 <template>
     <div class="checkbox">
-        <input type="checkbox" id="checkboxID" hidden>
+        <input type="checkbox" id="checkboxID" @click="$emit('switchChecked')" hidden>
         <label for="checkboxID" class="checkmark"></label>
     </div>
 </template>
 <script>
 export default {
-    
+
 }
 </script>
 <style lang="scss" scoped>

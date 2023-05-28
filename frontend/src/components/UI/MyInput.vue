@@ -1,10 +1,9 @@
 <template>
     <div class="input">
-        <input type="text" class="form-input" placeholder=" " v-model="value" @change="this.$emit('value', value)">
+        <input type="text" class="form-input" placeholder=" ">
         <label class="form-label">
             <slot></slot>
         </label>
-        {{ value }}
     </div>
 </template>
 <script>
