@@ -10,9 +10,15 @@
                     </label>
                 </div>
                 <div class="validation_error">
-                    <!-- <transition name="fade">
-                        <p v-if="v$.name.$error"> Это поле обязательно для заполнения</p>
-                    </transition> -->
+                    <transition-group name="list" mode="out-in">
+                        <p 
+                            v-for="err in v$.name.$errors" 
+                            :key="err.$uid"
+                            class="list-complete-item"
+                            >
+                            {{ err.$message }}
+                        </p>
+                    </transition-group>
                 </div>
 
                 <div class="input">
@@ -22,33 +28,59 @@
                     </label>
                 </div>
                 <div class="validation_error">
-                    <!-- <transition name="fade">
-                        <p v-if="v$.name.$error"> Это поле обязательно для заполнения</p>
-                    </transition> -->
+                    <transition-group name="list" mode="out-in">
+                        <p 
+                            v-for="err in v$.email.$errors" 
+                            :key="err.$uid"
+                            class="list-complete-item"
+                            >
+                            {{ err.$message }}
+                        </p>
+                    </transition-group>
                 </div>
 
                 <div class="input">
-                    <input type="password" class="form-input" placeholder=" " v-model="password">
+                    <input type="password" class="form-input" placeholder=" " v-model="password"  @input="confirmed = false">
                     <label class="form-label">
                         Введите пароль:
                     </label>
                 </div>
                 <div class="validation_error">
-                    <!-- <transition name="fade">
-                        <p v-if="v$.name.$error"> Это поле обязательно для заполнения</p>
-                    </transition> -->
+                    <transition-group name="list" mode="out-in">
+                        <p 
+                            v-for="err in v$.password.$errors" 
+                            :key="err.$uid"
+                            class="list-complete-item"
+                            >
+                            {{ err.$message }}
+                        </p>
+                    </transition-group>
+                    <transition name="list">
+                        <p v-if="confirmed" 
+                            class="list-complete-item">Введённые пароли не совпадают</p>
+                    </transition>
                 </div>
 
                 <div class="input">
-                    <input type="password" class="form-input" placeholder=" " v-model="password_confirmation">
+                    <input type="password" class="form-input" placeholder=" " v-model="password_confirmation"  @input="confirmed = false">
                     <label class="form-label">
                         Подтвердите пароль:
                     </label>
                 </div>
                 <div class="validation_error">
-                    <!-- <transition name="fade">
-                        <p v-if="v$.tel.$error"> Это поле обязательно для заполнения</p>
-                    </transition> -->
+                    <transition-group name="list" mode="out-in">
+                        <p 
+                            v-for="err in v$.password_confirmation.$errors" 
+                            :key="err.$uid"
+                            class="list-complete-item"
+                            >
+                            {{ err.$message }}
+                        </p>
+                    </transition-group>
+                    <transition name="list">
+                        <p v-if="confirmed" 
+                            class="list-complete-item">Введённые пароли не совпадают</p>
+                    </transition>
                 </div>
                 
                 <div class="confirm">
@@ -60,9 +92,10 @@
                 </div>
 
                 <div class="checkbox-error-message">
-                    <!-- <transition name="fade">
-                        <p v-if="v$.checked.$error">Нужно ваше согласие на обработку данных</p>
-                    </transition> -->
+                    <transition name="list">
+                        <p v-if="v$.checked.$error" 
+                            class="list-complete-item">Нужно ваше согласие на обработку данных</p>
+                    </transition>
                 </div>
 
                 <div class="links">
@@ -70,14 +103,16 @@
                         <div>Уже есть аккаунт?</div>
                         <router-link to="/auth">Войти</router-link>
                     </div>
-                    <my-button>Зарегистрироваться</my-button>
+                    <my-button @click="registrate()">Зарегистрироваться</my-button>
                 </div>
-
+                {{ comparison }}
             </form>
 </template>
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue'
 import MyButton from '@/components/UI/MyButton.vue'
+import { useVuelidate } from '@vuelidate/core'
+import { helpers, required, sameAs, email, minLength } from '@vuelidate/validators'
 export default {
     components: {
         MyTitle, MyButton
@@ -85,12 +120,55 @@ export default {
 
     data() {
         return {
+            v$: useVuelidate(),
             name: '',
             email: '',
             password: '',
             password_confirmation: '',
+            checked: false,
+            confirmed: false,
         }
-    }    
+    },
+
+validations() {
+    return {
+        name: {
+            required: helpers.withMessage('Это поле обязательно для заполнения', required),
+            
+        },
+        email: {
+            required: helpers.withMessage('Это поле обязательно для заполнения', required),
+            email: helpers.withMessage('Введённая почта должна быть корректной', email),
+        },
+        password: {
+            required: helpers.withMessage('Это поле обязательно для заполнения', required),
+            minLength: helpers.withMessage("Пароль должен быть не меньше 6 символов", minLength(6)),
+        },
+        password_confirmation: {
+            required: helpers.withMessage('Это поле обязательно для заполнения', required),
+            minLength: helpers.withMessage("Пароль должен быть не меньше 6 символов", minLength(6)),
+
+        },
+        checked: {
+            sameAs: sameAs(true)
+        }
+    }
+},
+
+methods: {
+    registrate() {
+        this.v$.$validate();
+        if (!this.v$.$error) {
+            if (this.password === this.password_confirmation) {
+                alert('nice')
+            } else {
+                this.confirmed = !this.confirmed;
+            }
+        } else {
+            console.log('error')
+        }
+    },
+},  
 }
 </script>
 <style lang="scss" scoped>
@@ -261,4 +339,37 @@ export default {
         }
 
     }
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+
+
+.list-enter-from,
+.list-leave-to {
+opacity: 0;
+transform: translateY(-10px);
+}
+
+
+.list-complete-item {
+transition: all .13s ease-in;
+display: inline-block;
+}
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active до версии 2.1.8 */ {
+opacity: 0;
+transform: translateY(10px);
+}
+.list-complete-leave-active {
+position: absolute;
+}
 </style>

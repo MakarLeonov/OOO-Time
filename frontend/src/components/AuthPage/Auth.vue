@@ -104,7 +104,6 @@ export default {
             },
             checked: {
                 sameAs: sameAs(true)
-                // sameAs: helpers.withMessage("Нужно ваше согласие на обработку данных", sameAs(true)),
             }
         }
     },
