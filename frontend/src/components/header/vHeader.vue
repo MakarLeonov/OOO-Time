@@ -7,10 +7,11 @@
             ООО Тайм</router-link>
         </div>
         <nav v-if="this.$store.state.screenWidth > 1000">
-          <router-link to="main">Главная</router-link>
-          <router-link to="services">Услуги</router-link>
-          <router-link to="about">О нас</router-link>
-          <my-button-black>Авторизоваться</my-button-black>
+          <router-link to="/main">Главная</router-link>
+          <router-link to="/services">Услуги</router-link>
+          <router-link to="/about">О нас</router-link>
+          <my-button-black @click="$router.push('auth')">Авторизоваться</my-button-black>
+          
         </nav>
         <v-burger-element v-else @click="this.$store.commit('showSidebar')" />
       </div>

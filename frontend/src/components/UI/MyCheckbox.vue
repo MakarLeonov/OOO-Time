@@ -1,6 +1,6 @@
 <template>
     <div class="checkbox">
-        <input type="checkbox" id="checkboxID" @click="$emit('switchChecked')" hidden>
+        <input type="checkbox" id="checkboxID" @click="$emit('switchChecked')" rel="preload" hidden>
         <label for="checkboxID" class="checkmark"></label>
     </div>
 </template>

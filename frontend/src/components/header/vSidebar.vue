@@ -1,15 +1,16 @@
 <template>
     <div class="sidebar">
       <nav>
-          <router-link to="main" @click="this.$store.commit('showSidebar')">Главная страница</router-link>
-          <router-link to="services" @click="this.$store.commit('showSidebar')">Наши услуги</router-link>
-          <router-link to="about" @click="this.$store.commit('showSidebar')">О нас</router-link>
+          <router-link to="/main" @click="this.$store.commit('showSidebar')">Главная страница</router-link>
+          <router-link to="/services" @click="this.$store.commit('showSidebar')">Цены и услуги</router-link>
+          <router-link to="/about" @click="this.$store.commit('showSidebar')">О компании</router-link>
+          <router-link to="/auth" @click="this.$store.commit('showSidebar')">Авторизоваться</router-link>
         </nav>
     </div>
 </template>
 <script>
 export default {
-    name: 'vSidebar'
+    name: 'vSidebar',
 }
 </script>
 <style lang="scss" scoped>
