@@ -3,6 +3,7 @@ import MainPage from '@/views/MainPage.vue'
 import ServicesPage from '@/views/ServicesPage.vue'
 import AboutPage from '@/views/AboutPage.vue'
 import AuthPage from '@/views/AuthPage.vue'
+import AdminPanel from '@/views/AdminPanel.vue'
 import Auth from '@/components/AuthPage/Auth.vue'
 import Registration from '@/components/AuthPage/Registration.vue'
 
@@ -39,6 +40,11 @@ const routes = [
         component: Registration, 
       },
     ]
+  },
+  { 
+    path: '/adminpanel', 
+    name: 'adminpanel', 
+    component: AdminPanel 
   },
 ]
 

@@ -76,7 +76,7 @@ export default {
     }
 
     .modal-window {
-        width: 750px;
+        width: 710px;
         height: 455px;
 
         background: #FFFFFF;
@@ -108,7 +108,7 @@ export default {
     }
 
     .modal-window-body {
-        padding: 45px 65px ;
+        padding: 45px 65px 45px 15px;
         display: flex;
         flex-direction: column;
         align-items: end;
