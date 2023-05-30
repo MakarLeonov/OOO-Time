@@ -20,6 +20,10 @@ export default createStore({
     screenWidth (state) {
       return state.screenWidth;
     },
+    
+    FEEDBACK (state) {
+      return state.feedback;
+    },
 
     ADVANTAGES(state) {
       return state.adventages;
