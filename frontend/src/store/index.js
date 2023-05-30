@@ -114,5 +114,18 @@ export default createStore({
       dispatch('GET_FEEDBACK');
     },
 
+    DELETE_FEEDBACK({dispatch}, payload) {
+      console.log(payload)
+      axios.delete(payload)
+        .then((response) => {
+            dispatch('GET_FEEDBACK');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+      
+      // dispatch('GET_FEEDBACK');
+    },
+
   },
 })

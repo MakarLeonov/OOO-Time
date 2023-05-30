@@ -15,23 +15,29 @@
             </thead>
             
             <tbody>
-                <tr v-for="(item, index) in feedback" :key="index">
-                    <td data-label="ID" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ item.id }}</td>
-                    <td data-label="Автор">{{ item.author }}</td>
-                    <td data-label="Дата">{{ getDate(item.date) }}</td>
-                    <td data-label="Рейтинг">
-                        <img 
-                            :src="getImgUrl(index, item.rating)"
-                            alt="⭐"
-                            v-for="index in 5" 
-                            :key="index"
-                        >     
-                    </td>
-                    <td data-label="Отзыв">{{ item.feedback_text }}</td>
-                    <td data-label="Опции"  :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">
-                        <div class="button delete">Удалить</div>
-                    </td>
-                </tr>
+                <transition-group name="list-complete">
+                    <tr v-for="(item, index) in feedback" :key="index" class="list-complete-item">
+                        <td data-label="ID" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ ++index }}</td>
+                        <td data-label="Автор">{{ item.author }}</td>
+                        <td data-label="Дата">{{ getDate(item.date) }}</td>
+                        <td data-label="Рейтинг">
+                            <img 
+                                :src="getImgUrl(index, item.rating)"
+                                alt="⭐"
+                                v-for="index in 5" 
+                                :key="index"
+                            >     
+                        </td>
+                        <td data-label="Отзыв">{{ item.feedback_text }}</td>
+                        <td data-label="Опции"  :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">
+                            <div class="button delete">
+                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">
+                                    delete
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </transition-group>
             </tbody>
         </table>
         <div class="loader">
@@ -66,11 +72,20 @@ export default {
 
         getDate(date) {
             return date[8] + date[9] + '.' + date[5] + date[6] + '.' + date[0] + date[1] + date[2] + date[3];
-        }
+        },
+
+        deleteFeedback(id) {
+            let url = `http://127.0.0.1:8000/api/feedback/${id}`
+            this.$store.dispatch('DELETE_FEEDBACK', url)
+        },
     },
 }
 </script>
 <style lang="scss" scoped>
+
+section {
+    padding-bottom: 30px;
+}
 
 .title {
             text-align: left;
@@ -132,12 +147,35 @@ export default {
     width: 10%;
 }
 
+.delete {
+    cursor: pointer;
+
+    &:hover {
+        color: red;
+    }
+}
+
 .loader {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+// .list-complete-item {
+//   transition: all 0.8s ease-in-out;
+// //   display: block;
+// }
+
+// .list-complete-enter-from,
+// .list-complete-leave-to {
+//   opacity: 0;
+//   transform: translateX(-50px);
+// } 
+
+// .list-complete-leave-active {
+//   position: absolute;
+// }
 
 @media(max-width: 1000px){
 	.table thead{

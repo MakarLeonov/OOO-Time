@@ -58,9 +58,6 @@ Route::put('/service/{id}', [ServiceController::class, 'update']);
 Route::delete('/service/{id}', [ServiceController::class, 'destroy']);
 
 
-
-// Protected routes
-Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/advantages', [AdventagesController::class, 'store']);
     Route::put('/advantages/{id}', [AdventagesController::class, 'update']);
@@ -73,6 +70,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/consultation', [ConsultationController::class, 'index']);
     Route::get('/consultation/{id}', [ConsultationController::class, 'show']);
     Route::delete('/consultation/{id}', [ConsultationController::class, 'destroy']);
+
+
+// Protected routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // Route::post('/logout', [AuthController::class, 'logout']);
+    // Route::post('/advantages', [AdventagesController::class, 'store']);
+    // Route::put('/advantages/{id}', [AdventagesController::class, 'update']);
+    // Route::delete('/advantages/{id}', [AdventagesController::class, 'destroy']);
+    // Route::post('/promotions', [PromotionsController::class, 'store']);
+    // Route::put('/promotions/{id}', [PromotionsController::class, 'update']);
+    // Route::delete('/promotions/{id}', [PromotionsController::class, 'destroy']);
+    // // Route::post('/feedback', [FeedbackController::class, 'store']);
+    // Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy']);
+    // Route::get('/consultation', [ConsultationController::class, 'index']);
+    // Route::get('/consultation/{id}', [ConsultationController::class, 'show']);
+    // Route::delete('/consultation/{id}', [ConsultationController::class, 'destroy']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
