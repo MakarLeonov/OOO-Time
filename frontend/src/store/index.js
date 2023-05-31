@@ -4,6 +4,7 @@ import axios from 'axios'
 export default createStore({
   state: {
     user: {},
+    authorized: true,
     advantages: [],
     promotions: [],
     repair_types: [],
@@ -20,6 +21,14 @@ export default createStore({
 
     screenWidth (state) {
       return state.screenWidth;
+    },
+
+    authorized (state) {
+      return state.authorized;
+    },
+
+    user (state) {
+      return state.user;
     },
     
     FEEDBACK (state) {
@@ -47,7 +56,8 @@ export default createStore({
     },
 
     SET_USER_TO_STATE: (state) => {
-      state.user = JSON.parse(localStorage.getItem('user'));
+      let user = JSON.parse(localStorage.getItem('user'));
+      state.user = user.user;
     },
 
     SET_ADVANTAGES_TO_STATE: (state, payload) => {
@@ -129,6 +139,28 @@ export default createStore({
     },
 
     REGISTRATE({commit}, payload) {
+      axios.post(payload)
+        .then((response) => {
+          localStorage.user = JSON.stringify(response.data);
+          commit('SET_USER_TO_STATE', response.data.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },
+
+    LOGIN({commit}, payload) {
+      axios.post(payload)
+        .then((response) => {
+          localStorage.user = JSON.stringify(response.data);
+          commit('SET_USER_TO_STATE', response.data.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },
+
+    LOGIN({commit}, payload) {
       axios.post(payload)
         .then((response) => {
           localStorage.user = JSON.stringify(response.data);

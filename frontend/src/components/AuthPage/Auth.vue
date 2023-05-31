@@ -4,7 +4,7 @@
                 <my-title class="title">Авторизация</my-title>
 
                 <div class="input">
-                    <input type="email" class="form-input" placeholder=" " v-model="email">
+                    <input type="email" class="form-input" placeholder=" " v-model.trim="email">
                     <label class="form-label">
                         Ваш email:
                     </label>
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="input">
-                    <input type="password" class="form-input" placeholder=" " v-model="password">
+                    <input type="password" class="form-input" placeholder=" " v-model.trim="password">
                     <label class="form-label">
                         Введите пароль:
                     </label>
@@ -54,22 +54,12 @@
                     </transition>
                 </div>
 
-                <!-- <div class="validation_error">
-                    <transition-group name="list" mode="out-in">
-                        <p 
-                            v-for="err in v$.checked.$errors" 
-                            :key="err.$uid"
-                            class="list-complete-item"
-                            >
-                            {{ err.$message }}
-                        </p>
-                    </transition-group>
-                </div> -->
-
                 <div class="links">
                     <router-link to="/auth/registration">Ещё нет аккаунта?</router-link>
                     <my-button @click="auth()">Авторизоваться</my-button>
                 </div>
+
+                {{ this.$store.state.user }}
 
             </form>
 </template>
@@ -112,7 +102,8 @@ export default {
         auth() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                console.log('nice')
+                let url = `http://127.0.0.1:8000/api/login?email=${this.email}&password=${this.password}`;
+                this.$store.dispatch('LOGIN', url);
             } else {
                 console.log('error')
             }
