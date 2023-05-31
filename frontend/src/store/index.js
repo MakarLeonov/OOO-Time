@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state: {
+    user: {},
     advantages: [],
     promotions: [],
     repair_types: [],
@@ -43,6 +44,10 @@ export default createStore({
         state.isSidebarActive = false;
       else 
         state.isSidebarActive = true;
+    },
+
+    SET_USER_TO_STATE: (state) => {
+      state.user = JSON.parse(localStorage.getItem('user'));
     },
 
     SET_ADVANTAGES_TO_STATE: (state, payload) => {
@@ -102,7 +107,6 @@ export default createStore({
     },
 
     ADD_FEEDBACK({dispatch}, payload) {
-      console.log(payload)
       axios.post(payload)
         .then(function (response) {
             console.log(response);
@@ -115,7 +119,6 @@ export default createStore({
     },
 
     DELETE_FEEDBACK({dispatch}, payload) {
-      console.log(payload)
       axios.delete(payload)
         .then((response) => {
             dispatch('GET_FEEDBACK');
@@ -123,8 +126,17 @@ export default createStore({
         .catch((error) => {
             console.log(error);
         });
-      
-      // dispatch('GET_FEEDBACK');
+    },
+
+    REGISTRATE({commit}, payload) {
+      axios.post(payload)
+        .then((response) => {
+          localStorage.user = JSON.stringify(response.data);
+          commit('SET_USER_TO_STATE', response.data.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     },
 
   },

@@ -1,112 +1,111 @@
 <template>
     <form class="form">
         
-                <my-title class="title">Зарегистрироваться</my-title>
+        <my-title class="title">Зарегистрироваться</my-title>
 
-                <div class="input">
-                    <input type="text" class="form-input" placeholder=" " v-model="name">
-                    <label class="form-label">
-                        Ваше имя:
-                    </label>
-                </div>
-                <div class="validation_error">
-                    <transition-group name="list" mode="out-in">
-                        <p 
-                            v-for="err in v$.name.$errors" 
-                            :key="err.$uid"
-                            class="list-complete-item"
-                            >
-                            {{ err.$message }}
-                        </p>
-                    </transition-group>
-                </div>
+        <div class="input">
+            <input type="text" class="form-input" placeholder=" " v-model.trim="name">
+            <label class="form-label">
+                Ваше имя:
+            </label>
+        </div>
+        <div class="validation_error">
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.name.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
+        </div>
 
-                <div class="input">
-                    <input type="email" class="form-input" placeholder=" " v-model="email">
-                    <label class="form-label">
-                        Ваш email:
-                    </label>
-                </div>
-                <div class="validation_error">
-                    <transition-group name="list" mode="out-in">
-                        <p 
-                            v-for="err in v$.email.$errors" 
-                            :key="err.$uid"
-                            class="list-complete-item"
-                            >
-                            {{ err.$message }}
-                        </p>
-                    </transition-group>
-                </div>
+        <div class="input">
+            <input type="email" class="form-input" placeholder=" " v-model.trim="email">
+            <label class="form-label">
+                Ваш email:
+            </label>
+        </div>
+        <div class="validation_error">
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.email.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
+        </div>
 
-                <div class="input">
-                    <input type="password" class="form-input" placeholder=" " v-model="password"  @input="confirmed = false">
-                    <label class="form-label">
-                        Введите пароль:
-                    </label>
-                </div>
-                <div class="validation_error">
-                    <transition-group name="list" mode="out-in">
-                        <p 
-                            v-for="err in v$.password.$errors" 
-                            :key="err.$uid"
-                            class="list-complete-item"
-                            >
-                            {{ err.$message }}
-                        </p>
-                    </transition-group>
-                    <transition name="list">
-                        <p v-if="confirmed" 
-                            class="list-complete-item">Введённые пароли не совпадают</p>
-                    </transition>
-                </div>
+        <div class="input">
+            <input type="password" class="form-input" placeholder=" " v-model.trim="password"  @input="unconfirmed = false">
+            <label class="form-label">
+                Введите пароль:
+            </label>
+        </div>
+        <div class="validation_error">
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.password.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
+            <transition name="list">
+                <p v-if="unconfirmed" 
+                    class="list-complete-item">Введённые пароли не совпадают</p>
+            </transition>
+        </div>
 
-                <div class="input">
-                    <input type="password" class="form-input" placeholder=" " v-model="password_confirmation"  @input="confirmed = false">
-                    <label class="form-label">
-                        Подтвердите пароль:
-                    </label>
-                </div>
-                <div class="validation_error">
-                    <transition-group name="list" mode="out-in">
-                        <p 
-                            v-for="err in v$.password_confirmation.$errors" 
-                            :key="err.$uid"
-                            class="list-complete-item"
-                            >
-                            {{ err.$message }}
-                        </p>
-                    </transition-group>
-                    <transition name="list">
-                        <p v-if="confirmed" 
-                            class="list-complete-item">Введённые пароли не совпадают</p>
-                    </transition>
-                </div>
-                
-                <div class="confirm">
-                    <div class="checkbox">
-                        <input type="checkbox" id="checkboxID" hidden v-model="checked"> 
-                        <label for="checkboxID" class="checkmark"></label>
-                    </div>
-                    <p class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</p>
-                </div>
+        <div class="input">
+            <input type="password" class="form-input" placeholder=" " v-model.trim="password_confirmation"  @input="unconfirmed = false">
+            <label class="form-label">
+                Подтвердите пароль:
+            </label>
+        </div>
+        <div class="validation_error">
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.password_confirmation.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
+            <transition name="list">
+                <p v-if="unconfirmed" 
+                    class="list-complete-item">Введённые пароли не совпадают</p>
+            </transition>
+        </div>
+        
+        <div class="confirm">
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxID" hidden v-model="checked"> 
+                <label for="checkboxID" class="checkmark"></label>
+            </div>
+            <p class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</p>
+        </div>
 
-                <div class="checkbox-error-message">
-                    <transition name="list">
-                        <p v-if="v$.checked.$error" 
-                            class="list-complete-item">Нужно ваше согласие на обработку данных</p>
-                    </transition>
-                </div>
+        <div class="checkbox-error-message">
+            <transition name="list">
+                <p v-if="v$.checked.$error" 
+                    class="list-complete-item">Нужно ваше согласие на обработку данных</p>
+            </transition>
+        </div>
 
-                <div class="links">
-                    <div class="link">
-                        <div>Уже есть аккаунт?</div>
-                        <router-link to="/auth">Войти</router-link>
-                    </div>
-                    <my-button @click="registrate()">Зарегистрироваться</my-button>
-                </div>
-                {{ comparison }}
-            </form>
+        <div class="links">
+            <div class="link">
+                <div>Уже есть аккаунт?</div>
+                <router-link to="/auth">Войти</router-link>
+            </div>
+            <my-button @click="registrate()">Зарегистрироваться</my-button>
+        </div>
+    </form>
 </template>
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue'
@@ -126,7 +125,7 @@ export default {
             password: '',
             password_confirmation: '',
             checked: false,
-            confirmed: false,
+            unconfirmed: false,
         }
     },
 
@@ -160,9 +159,10 @@ methods: {
         this.v$.$validate();
         if (!this.v$.$error) {
             if (this.password === this.password_confirmation) {
-                alert('nice')
+                let url = `http://127.0.0.1:8000/api/register?name=${this.name}&email=${this.email}&password=${this.password}&password_confirmation=${this.password_confirmation}`;
+                this.$store.dispatch('REGISTRATE', url);
             } else {
-                this.confirmed = !this.confirmed;
+                this.unconfirmed = true;
             }
         } else {
             console.log('error')

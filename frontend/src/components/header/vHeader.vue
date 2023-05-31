@@ -30,6 +30,11 @@ export default {
   components: {
     vSidebar, vBurgerElement, MyButtonBlack
   },
+
+  mounted() {
+    this.$store.commit('SET_USER_TO_STATE')
+    console.log(this.$store.state.user)
+  },
 }
 </script>
 <style lang="scss" scoped>
