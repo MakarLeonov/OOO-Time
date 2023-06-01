@@ -146,6 +146,17 @@ export default createStore({
         });
     },
 
+    ADD_CONSULTATION({dispatch}, payload) {
+      console.log(payload)
+      axios.post(payload)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    },
+
     REGISTRATE({commit}, payload) {
       axios.post(payload)
         .then((response) => {

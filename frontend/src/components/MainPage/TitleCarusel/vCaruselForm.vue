@@ -79,13 +79,13 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                console.log('nice')
+                let url = `http://127.0.0.1:8000/api/consultation?name=${this.name}&phone=${this.tel}`;
+                this.$store.dispatch('ADD_CONSULTATION', url);
             } else {
                 console.log('error')
             }
         },
     },
-    
 }
 </script>
 <style lang="scss" scoped>

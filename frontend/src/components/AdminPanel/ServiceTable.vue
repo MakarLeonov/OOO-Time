@@ -22,7 +22,10 @@
                         <td data-label="Название">{{ item.name }}</td>
                         <td data-label="Цена" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ item.cost }}</td>
                         <td data-label="is_popular" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ getPopularity(item.is_popular) }}</td>
-                        <td data-label="Тип неисправности">{{ REPAIR_TYPES.forEach(elem => { if (elem.id === item.repair_types_id) { return elem.name} })}}</td>
+                        <td data-label="Тип неисправности">{{ 
+                        // item.repair_types_id
+                        getRepairType(item.repair_types_id)
+                         }}</td>
                         <td data-label="Описание">{{ item.description }}</td>
                         <td data-label="Опции"  >
                             <div class="buttons">
@@ -38,7 +41,7 @@
                 </transition-group>
             </tbody>
         </table>
-        {{ REPAIR_TYPES }}
+        <!-- {{ REPAIR_TYPES[0] }} -->
         <div class="loader">
                 <my-loader v-if="!SERVICE.length"/>
             </div>
@@ -75,9 +78,13 @@ export default {
         },
 
         getRepairType(id) {
+            let name = ''
             this.REPAIR_TYPES.forEach(elem => {
-                (elem.id === id) ? elem.name : elem.name;
+                if (elem.id === id) {
+                    name = elem.name
+                }
             });
+            return name
         },
 
         deleteFeedback(id) {
@@ -130,12 +137,12 @@ section {
 }
 
 .id {
-    width: 4%;
+    width: 6%;
     // border-radius: 5px 0 0 0;
 }
 
 .name {
-    width: 15%;
+    width: 10%;
 }
 
 .cost {
@@ -151,7 +158,7 @@ section {
 }
 
 .options {
-    width: 10%;
+    width: 17%;
 }
 
 .delete {
