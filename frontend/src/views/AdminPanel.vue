@@ -3,8 +3,8 @@
         <aside>
             <div class="aside_title">Таблицы с контентом</div>
             <a href="#feedback_table">Таблица "Отзывы"</a>
-            <a href="#feedback_table">Таблица "Виды неисправностей"</a>
-            <a href="#feedback_table">Таблица "Услуги"</a>
+            <a href="#repaire_types_table">Таблица "Виды неисправностей"</a>
+            <a href="#service_table">Таблица "Услуги"</a>
             <a href="#feedback_table">Таблица "Акции"</a>
             <a href="#feedback_table">Таблица "Преимущества"</a>
             <a href="#feedback_table">Таблица "Пользователи"</a>
@@ -12,16 +12,21 @@
         <section class="content">
             <div class="title">Панель администратора</div>
             <hr>
-            <feedback-table />
-            
+            <feedback-table id="feedback_table"/>
+            <repaire-types-table id="repaire_types_table"/>
+            <service-table id="service_table"/>
         </section>
     </main>
 </template>
 <script>
 import FeedbackTable from '@/components/AdminPanel/FeedbackTable.vue';
+import RepaireTypesTable from '@/components/AdminPanel/RepaireTypesTable.vue';
+import ServiceTable from '@/components/AdminPanel/ServiceTable.vue';
 export default {
     components: {
         FeedbackTable, 
+        RepaireTypesTable, 
+        ServiceTable
     }
 }
 </script>

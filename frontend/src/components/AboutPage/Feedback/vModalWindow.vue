@@ -56,6 +56,12 @@ export default {
             this.$store.dispatch('ADD_FEEDBACK', url);
         }
     },
+
+    mounted() {
+        if (this.$store.getters.user) {
+            this.author = this.$store.getters.user.name;
+        }
+    }
     
 }
 </script>

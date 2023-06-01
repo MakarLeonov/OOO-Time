@@ -34,6 +34,14 @@ export default createStore({
     FEEDBACK (state) {
       return state.feedback;
     },
+    
+    REPAIR_TYPES (state) {
+      return state.repair_types;
+    },
+    
+    SERVICE (state) {
+      return state.service;
+    },
 
     ADVANTAGES(state) {
       return state.adventages;

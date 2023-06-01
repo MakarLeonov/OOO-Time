@@ -1,39 +1,33 @@
 <template>
     <section>
-        <my-title class="title">Таблица "Отзывы"</my-title>
+        <my-title class="title">Таблица "Виды неисправностей"</my-title>
 
         <table class="table">
             <thead>
                 <tr>
                     <th class="id" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">ID</th>
-                    <th class="author">Автор</th>
-                    <th class="date">Дата</th>
-                    <th class="rating">Рейтинг</th>
-                    <th class="feedback">Отзыв</th>
+                    <th class="name">Название</th>
+                    <th class="service">Кол-во услуг</th>
+                    <th class="description">Описание</th>
                     <th class="options">Опции</th>
                 </tr>
             </thead>
             
             <tbody>
                 <transition-group name="list-complete">
-                    <tr v-for="(item, index) in feedback" :key="index" class="list-complete-item">
+                    <tr v-for="(item, index) in REPAIR_TYPES" :key="index" class="list-complete-item">
                         <td data-label="ID" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ ++index }}</td>
-                        <td data-label="Автор">{{ item.author }}</td>
-                        <td data-label="Дата">{{ getDate(item.date) }}</td>
-                        <td data-label="Рейтинг">
-                            <img 
-                                :src="getImgUrl(index, item.rating)"
-                                alt="⭐"
-                                v-for="index in 5" 
-                                :key="index"
-                            >     
-                        </td>
-                        <td data-label="Отзыв">{{ item.feedback_text }}</td>
-                        <td data-label="Опции"  :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">
-                            <div class="button delete">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">
-                                    delete
-                                </span>
+                        <td data-label="Название">{{ item.name }}</td>
+                        <td data-label="Количество услуг" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ item.service.length }}</td>
+                        <td data-label="Описание">{{ item.description }}</td>
+                        <td data-label="Опции"  >
+                            <div class="buttons">
+                                <div class="edit">
+                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">edit</span>
+                            </div>
+                            <div class="delete">
+                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">delete</span>
+                            </div>
                             </div>
                         </td>
                     </tr>
@@ -41,7 +35,7 @@
             </tbody>
         </table>
         <div class="loader">
-                <my-loader v-if="!feedback.length"/>
+                <my-loader v-if="!REPAIR_TYPES.length"/>
             </div>
     </section>
 </template>
@@ -52,12 +46,12 @@ export default {
     components: { MyTitle, MyLoader },
 
     mounted() {
-        this.$store.dispatch('GET_FEEDBACK');
+        this.$store.dispatch('GET_REPAIR_TYPES');
     },
 
     computed: {
-        feedback() {
-            return this.$store.getters.FEEDBACK;
+        REPAIR_TYPES() {
+            return this.$store.getters.REPAIR_TYPES;
         }
     },
 
@@ -84,7 +78,8 @@ export default {
 <style lang="scss" scoped>
 
 section {
-    padding-bottom: 30px;
+    padding: 30px 0;
+    
 }
 
 .title {
@@ -127,19 +122,15 @@ section {
     // border-radius: 5px 0 0 0;
 }
 
-.author {
+.name {
+    width: 15%;
+}
+
+.service {
     width: 10%;
 }
 
-.date {
-    width: 10%;
-}
-
-.rating {
-    width: 10%;
-}
-
-.feedback {
+.description {
     width: 30%;
 }
 
@@ -154,6 +145,20 @@ section {
         color: red;
     }
 }
+.edit {
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(10, 204, 10);
+    }
+}
+
+.buttons {
+    margin: 0 auto;
+    max-width: 85px;
+    display: flex;
+    justify-content: space-around;
+}
 
 .loader {
     width: 100%;
@@ -161,21 +166,6 @@ section {
     align-items: center;
     justify-content: center;
 }
-
-// .list-complete-item {
-//   transition: all 0.8s ease-in-out;
-// //   display: block;
-// }
-
-// .list-complete-enter-from,
-// .list-complete-leave-to {
-//   opacity: 0;
-//   transform: translateX(-50px);
-// } 
-
-// .list-complete-leave-active {
-//   position: absolute;
-// }
 
 @media(max-width: 1000px){
 	.table thead{
@@ -205,5 +195,10 @@ section {
 		font-weight: 500;
 		text-align: left;
 	}
+
+    .buttons {
+        margin: 0;
+        margin-left: auto;
+    }
 }
 </style>
