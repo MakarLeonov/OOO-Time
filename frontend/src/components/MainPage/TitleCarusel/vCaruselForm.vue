@@ -81,6 +81,12 @@ export default {
             if (!this.v$.$error) {
                 let url = `http://127.0.0.1:8000/api/consultation?name=${this.name}&phone=${this.tel}`;
                 this.$store.dispatch('ADD_CONSULTATION', url);
+                this.name = ''
+                this.tel = ''
+                this.checked = false
+                this.v$.$reset();
+                this.$emit('toShowMessage')
+
             } else {
                 console.log('error')
             }
@@ -93,13 +99,13 @@ export default {
 
 .form {
         position: absolute;
-        width: 460px;
+        width: 440px;
         left: 1189px;
         top: 25%;
         box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.25);
 
         background: #FFFFFF;
-        border-radius: 4px;
+        border-radius: 6px;
         padding: 30px;
 
         .form-title{

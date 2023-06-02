@@ -15,8 +15,17 @@
                     :index="index"
                     :key="index" 
                     v-show="currentSlide === index"
+                    :sectionHeight="sectionHeight"
                 ></v-carusel-item>
-                <v-carusel-form />
+                <v-carusel-form @toShowMessage="toShowMessage"/>
+                <transition name="fade">
+                    <div class="message_modal" v-if="showMessage">
+                        <div class="modal_window">
+                            <p class="message_h">Спасибо!</p>
+                            <p class="message">Ваша заявка отправлена!</p>
+                        </div>
+                    </div>
+                </transition>
             </div>
         </div >
     </section>
@@ -32,13 +41,19 @@ export default {
             sectionHeight: 0,
             currentSlide: 0,
             slideInterval: null,
+            showMessage: false,
 
             slides: [
-                "img1.jpg",
-                "img2.jpg",
-                // "img3.jpg",
-                "img4.jpg",
-                // "img5.jpg",
+                "fon1.jpg",
+                // "fon2.jpg",
+                "fon3.jpg",
+                // "fon4.jpg",
+                // "fon5.jpg",
+                // "fon6.jpg",
+                // "fon7.jpg",
+                "fon8.jpg",
+                // "fon9.jpg",
+                "fon10.jpg",
             ],
         }
     },
@@ -50,21 +65,24 @@ export default {
 
         setCurrentSlide(index) {
             this.currentSlid = index;
+        },
+
+        toShowMessage() {
+            this.showMessage = true;
+            setTimeout(() => {
+                this.showMessage = false;
+            }, 2000);
         }
     },
 
     mounted() {
         this.sectionHeight = window.innerHeight - 80;
         this.slideInterval = setInterval(() => {
-            // const index = this.currentSlide <= this.slides.length-1 ? this.currentSlide : 0;
-            
             if (this.currentSlide <= this.slides.length-2) {
                 this.currentSlide++;
             } else {
                 this.currentSlide = 0;
             }
-            // this.setCurrentSlide(index);
-            // console.log(index)
         }, 5000)
     },
 
@@ -88,7 +106,6 @@ export default {
     
 
     .section {
-        // background-color: antiquewhite;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -100,8 +117,6 @@ export default {
 
         display: flex;
         justify-content: center;
-
-        
     }
 
     .carusel-inner{
@@ -109,10 +124,56 @@ export default {
         height: fit-content;
         width: 100%;
         overflow: hidden;
+    }
 
+    .message_modal {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:  rgba(0, 0, 0, .15);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal_window {
+        width: 460px;
+        height: 250px;
+        background: #fff;
+        box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .message_h {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 35px;
+        line-height: 26px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .message {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+        margin-bottom: 5px;
     }
 
     
+    .fade-enter-active,
+    .fade-leave-active {
+    transition: opacity 0.5s ease;
+    }
 
+    .fade-enter-from,
+    .fade-leave-to {
+    opacity: 0;
+    }
     
 </style>
