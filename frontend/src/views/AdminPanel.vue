@@ -5,7 +5,7 @@
             <a href="#feedback_table">Таблица "Отзывы"</a>
             <a href="#repaire_types_table">Таблица "Виды неисправностей"</a>
             <a href="#service_table">Таблица "Услуги"</a>
-            <a href="#feedback_table">Таблица "Акции"</a>
+            <a href="#consultations_table">Таблица "Заявки на когсультацию"</a>
             <a href="#feedback_table">Таблица "Преимущества"</a>
             <a href="#feedback_table">Таблица "Пользователи"</a>
         </aside>
@@ -15,6 +15,7 @@
             <feedback-table id="feedback_table"/>
             <repaire-types-table id="repaire_types_table"/>
             <service-table id="service_table"/>
+            <consultations-table id="consultations_table"/>
         </section>
     </main>
 </template>
@@ -22,11 +23,13 @@
 import FeedbackTable from '@/components/AdminPanel/FeedbackTable.vue';
 import RepaireTypesTable from '@/components/AdminPanel/RepaireTypesTable.vue';
 import ServiceTable from '@/components/AdminPanel/ServiceTable.vue';
+import ConsultationsTable from '@/components/AdminPanel/ConsultationsTable.vue';
 export default {
     components: {
         FeedbackTable, 
         RepaireTypesTable, 
-        ServiceTable
+        ServiceTable,
+        ConsultationsTable,
     }
 }
 </script>
@@ -37,6 +40,8 @@ export default {
         margin-top: 80px;
         @extend %container;
         display: flex;
+        
+        scroll-behavior: smooth;
     }
 
     aside {
@@ -45,6 +50,9 @@ export default {
         border: 1px solid black;
         border-radius: 3px;
         margin-right: 50px;
+        
+        position: sticky;
+        top: 20px;
     }
 
     .aside_title {
@@ -104,6 +112,6 @@ export default {
 
     section > hr {
         width: 100%;
-        margin: 12px 0 15px;
+        margin: 12px 0 0;
     }
 </style>

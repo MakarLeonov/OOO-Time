@@ -78,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 
 section {
-    padding: 30px 0;
+    padding: 30px 0 30px;
     
 }
 

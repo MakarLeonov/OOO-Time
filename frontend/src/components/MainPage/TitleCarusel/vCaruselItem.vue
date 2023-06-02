@@ -1,8 +1,8 @@
 <template>
-    <transition name="slide-in" mode="out-in">
+    <transition name="slide-in">
         <div 
             class="carusel-item">
-            <img :src="require('@/assets/img/carusel/' + slide)" alt="">
+            <img :src="require('@/assets/img/carusel/' + slide)" alt="" >
             <div class="overlay"></div>
         </div>
     </transition>
@@ -11,8 +11,6 @@
 export default {
     name: 'vCaruselItem',
     props: ["slide", "currentSlide", "index", "sectionHeight"],
-    
-    
 }
 </script>
 <style lang="scss" scoped>
@@ -27,9 +25,13 @@ export default {
 
     img {
         width: 100vw;
-        object-fit: contain;
+        // object-fit: contain;
         // background-size: cover;
     }
+
+    // .img {
+    //     background: url('@/assets/img/carusel/fon1.jpg');
+    // }
 
     .overlay {
         width: 100%;
@@ -43,9 +45,9 @@ export default {
 
     .slide-in-enter-active, 
     .slide-in-leave-active {
-        transition: all 1.5s ease-in-out;
+        transition: all 1s;
     }
-
+    
     .slide-in-enter-from {
         transform: translateY(-100%);
     }

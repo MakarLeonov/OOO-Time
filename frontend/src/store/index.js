@@ -10,6 +10,7 @@ export default createStore({
     repair_types: [],
     service: [],
     feedback: [],
+    consultations: [],
     screenWidth: 0,
     isSidebarActive: false,
     isFeedbackModalWindowActive: false,
@@ -42,6 +43,10 @@ export default createStore({
     SERVICE (state) {
       return state.service;
     },
+    
+    CONSULTATIONS (state) {
+      return state.consultations;
+    },
 
     ADVANTAGES(state) {
       return state.adventages;
@@ -70,6 +75,10 @@ export default createStore({
 
     SET_ADVANTAGES_TO_STATE: (state, payload) => {
       state.advantages = payload;
+    },
+
+    SET_CONSULTATIONS_TO_STATE: (state, payload) => {
+      state.consultations = payload;
     },
 
     SET_PROMOTIONS_TO_STATE: (state, payload) => {
@@ -122,6 +131,23 @@ export default createStore({
       .then(response => {
         commit('SET_FEEDBACK_TO_STATE', response.data.data);
       })
+    },
+
+    GET_CONSULTATIONS({commit}) {
+      axios.get('http://127.0.0.1:8000/api/consultation')
+      .then(response => {
+        commit('SET_CONSULTATIONS_TO_STATE', response.data.data);
+      })
+    },
+
+    DELETE_CONSULTATIONS({dispatch}, payload) {
+      axios.delete(payload)
+        .then((response) => {
+            dispatch('GET_CONSULTATIONS');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     },
 
     ADD_FEEDBACK({dispatch}, payload) {

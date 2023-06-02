@@ -1,37 +1,28 @@
 <template>
     <section>
-        <my-title class="title">Таблица "Отзывы"</my-title>
+        <my-title class="title">Таблица "Заявки на консультацию"</my-title>
 
         <table class="table">
             <thead>
                 <tr>
                     <th class="id" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">ID</th>
-                    <th class="author">Автор</th>
+                    <th class="name">Имя</th>
                     <th class="date">Дата</th>
-                    <th class="rating">Рейтинг</th>
-                    <th class="feedback">Отзыв</th>
+                    <th class="tel">Номер</th>
                     <th class="options">Опции</th>
                 </tr>
             </thead>
             
             <tbody>
                 <transition-group name="list-complete">
-                    <tr v-for="(item, index) in feedback" :key="index" class="list-complete-item">
+                    <tr v-for="(item, index) in consultations" :key="index" class="list-complete-item">
                         <td data-label="ID" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ ++index }}</td>
-                        <td data-label="Автор">{{ item.author }}</td>
-                        <td data-label="Дата">{{ getDate(item.date) }}</td>
-                        <td data-label="Рейтинг">
-                            <img 
-                                :src="getImgUrl(index, item.rating)"
-                                alt="⭐"
-                                v-for="index in 5" 
-                                :key="index"
-                            >     
-                        </td>
-                        <td data-label="Отзыв">{{ item.feedback_text }}</td>
+                        <td data-label="Имя">{{ item.name }}</td>
+                        <td data-label="Дата">{{ getDate(item.created_at) }}</td>
+                        <td data-label="Номер">{{ item.phone }}</td>
                         <td data-label="Опции"  :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">
                             <div class="button delete">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">
+                                <span class="material-symbols-outlined" @click="deleteConsultation(item.id)">
                                     delete
                                 </span>
                             </div>
@@ -41,7 +32,7 @@
             </tbody>
         </table>
         <div class="loader">
-                <my-loader v-if="!feedback.length"/>
+                <my-loader v-if="!consultations.length"/>
             </div>
     </section>
 </template>
@@ -52,31 +43,24 @@ export default {
     components: { MyTitle, MyLoader },
 
     mounted() {
-        this.$store.dispatch('GET_FEEDBACK');
+        this.$store.dispatch('GET_CONSULTATIONS');
     },
 
     computed: {
-        feedback() {
-            return this.$store.getters.FEEDBACK;
+        consultations() {
+            return this.$store.getters.CONSULTATIONS;
         }
     },
 
     methods: {
-        getImgUrl(index, rating) {
-            if (index <= rating) {
-                return require('../../assets/img/icons/fully_star.png');
-            } else {
-                return require('../../assets/img/icons/empty_star.png');
-            }
-        },
 
         getDate(date) {
             return date[8] + date[9] + '.' + date[5] + date[6] + '.' + date[0] + date[1] + date[2] + date[3];
         },
 
-        deleteFeedback(id) {
-            let url = `http://127.0.0.1:8000/api/feedback/${id}`
-            this.$store.dispatch('DELETE_FEEDBACK', url)
+        deleteConsultation(id) {
+            let url = `http://127.0.0.1:8000/api/consultation/${id}`
+            this.$store.dispatch('DELETE_CONSULTATIONS', url)
         },
     },
 }
@@ -123,28 +107,24 @@ section {
 }
 
 .id {
-    width: 4%;
+    width: 6%;
     // border-radius: 5px 0 0 0;
 }
 
-.author {
-    width: 10%;
+.name {
+    width: 23%;
 }
 
 .date {
-    width: 10%;
+    width: 23%;
 }
 
-.rating {
-    width: 10%;
-}
-
-.feedback {
-    width: 30%;
+.tel {
+    width: 23%;
 }
 
 .options {
-    width: 10%;
+    width: 23%;
 }
 
 .delete {

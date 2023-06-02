@@ -83,7 +83,7 @@ export default {
             } else {
                 this.currentSlide = 0;
             }
-        }, 5000)
+        }, 4000)
     },
 
     beforeUnmount() {
@@ -113,15 +113,15 @@ export default {
 
     .caruserl {
         width: 100%;
-        height: fit-content;
+        // height: fit-content;
 
-        display: flex;
-        justify-content: center;
+        // display: flex;
+        // justify-content: center;
     }
 
     .carusel-inner{
         position: relative;
-        height: fit-content;
+        // height: fit-content;
         width: 100%;
         overflow: hidden;
     }
