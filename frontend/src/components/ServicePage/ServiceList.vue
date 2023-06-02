@@ -26,7 +26,7 @@ export default {
 
     computed: {
         repair_types() {
-            return this.$store.state.repair_types;
+            return this.$store.getters.REPAIR_TYPES;
         }
     },
 }

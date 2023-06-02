@@ -1,6 +1,6 @@
 <template>
     <div class="hamb">
-            <div :class="{ 'hamb-field': true, active: this.$store.state.isSidebarActive }" id="hamb">
+            <div :class="{ 'hamb-field': true, active: this.$store.getters.isSidebarActive }" id="hamb">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>

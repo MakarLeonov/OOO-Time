@@ -33,7 +33,7 @@ export default {
 
     computed: {
         advantages() {
-            return this.$store.state.advantages;
+            return this.$store.getters.ADVANTAGES;
         }
     },
 }

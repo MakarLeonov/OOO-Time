@@ -30,7 +30,7 @@ export default {
 
     computed: {
         promotions() {
-            return this.$store.state.promotions;
+            return this.$store.getters.PROMOTIONS;
         }
     },
 }

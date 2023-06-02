@@ -6,7 +6,7 @@
             <!-- <img src="@/assets/img/log o.png" alt="logo"> -->
             ООО Тайм</router-link>
         </div>
-        <nav v-if="this.$store.state.screenWidth > 1000">
+        <nav v-if="this.$store.getters.screenWidth > 1000">
           <router-link to="/main">Главная</router-link>
           <router-link to="/services">Услуги</router-link>
           <router-link to="/about">О нас</router-link>
@@ -18,7 +18,7 @@
       </div>
     </header>
     <transition name="slide-fade">
-      <v-sidebar v-if="this.$store.state.isSidebarActive"/>
+      <v-sidebar v-if="this.$store.getters.isSidebarActive"/>
     </transition>
   </template>
 <script>

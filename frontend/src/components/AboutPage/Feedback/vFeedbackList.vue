@@ -31,7 +31,7 @@ export default {
 
     computed: {
         feedback() {
-            return this.$store.state.feedback;
+            return this.$store.getters.FEEDBACK;
         }
     },
 }

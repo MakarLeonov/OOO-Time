@@ -23,11 +23,10 @@ export default {
         
     }
 
-    img {
-        width: 100vw;
-        // object-fit: contain;
-        // background-size: cover;
-    }
+   img {
+    width: 100vw;
+    max-height: 100%;
+   }
 
     // .img {
     //     background: url('@/assets/img/carusel/fon1.jpg');
