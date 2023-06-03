@@ -29,7 +29,7 @@ const routes = [
       }, 
       { 
         path: ':id', 
-        name: 'dynamic service info', 
+        name: 'dynamic_service', 
         component: DynamicServiceInfo, 
       },
     ]

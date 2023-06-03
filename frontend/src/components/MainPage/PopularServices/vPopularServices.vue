@@ -3,7 +3,7 @@
         <my-title>Популярные виды услуг</my-title>
         <div class="container">
             <my-loader v-if="!SERVICE.length"/>
-            <v-service-item v-for="(service, index) in POPULAR_SERVICE.slice(0, 8)" :key="index">
+            <v-service-item v-for="(service, index) in POPULAR_SERVICE.slice(0, 8)" :key="index" :id="service.id">
                 {{ service.name }}
             </v-service-item>
         </div>
@@ -41,6 +41,13 @@ export default {
         flex-wrap: wrap;
         justify-content: space-around;
         margin-top: 10px;
+
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
     }
 
     

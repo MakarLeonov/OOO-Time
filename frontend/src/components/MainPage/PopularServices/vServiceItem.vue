@@ -1,5 +1,5 @@
 <template>
-    <div class="item">
+    <div class="item" @click="this.$router.push(`/services/${id}`)">
         <img src="@/assets/img1.png" alt="img">
         <p class="title">
             <slot></slot>
@@ -7,8 +7,12 @@
     </div>
 </template>
 <script>
+import { integer } from '@vuelidate/validators'
 export default {
     name: 'vServiceItem',
+    props: {
+        id: Number,
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -18,15 +22,14 @@ export default {
             height: fit-content; 
             width: 24%;
             background-color: #fff;
-            // box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.05);
             padding: 28px;
             margin-bottom: 24px;
             display: flex;
             flex-direction: column;
 
+            cursor: pointer;
+
             img {
-                // width: 234px;
-                // height: 211px;
                 width: 100%;
                 z-index: 10;
             }
@@ -43,6 +46,7 @@ export default {
 
             &:hover {
                 box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.10);
+                padding: 21px;
                 transition: all .2s;
             }
         }

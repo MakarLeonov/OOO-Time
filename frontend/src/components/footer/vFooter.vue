@@ -32,13 +32,7 @@
 
                 <div class="service_column">
                     <p class="title">Услуги</p>
-                        <router-link to="#" class="footer_link" v-for="service in SERVICE.slice(0, 5)" :key="service">{{ service.name }}</router-link>
-                        <!-- <router-link to="#" class="footer_link">Диагностика неисправностей автомобиля</router-link>
-                        <router-link to="#" class="footer_link">Ремонт тормозной системы</router-link>
-                        <router-link to="#" class="footer_link">Ремонт системы охлаждения</router-link>
-                        <router-link to="#" class="footer_link">Регулярное техническое обслуживание</router-link>
-                        <router-link to="#" class="footer_link">Заправка кондиционеров</router-link>
-                        <router-link to="#" class="footer_link">Шиномонтаж</router-link> -->
+                        <router-link :to="{path: `/services/${service.id}`}" class="footer_link" v-for="service in SERVICE.slice(0, 5)" :key="service">{{ service.name }}</router-link>
                 </div>
 
                 <div class="promotion_column">

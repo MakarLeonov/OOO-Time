@@ -69,6 +69,8 @@ export default {
         margin-top: 15px;
 
         color: #494949;
+
+        transition: all .2s ease;
     }
 
 </style>
