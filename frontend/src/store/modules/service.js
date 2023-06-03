@@ -4,6 +4,7 @@ export default {
 
         repair_types: [],
         service: [],
+        service_entry: {},
 
     },
 
@@ -16,6 +17,10 @@ export default {
         SERVICE (state) {
           return state.service;
         },
+        
+        SERVICE_ENTRY (state) {
+          return state.service_entry;
+        },
 
     },
 
@@ -27,6 +32,10 @@ export default {
     
         SET_SERVICE_TO_STATE: (state, payload) => {
           state.service = payload;
+        },
+    
+        SET_SERVICE_ENTRY_TO_STATE: (state, payload) => {
+          state.service_entry = payload;
         },
 
     },
@@ -44,6 +53,13 @@ export default {
             axios.get('http://127.0.0.1:8000/api/service')
             .then(response => {
                 commit('SET_SERVICE_TO_STATE', response.data.data);
+            })
+        },
+
+        GET_SERVICE_ENTRY({commit}, payload) {
+            axios.get(`http://127.0.0.1:8000/api/service/${payload}`)
+            .then(response => {
+                commit('SET_SERVICE_ENTRY_TO_STATE', response.data.data);
             })
         },
 

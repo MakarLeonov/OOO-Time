@@ -2,26 +2,33 @@
     <section>
         <my-title>Популярные виды услуг</my-title>
         <div class="container">
-
-            <v-service-item>Автосервис</v-service-item>
-            <v-service-item>Диагностика</v-service-item>
-            <v-service-item>Шиномонтаж</v-service-item>
-            <v-service-item>Прочие услуги</v-service-item>
-
-            <v-service-item>Автосервис</v-service-item>
-            <v-service-item>Диагностика</v-service-item>
-            <v-service-item>Шиномонтаж</v-service-item>
-            <v-service-item>Прочие услуги</v-service-item>
+            <my-loader v-if="!SERVICE.length"/>
+            <v-service-item v-for="(service, index) in POPULAR_SERVICE.slice(0, 8)" :key="index">
+                {{ service.name }}
+            </v-service-item>
         </div>
     </section>
 </template>
 <script>
 import MyTitle from "@/components/UI/MyTitle.vue"
 import vServiceItem from "@/components/MainPage/PopularServices/vServiceItem.vue";
+import MyLoader from '@/components/UI/MyLoader.vue';
 export default {
     name: 'vPopularServices',
     components: {
-        MyTitle, vServiceItem
+        MyTitle, vServiceItem, MyLoader
+    },
+
+    computed: {
+        SERVICE() {
+            return this.$store.getters.SERVICE;
+        },
+
+        POPULAR_SERVICE() {
+            return this.SERVICE.filter((service) => {
+                return (service.is_popular === 1) ? true : false;
+            })
+        }
     }
     
 }

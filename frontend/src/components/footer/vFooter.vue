@@ -32,23 +32,18 @@
 
                 <div class="service_column">
                     <p class="title">Услуги</p>
-                        <router-link to="#" class="footer_link">Замена масла и фильтров</router-link>
-                        <router-link to="#" class="footer_link">Диагностика неисправностей автомобиля</router-link>
+                        <router-link to="#" class="footer_link" v-for="service in SERVICE.slice(0, 5)" :key="service">{{ service.name }}</router-link>
+                        <!-- <router-link to="#" class="footer_link">Диагностика неисправностей автомобиля</router-link>
                         <router-link to="#" class="footer_link">Ремонт тормозной системы</router-link>
                         <router-link to="#" class="footer_link">Ремонт системы охлаждения</router-link>
                         <router-link to="#" class="footer_link">Регулярное техническое обслуживание</router-link>
                         <router-link to="#" class="footer_link">Заправка кондиционеров</router-link>
-                        <router-link to="#" class="footer_link">Шиномонтаж</router-link>
+                        <router-link to="#" class="footer_link">Шиномонтаж</router-link> -->
                 </div>
 
                 <div class="promotion_column">
                     <p class="title">Акции</p>
-                        <router-link to="#" class="footer_link" v-for="(promotion, index) in promotions" :key="index" >{{ promotion.title }}</router-link>
-                        <!-- <router-link to="#" class="footer_link">Бесплатная диагностика автомобиля</router-link>
-                        <router-link to="#" class="footer_link">Бесплатная проверка и зарядка аккумулятора</router-link>
-                        <router-link to="#" class="footer_link">Скидка на ремонт подвески</router-link>
-                        <router-link to="#" class="footer_link">Скидка замену масла</router-link>
-                        <router-link to="#" class="footer_link">Скидка постоянным клиентам</router-link> -->
+                        <router-link to="#" class="footer_link" v-for="(promotion, index) in PROMOTIONS.slice(0, 5)" :key="index" >{{ promotion.title }}</router-link>
                 </div>
 
                 <div class="user_column">
@@ -69,13 +64,18 @@ export default {
     components: { MyButtonBlack },
 
     computed: {
-        promotions() {
-            return this.$store.state.promotions;
-        }
+        PROMOTIONS() {
+            return this.$store.getters.PROMOTIONS;
+        },
+
+        SERVICE() {
+            return this.$store.getters.SERVICE;
+        },
     },
 
     mounted() {
         this.$store.dispatch('GET_PROMOTIONS');
+        this.$store.dispatch('GET_SERVICE');
     }
     
 }

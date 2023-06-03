@@ -34,7 +34,7 @@ export default {
 
   mounted() {
     this.$store.commit('SET_USER_TO_STATE')
-    console.log(this.$store.state.user)
+    console.log(this.$store.getters.user)
   },
 }
 </script>

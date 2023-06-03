@@ -5,16 +5,13 @@
             <my-button class="btn">Показать все акции</my-button>
         </div>
         <div class="body">
-            <my-loader v-if="!promotions.length"/>
+            <my-loader v-if="!PROMOTIONS.length"/>
             <v-promotion-cart 
-                v-for="(promotion, index) in promotions" 
+                v-for="(promotion, index) in PROMOTIONS.slice(0, 3)" 
                 :key="index" 
                 :promotion="promotion"
             />
-
         </div>
-
-        {{ upHere }}
     </section>
 </template>
 <script>
@@ -29,7 +26,7 @@ export default {
     },
 
     computed: {
-        promotions() {
+        PROMOTIONS() {
             return this.$store.getters.PROMOTIONS;
         }
     },

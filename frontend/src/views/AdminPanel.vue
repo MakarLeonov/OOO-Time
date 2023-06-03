@@ -5,7 +5,7 @@
             <a href="#feedback_table">Таблица "Отзывы"</a>
             <a href="#repaire_types_table">Таблица "Виды неисправностей"</a>
             <a href="#service_table">Таблица "Услуги"</a>
-            <a href="#consultations_table">Таблица "Заявки на когсультацию"</a>
+            <a href="#consultations_table">Таблица "Заявки на консультацию"</a>
             <a href="#promotions_table">Таблица "Акции"</a>
             <a href="#advantages_table">Таблица "Преимущества"</a>
             <!-- <a href="#feedback_table">Таблица "Пользователи"</a> -->

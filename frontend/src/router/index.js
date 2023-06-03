@@ -6,6 +6,9 @@ import AuthPage from '@/views/AuthPage.vue'
 import AdminPanel from '@/views/AdminPanel.vue'
 import Auth from '@/components/AuthPage/Auth.vue'
 import Registration from '@/components/AuthPage/Registration.vue'
+import StaticInfo from '@/components/ServicePage/ServiceInfo/StaticInfo.vue'
+import DynamicServiceInfo from '@/components/ServicePage/ServiceInfo/DynamicServiceInfo.vue'
+import NotFoundPage from '@/views/NotFoundPage.vue'
 
 const routes = [
   { 
@@ -17,7 +20,19 @@ const routes = [
   { 
     path: '/services', 
     name: 'services', 
-    component: ServicesPage 
+    component: ServicesPage,
+    children: [
+      {
+        path: '', 
+        name: 'static info', 
+        component: StaticInfo 
+      }, 
+      { 
+        path: ':id', 
+        name: 'dynamic service info', 
+        component: DynamicServiceInfo, 
+      },
+    ]
   },
   { 
     path: '/about', 
@@ -45,6 +60,11 @@ const routes = [
     path: '/adminpanel', 
     name: 'adminpanel', 
     component: AdminPanel 
+  },
+  { 
+    path: '/:pathMatch(.*)*', 
+    name: 'error404', 
+    component: NotFoundPage, 
   },
 ]
 

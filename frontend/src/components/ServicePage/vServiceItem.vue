@@ -1,17 +1,18 @@
 <template>
     <div>
         <div class="service_item" @click="isOpen = !isOpen">
-            <p class="service_item_title">{{ repair_type.name }}</p>
+            <p class="service_item_title">{{ repair_type.name}}</p>
             <img class="arrow" :style="[isOpen ? {'transform': 'rotate(90deg)'} : {'transform': 'rotate(0deg)'}]" src="@/assets/img/icons/arrow.png" alt=">">
         </div>
         <div class="service_list" :style= "[isOpen ? {'max-height': repair_type.service.length * 50 + 'px'} : {'max-height': '0px'}]">
-            <router-link 
-                to="#" 
-                v-for="(service_item, index) in repair_type.service" :key="index"
+            <div  
+                v-for="(service_item, index) in repair_type.service" 
+                :key="index"
+                @click="$router.push(`/services/${service_item.id}`)"
                 class="service_link2"
                 >
                     {{ service_item.name }}
-                </router-link>
+            </div>
         </div>
     </div>
 </template>

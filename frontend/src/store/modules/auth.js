@@ -2,7 +2,8 @@ import axios from 'axios'
 export default {
     state: {
         user: {},
-        authorized: true,
+        authorized: false,
+        token: '',
     },
 
     getters: {
@@ -21,8 +22,20 @@ export default {
 
         SET_USER_TO_STATE: (state) => {
           let user = JSON.parse(localStorage.getItem('user'));
-          state.user = user.user;
+
+          if(user != null) {
+            console.log('Есть такой юзер')
+          } else {
+            console.log('Такого юзера нет')
+
+          }
+          // let user = JSON.parse(localStorage.getItem('user'));
+          // state.user = user.user;
         },
+
+        IS_AUTORIZED(state) {
+          state.authorized = false;
+        }
 
     },
 
@@ -43,7 +56,8 @@ export default {
           axios.post(payload)
             .then((response) => {
               localStorage.user = JSON.stringify(response.data);
-              commit('SET_USER_TO_STATE', response.data.data);
+              commit('SET_USER_TO_STATE');
+              // commit('AUTORIZE_USER');
             })
             .catch((error) => {
                 console.log(error);
