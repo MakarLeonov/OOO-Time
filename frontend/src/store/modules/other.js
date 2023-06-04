@@ -4,12 +4,17 @@ export default {
         screenWidth: 0,
         isSidebarActive: false,
         isFeedbackModalWindowActive: false,
+        RepaireTypesModalWindow: false,
     },
 
     getters: {
 
         isFeedbackModalWindowActive (state) {
           return state.isFeedbackModalWindowActive;
+        },
+
+        RepaireTypesModalWindow (state) {
+          return state.RepaireTypesModalWindow;
         },
 
         isSidebarActive (state) {
@@ -31,6 +36,10 @@ export default {
         changeFeedbackModalWindowstatus(state) {
         state.isFeedbackModalWindowActive = !state.isFeedbackModalWindowActive;
         },
+
+        RepaireTypesModalWindow(state) {
+          state.RepaireTypesModalWindow = !state.RepaireTypesModalWindow;
+          },
 
         showSidebar(state) {
         if(state.isSidebarActive)

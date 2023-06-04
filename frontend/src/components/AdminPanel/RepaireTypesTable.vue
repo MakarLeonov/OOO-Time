@@ -26,7 +26,7 @@
                                 <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">edit</span>
                             </div>
                             <div class="delete">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">delete</span>
+                                <span class="material-symbols-outlined" @click="dleteEntry(item.id)">delete</span>
                             </div>
                             </div>
                         </td>
@@ -34,16 +34,22 @@
                 </transition-group>
             </tbody>
         </table>
+        <my-button class="add_button" @click="this.$store.commit('RepaireTypesModalWindow')">Добавить запись</my-button>
+        <transition name="fade">
+            <RepaireTypesModalWindow v-if="this.$store.getters.RepaireTypesModalWindow  "/>
+        </transition>
         <div class="loader">
                 <my-loader v-if="!REPAIR_TYPES.length"/>
-            </div>
+        </div>
     </section>
 </template>
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
+import RepaireTypesModalWindow from '@/components/AdminPanel/modalWindows/RepaireTypesModalWindow.vue';
 export default {
-    components: { MyTitle, MyLoader },
+    components: { MyTitle, MyLoader, MyButton, RepaireTypesModalWindow },
 
     mounted() {
         this.$store.dispatch('GET_REPAIR_TYPES');
@@ -68,24 +74,33 @@ export default {
             return date[8] + date[9] + '.' + date[5] + date[6] + '.' + date[0] + date[1] + date[2] + date[3];
         },
 
-        deleteFeedback(id) {
-            let url = `http://127.0.0.1:8000/api/feedback/${id}`
-            this.$store.dispatch('DELETE_FEEDBACK', url)
+        dleteEntry(id) {
+            let url = `http://127.0.0.1:8000/api/repair_types/${id}`
+            this.$store.dispatch('DELETE_REPAIR_TYPE', url)
         },
     },
 }
 </script>
 <style lang="scss" scoped>
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 section {
     padding: 30px 0 30px;
-    
 }
 
 .title {
-            text-align: left;
-            margin-top: 0px;
-        }
+    text-align: left;
+    margin-top: 0px;
+}
 .table{
     margin-top: 20px;
 	width: 100%;
@@ -158,6 +173,11 @@ section {
     max-width: 85px;
     display: flex;
     justify-content: space-around;
+}
+
+.add_button {
+    margin-top: 10px;
+    float: right;
 }
 
 .loader {

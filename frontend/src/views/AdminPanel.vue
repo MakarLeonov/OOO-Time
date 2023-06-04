@@ -20,6 +20,8 @@
             <promotions-table id="promotions_table"/>
             <advantages-table id="advantages_table"/>
         </section>
+
+
     </main>
 </template>
 <script>
@@ -29,6 +31,7 @@ import ServiceTable from '@/components/AdminPanel/ServiceTable.vue';
 import ConsultationsTable from '@/components/AdminPanel/ConsultationsTable.vue';
 import PromotionsTable from '@/components/AdminPanel/PromotionsTable.vue';
 import AdvantagesTable from '@/components/AdminPanel/AdvantagesTable.vue';
+import RepaireTypesModalWindow from '@/components/AdminPanel/modalWindows/RepaireTypesModalWindow.vue';
 export default {
     components: {
         FeedbackTable, 
@@ -37,6 +40,8 @@ export default {
         ConsultationsTable,
         PromotionsTable,
         AdvantagesTable,
+
+        RepaireTypesModalWindow,
     }
 }
 </script>

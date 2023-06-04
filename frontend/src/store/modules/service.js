@@ -49,6 +49,20 @@ export default {
             })
         },
 
+        ADD_REPAIR_TYPES({dispatch}, payload) {
+            axios.post(payload)
+            .then(response => {
+                dispatch('GET_REPAIR_TYPES');
+            })
+        },
+
+        DELETE_REPAIR_TYPE({dispatch}, payload) {
+            axios.delete(payload)
+            .then(response => {
+                dispatch('GET_REPAIR_TYPES');
+            })
+        },
+
         GET_SERVICE({commit}) {
             axios.get('http://127.0.0.1:8000/api/service')
             .then(response => {
