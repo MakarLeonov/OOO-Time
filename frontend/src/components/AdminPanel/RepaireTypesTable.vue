@@ -36,7 +36,7 @@
         </table>
         <my-button class="add_button" @click="this.$store.commit('RepaireTypesModalWindow')">Добавить запись</my-button>
         <transition name="fade">
-            <RepaireTypesModalWindow v-if="this.$store.getters.RepaireTypesModalWindow  "/>
+            <AddRepaireTypesModalWindow v-if="this.$store.getters.RepaireTypesModalWindow  "/>
         </transition>
         <div class="loader">
                 <my-loader v-if="!REPAIR_TYPES.length"/>
@@ -47,9 +47,9 @@
 import MyTitle from '@/components/UI/MyTitle.vue'
 import MyButton from '@/components/UI/MyButton.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
-import RepaireTypesModalWindow from '@/components/AdminPanel/modalWindows/RepaireTypesModalWindow.vue';
+import AddRepaireTypesModalWindow from '@/components/AdminPanel/modalWindows/AddRepaireTypesModalWindow.vue';
 export default {
-    components: { MyTitle, MyLoader, MyButton, RepaireTypesModalWindow },
+    components: { MyTitle, MyLoader, MyButton, AddRepaireTypesModalWindow },
 
     mounted() {
         this.$store.dispatch('GET_REPAIR_TYPES');

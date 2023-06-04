@@ -285,6 +285,7 @@ export default {
             flex-direction: column;
             padding: 0 10%;
             width: 50%;
+            margin-top: 10px;
         }
 
         // .hr {
