@@ -56,6 +56,13 @@ export default {
             })
         },
 
+        EDIT_REPAIR_TYPES({dispatch}, payload) {
+            axios.put(payload)
+            .then(response => {
+                dispatch('GET_REPAIR_TYPES');
+            })
+        },
+
         DELETE_REPAIR_TYPE({dispatch}, payload) {
             axios.delete(payload)
             .then(response => {

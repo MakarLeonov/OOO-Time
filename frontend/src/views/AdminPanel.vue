@@ -1,6 +1,6 @@
 <template>
     <main>
-        <aside v-if="this.$store.getters.screenWidth > 1000">
+        <aside v-if="this.$store.getters.screenWidth > 1300">
             <div class="aside_title">Таблицы с контентом</div>
             <a href="#feedback_table">Таблица "Отзывы"</a>
             <a href="#repaire_types_table">Таблица "Виды неисправностей"</a>
@@ -219,9 +219,6 @@ export default {
         font-style: normal;
         font-weight: 400;
         font-size: 48px;
-        line-height: 57px;
-        display: flex;
-        align-items: center;
 
         color: #000000;
         width: 100%;
@@ -245,9 +242,49 @@ export default {
     transform: translateX(100%);
     }
 
+    @media (max-width: 1400px) {
+        aside {
+            margin-right: 20px;
+        }
+
+        main {
+            width: 95%;
+        }
+    }
+
+    @media (max-width: 1300px) {
+
+        main {
+            width: 90%;
+        }
+    }
+
     @media (max-width: 1000px) {
         main {
             margin-top: 40px;
+        }
+
+        .title {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .title {
+            font-size: 40px;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .title {
+            font-size: 35px;
+        }
+    }
+
+    @media (max-width: 410px) {
+        .title {
+            font-size: 30px;
         }
     }
 </style>

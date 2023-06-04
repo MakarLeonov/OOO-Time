@@ -23,7 +23,7 @@
                         <td data-label="Опции"  >
                             <div class="buttons">
                                 <div class="edit">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">edit</span>
+                                <span class="material-symbols-outlined" @click="editEntry(item)">edit</span>
                             </div>
                             <div class="delete">
                                 <span class="material-symbols-outlined" @click="dleteEntry(item.id)">delete</span>
@@ -36,7 +36,10 @@
         </table>
         <my-button class="add_button" @click="this.$store.commit('RepaireTypesModalWindow')">Добавить запись</my-button>
         <transition name="fade">
-            <AddRepaireTypesModalWindow v-if="this.$store.getters.RepaireTypesModalWindow  "/>
+            <EditRepairTypesModalWindow v-if="this.$store.getters.EditRepairTypesModalWindow" :item="item"/>
+        </transition>
+        <transition name="fade">
+            <AddRepaireTypesModalWindow v-if="this.$store.getters.AddRepaireTypesModalWindow" />
         </transition>
         <div class="loader">
                 <my-loader v-if="!REPAIR_TYPES.length"/>
@@ -48,9 +51,14 @@ import MyTitle from '@/components/UI/MyTitle.vue'
 import MyButton from '@/components/UI/MyButton.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
 import AddRepaireTypesModalWindow from '@/components/AdminPanel/modalWindows/AddRepaireTypesModalWindow.vue';
+import EditRepairTypesModalWindow from '@/components/AdminPanel/modalWindows/EditRepairTypesModalWindow.vue';
 export default {
-    components: { MyTitle, MyLoader, MyButton, AddRepaireTypesModalWindow },
-
+    components: { MyTitle, MyLoader, MyButton, AddRepaireTypesModalWindow, EditRepairTypesModalWindow },
+    data() {
+        return {
+            item: {}
+        }
+    },
     mounted() {
         this.$store.dispatch('GET_REPAIR_TYPES');
     },
@@ -72,6 +80,11 @@ export default {
 
         getDate(date) {
             return date[8] + date[9] + '.' + date[5] + date[6] + '.' + date[0] + date[1] + date[2] + date[3];
+        },
+
+        editEntry(item) {
+            this.item = item
+            this.$store.commit('EditRepairTypesModalWindow')
         },
 
         dleteEntry(id) {
@@ -221,4 +234,11 @@ section {
         margin-left: auto;
     }
 }
+
+@media(max-width: 500px){
+        .table td{
+            padding-left: 50%;
+            word-break: break-all;
+        }
+    }
 </style>

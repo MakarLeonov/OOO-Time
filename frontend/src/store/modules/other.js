@@ -4,7 +4,8 @@ export default {
         screenWidth: 0,
         isSidebarActive: false,
         isFeedbackModalWindowActive: false,
-        RepaireTypesModalWindow: false,
+        AddRepaireTypesModalWindow: false,
+        EditRepairTypesModalWindow: false,
     },
 
     getters: {
@@ -13,8 +14,12 @@ export default {
           return state.isFeedbackModalWindowActive;
         },
 
-        RepaireTypesModalWindow (state) {
-          return state.RepaireTypesModalWindow;
+        AddRepaireTypesModalWindow (state) {
+          return state.AddRepaireTypesModalWindow;
+        },
+
+        EditRepairTypesModalWindow (state) {
+          return state.EditRepairTypesModalWindow;
         },
 
         isSidebarActive (state) {
@@ -38,8 +43,12 @@ export default {
         },
 
         RepaireTypesModalWindow(state) {
-          state.RepaireTypesModalWindow = !state.RepaireTypesModalWindow;
-          },
+          state.AddRepaireTypesModalWindow = !state.AddRepaireTypesModalWindow;
+        },
+
+        EditRepairTypesModalWindow(state) {
+          state.EditRepairTypesModalWindow = !state.EditRepairTypesModalWindow;
+        },
 
         showSidebar(state) {
         if(state.isSidebarActive)

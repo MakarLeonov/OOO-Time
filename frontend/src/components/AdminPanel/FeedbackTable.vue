@@ -162,21 +162,6 @@ section {
     justify-content: center;
 }
 
-// .list-complete-item {
-//   transition: all 0.8s ease-in-out;
-// //   display: block;
-// }
-
-// .list-complete-enter-from,
-// .list-complete-leave-to {
-//   opacity: 0;
-//   transform: translateX(-50px);
-// } 
-
-// .list-complete-leave-active {
-//   position: absolute;
-// }
-
 @media(max-width: 1000px){
 	.table thead{
 		display: none;
@@ -206,4 +191,11 @@ section {
 		text-align: left;
 	}
 }
+
+@media(max-width: 500px){
+        .table td{
+            padding-left: 50%;
+            word-break: break-all;
+        }
+    }
 </style>

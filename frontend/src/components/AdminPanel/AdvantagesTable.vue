@@ -182,5 +182,12 @@ section {
         margin: 0;
         margin-left: auto;
     }
+
+    @media(max-width: 500px){
+        .table td{
+            padding-left: 50%;
+            word-break: break-all;
+        }
+    }
 }
 </style>

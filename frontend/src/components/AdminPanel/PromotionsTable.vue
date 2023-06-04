@@ -200,4 +200,11 @@ section {
         margin-left: auto;
     }
 }
+
+@media(max-width: 500px){
+        .table td{
+            padding-left: 50%;
+            word-break: break-all;
+        }
+    }
 </style>
