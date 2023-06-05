@@ -1,5 +1,5 @@
 <template>
-    <div class="modal">
+    <div class="modal" @keyup.ctrl.enter="sendFeedback()">
         <div class="modal-window">
             <div class="modal-window-head">
                 <p class="title">Оставить свой отзыв</p>
@@ -12,48 +12,100 @@
                     <p class="label">Ваше имя: </p>
                     <input type="text" class="input" v-model="author">
                 </div>
-                <div class="form-group">
+                <div class="validation_error">
+                    <transition-group name="list" mode="out-in">
+                        <p 
+                            v-for="err in v$.author.$errors" 
+                            :key="err.$uid"
+                            class="list-complete-item"
+                            >
+                            {{ err.$message }}
+                        </p>
+                    </transition-group>
+                </div>
+
+                <div class="form-group mb">
                     <p class="label">Ваша оценка: </p>
-                    <select class="input" v-model="rating">
+                        <my-select :options="rating_types" @changeOption="(value) => rating = value" class="select"/> 
+                    <!-- <select class="input" v-model="rating">
                         <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
                         <option value="4">⭐ ⭐ ⭐ ⭐</option>
                         <option value="3">⭐ ⭐ ⭐</option>
                         <option value="2">⭐ ⭐</option>
                         <option value="1">⭐</option>
-                    </select>
+                    </select> -->
                 </div>
+
                 <div class="form-group">
                     <p class="label">Ваш отзыв: </p>
                     <textarea class="textarea" v-model="feedback"></textarea>
                 </div>
-                <my-button @click="sendFeedback(), this.$store.commit('changeFeedbackModalWindowstatus')">Оставить отзыв</my-button>
+                <div class="validation_error">
+                    <transition-group name="list" mode="out-in">
+                        <p 
+                            v-for="err in v$.feedback.$errors" 
+                            :key="err.$uid"
+                            class="list-complete-item"
+                            >
+                            {{ err.$message }}
+                        </p>
+                    </transition-group>
+                </div>
+                <my-button @click="sendFeedback()">Оставить отзыв</my-button>
             </div>
         </div>
     </div>
 </template>
 <script>
 import MyButton from '@/components/UI/MyButton.vue';
+import MySelect from '@/components/UI/MySelect.vue';
+import { useVuelidate } from '@vuelidate/core'
+import { helpers, required, maxLength } from '@vuelidate/validators'
 export default {
     name: 'v-modal-window',
     components: {
-        MyButton,
+        MyButton, MySelect
     },
 
     data() {
         return {
+            v$: useVuelidate(),
             author: '',
-            rating: '',
+            rating: 5,
             feedback: '',
+            rating_types: [
+            {id: 5, name: '⭐⭐⭐⭐⭐'},
+            {id: 4, name: '⭐⭐⭐⭐'},
+            {id: 3, name: '⭐⭐⭐'},
+            {id: 2, name: '⭐⭐'},
+            {id: 1, name: '⭐'},
+            ]
+        }
+    },
+
+    validations() {
+        return {
+            author: {
+                required: helpers.withMessage('Это поле обязательно для заполнения', required),
+                maxLength: helpers.withMessage("Название не должно превышать 40 символов", maxLength(40)),
+            },
+            feedback: {
+                required: helpers.withMessage('Это поле обязательно для заполнения', required),
+            }
         }
     },
 
     methods: {
         sendFeedback() {
+            this.v$.$validate();
+            if (!this.v$.$error) {
+                let date = new Date()
+                let url = `http://127.0.0.1:8000/api/feedback?author=${ this.author }&rating=${ this.rating }&feedback_text=${ this.feedback }&date=${ date.toISOString().split('T')[0] }`;
+                this.$store.dispatch('ADD_FEEDBACK', url);
+                this.$store.commit('changeFeedbackModalWindowstatus')
+            }
 
-            let date = new Date()
-            let url = `http://127.0.0.1:8000/api/feedback?author=${ this.author }&rating=${ this.rating }&feedback_text=${ this.feedback }&date=${ date.toISOString().split('T')[0] }`;
-
-            this.$store.dispatch('ADD_FEEDBACK', url);
+            
         }
     },
 
@@ -66,9 +118,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    
-
+@import "@/assets/assets.scss";
     .modal {
+        z-index: 4;
         position: fixed;
         top: 0;
         left: 0;
@@ -82,13 +134,12 @@ export default {
     }
 
     .modal-window {
-        width: 710px;
-        height: 455px;
+        width: 670px;
 
         background: #FFFFFF;
         box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
         border-radius: 9px;
-        padding: 25px;
+        padding: 25px 25px 0;
     }
 
     .modal-window-head {
@@ -140,8 +191,8 @@ export default {
         height: 50px;
         border: 1px solid #CDCDCD;
         border-radius: 3px;
-        margin-left: 30px;
-        margin-bottom: 10px;
+        margin-left: 8px;
+        margin-bottom: 6px;
         padding-left: 10px;
 
         font-family: 'Rubik';
@@ -154,14 +205,13 @@ export default {
     }
 
     .textarea {
-        min-width: 400px;
-        max-width: 400px;
+        width: 400px;
         min-height: 150px;
         max-height: 150px;
         border: 1px solid #CDCDCD;
         border-radius: 3px;
         margin-left: 30px;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
 
         padding: 10px;
 
@@ -173,4 +223,166 @@ export default {
 
         color: #A3A2A0;
     }
+
+    .button {
+        margin-top: 5px;
+    }
+
+    .validation_error{ 
+        width: 100%;
+        margin-bottom: 15px;
+        height: 15px;
+        // padding: 5px;
+        text-align: right;
+
+        & > p {
+        color: $red;
+        }
+    }
+
+    .mb {
+        margin-bottom: 30px;
+    }
+
+    .select {
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.3s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+
+
+    .list-enter-from,
+    .list-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+    }
+
+
+    .list-complete-item {
+    transition: all .13s ease-in;
+    display: inline-block;
+    }
+    .list-complete-enter, .list-complete-leave-to
+    /* .list-complete-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(10px);
+    }
+    .list-complete-leave-active {
+    position: absolute;
+    }
+
+    @media (max-width: 730px) {
+        .modal-window {
+            width: 600px;
+        }
+
+        .modal-window-body {
+            padding: 45px 40px 45px 40px;   
+        }
+        .form-group {
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .label {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        .input {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            margin-left: 0;
+        }
+
+        .textarea {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .validation_error{ 
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 650px) {
+        .modal-window {
+            width: 90%;
+        }
+
+        .modal-window-body {
+            padding: 20px 20px 20px 20px;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .modal-window {
+            width: 90%;
+        }
+
+        .modal-window-body {
+            padding: 15px 10px 20px 10px;
+        }
+
+        .title {
+            font-size: 22px;
+        }
+
+        .label[data-v-535f7b4a] {
+            margin-top: 7px;
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .modal-window {
+            width: 95%;
+        }
+
+        .modal-window-body {
+            padding: 15px 0 10px;
+        }
+
+        .title {
+            font-size: 22px;
+        }
+
+        .label {
+            margin-top: 7px;
+            font-size: 18px;
+        }
+
+        .validation_error > p {
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .modal-window {
+            width: 97%;
+        }
+
+        .label {
+            margin-top: 7px;
+            font-size: 18px;
+        }
+
+        .validation_error > p {
+            font-size: 14px;
+        }
+    }
+    
 </style>
