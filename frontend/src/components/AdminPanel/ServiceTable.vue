@@ -22,18 +22,15 @@
                         <td data-label="Название">{{ item.name }}</td>
                         <td data-label="Цена" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ item.cost }}</td>
                         <td data-label="is_popular" :style="[(this.$store.getters.screenWidth > 1000) ? 'text-align: center;' : 'text-align: right;']">{{ getPopularity(item.is_popular) }}</td>
-                        <td data-label="Тип неисправности">{{ 
-                        // item.repair_types_id
-                        getRepairType(item.repair_types_id)
-                         }}</td>
+                        <td data-label="Тип неисправности">{{ getRepairType(item.repair_types_id) }}</td>
                         <td data-label="Описание">{{ item.description }}</td>
                         <td data-label="Опции"  >
                             <div class="buttons">
                                 <div class="edit">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">edit</span>
+                                <span class="material-symbols-outlined" @click="editEntry(item)">edit</span>
                             </div>
                             <div class="delete">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">delete</span>
+                                <span class="material-symbols-outlined" @click="deleteEntry(item.id)">delete</span>
                             </div>
                             </div>
                         </td>
@@ -41,7 +38,13 @@
                 </transition-group>
             </tbody>
         </table>
-        <!-- {{ REPAIR_TYPES[0] }} -->
+        <my-button class="add_button" @click="this.$store.commit('AddServiceModalWindow')">Добавить запись</my-button>
+        <transition name="fade">
+            <EditServiceModalWindow v-if="this.$store.getters.EditServiceModalWindow" :item="item"/>
+        </transition>
+        <transition name="fade">
+            <AddServiceModalWindow v-if="this.$store.getters.AddServiceModalWindow" />
+        </transition>
         <div class="loader">
                 <my-loader v-if="!SERVICE.length"/>
             </div>
@@ -49,9 +52,12 @@
 </template>
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
+import AddServiceModalWindow from '@/components/AdminPanel/modalWindows/AddServiceModalWindow.vue';
+import EditServiceModalWindow from '@/components/AdminPanel/modalWindows/EditServiceModalWindow.vue';
 export default {
-    components: { MyTitle, MyLoader },
+    components: { MyTitle, MyLoader, MyButton, AddServiceModalWindow, EditServiceModalWindow },
 
     mounted() {
         this.$store.dispatch('GET_SERVICE');
@@ -61,7 +67,6 @@ export default {
         SERVICE() {
             return this.$store.getters.SERVICE;
         },
-
         
         REPAIR_TYPES() {
             return this.$store.getters.REPAIR_TYPES;
@@ -87,9 +92,14 @@ export default {
             return name
         },
 
-        deleteFeedback(id) {
-            let url = `http://127.0.0.1:8000/api/feedback/${id}`
-            this.$store.dispatch('DELETE_FEEDBACK', url)
+        editEntry(item) {
+            this.item = item
+            this.$store.commit('EditServiceModalWindow')
+        },
+
+        deleteEntry(id) {
+            let url = `http://127.0.0.1:8000/api/service/${id}`
+            this.$store.dispatch('DELETE_SERVICE_ENTRY', url)
         },
     },
 }
@@ -189,6 +199,11 @@ section {
     align-items: center;
     justify-content: center;
 }
+
+.add_button {
+        margin-top: 10px;
+        float: right;
+    }
 
 @media(max-width: 1000px){
 	.table thead{

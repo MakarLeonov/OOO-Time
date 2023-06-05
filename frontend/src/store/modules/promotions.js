@@ -29,5 +29,26 @@ export default {
           })
         },
 
+        ADD_PROMOTION({dispatch}, payload) {
+          axios.post(payload)
+          .then(response => {
+              dispatch('GET_PROMOTIONS');
+          })
+        },
+
+        EDIT_PROMOTION({dispatch}, payload) {
+          axios.put(payload)
+          .then(response => {
+              dispatch('GET_PROMOTIONS');
+          })
+        },
+
+        DELETE_PROMOTION({dispatch}, payload) {
+          axios.delete(payload)
+          .then(response => {
+              dispatch('GET_PROMOTIONS');
+          })
+        },
+
     },
 }

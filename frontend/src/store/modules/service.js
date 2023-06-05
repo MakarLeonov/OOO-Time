@@ -84,5 +84,26 @@ export default {
             })
         },
 
+        ADD_SERVICE_ENTRY({dispatch}, payload) {
+            axios.post(payload)
+            .then(response => {
+                dispatch('GET_SERVICE');
+            })
+        },
+
+        EDIT_SERVICE_ENTRY({dispatch}, payload) {
+            axios.put(payload)
+            .then(response => {
+                dispatch('GET_SERVICE');
+            })
+        },
+
+        DELETE_SERVICE_ENTRY({dispatch}, payload) {
+            axios.delete(payload)
+            .then(response => {
+                dispatch('GET_SERVICE');
+            })
+        },
+
     },
 }

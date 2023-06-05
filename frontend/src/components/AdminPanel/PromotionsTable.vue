@@ -25,10 +25,10 @@
                         <td data-label="Опции"  >
                             <div class="buttons">
                                 <div class="edit">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">edit</span>
+                                <span class="material-symbols-outlined" @click="editEntry(item)">edit</span>
                             </div>
                             <div class="delete">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">delete</span>
+                                <span class="material-symbols-outlined" @click="deleteEntry(item.id)">delete</span>
                             </div>
                             </div>
                         </td>
@@ -36,6 +36,13 @@
                 </transition-group>
             </tbody>
         </table>
+        <my-button class="add_button" @click="this.$store.commit('AddPromotionModalWindow')">Добавить запись</my-button>
+        <transition name="fade">
+            <EditPromotionModalWindow v-if="this.$store.getters.EditPromotionModalWindow" :item="item"/>
+        </transition>
+        <transition name="fade">
+            <AddPromotionModalWindow v-if="this.$store.getters.AddPromotionModalWindow" />
+        </transition>
         <div class="loader">
                 <my-loader v-if="!PROMOTIONS.length"/>
             </div>
@@ -43,9 +50,12 @@
 </template>
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
+import AddPromotionModalWindow from '@/components/AdminPanel/modalWindows/AddPromotionModalWindow.vue';
+import EditPromotionModalWindow from '@/components/AdminPanel/modalWindows/EditPromotionModalWindow.vue';
 export default {
-    components: { MyTitle, MyLoader },
+    components: { MyTitle, MyLoader, MyButton, AddPromotionModalWindow, EditPromotionModalWindow },
 
     mounted() {
         this.$store.dispatch('GET_PROMOTIONS');
@@ -63,9 +73,14 @@ export default {
             return date[8] + date[9] + '.' + date[5] + date[6] + '.' + date[0] + date[1] + date[2] + date[3];
         },
 
-        deleteFeedback(id) {
-            let url = `http://127.0.0.1:8000/api/feedback/${id}`
-            this.$store.dispatch('DELETE_FEEDBACK', url)
+        editEntry(item) {
+            this.item = item
+            this.$store.commit('EditPromotionModalWindow')
+        },
+
+        deleteEntry(id) {
+            let url = `http://127.0.0.1:8000/api/promotions/${id}`
+            this.$store.dispatch('DELETE_PROMOTION', url)
         },
     },
 }
@@ -164,6 +179,11 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.add_button {
+    margin-top: 10px;
+    float: right;
 }
 
 @media(max-width: 1000px){

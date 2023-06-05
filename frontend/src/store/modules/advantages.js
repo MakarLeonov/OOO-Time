@@ -29,5 +29,33 @@ export default {
           })
         },
 
+        ADD_ADVANTAGE({dispatch}, payload) {
+          axios.post(payload)
+          .then(response => {
+            dispatch('GET_ADVANTAGES')
+          })
+        },
+
+        EDIT_ADVANTAGE({dispatch}, payload) {
+          axios.put(payload)
+          .then(response => {
+            dispatch('GET_ADVANTAGES')
+          })
+        },
+
+        ADD_ADVANTAGE({dispatch}, payload) {
+          axios.post(payload)
+          .then(response => {
+            dispatch('GET_ADVANTAGES')
+          })
+        },
+
+        DELETE_ADVANTAGE({dispatch}, payload) {
+          axios.delete(payload)
+          .then(response => {
+            dispatch('GET_ADVANTAGES')
+          })
+        },
+
     },
 }

@@ -21,10 +21,10 @@
                         <td data-label="Опции"  >
                             <div class="buttons">
                                 <div class="edit">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">edit</span>
+                                <span class="material-symbols-outlined" @click="editEntry(item)">edit</span>
                             </div>
                             <div class="delete">
-                                <span class="material-symbols-outlined" @click="deleteFeedback(item.id)">delete</span>
+                                <span class="material-symbols-outlined" @click="deleteEntry(item.id)">delete</span>
                             </div>
                             </div>
                         </td>
@@ -32,6 +32,13 @@
                 </transition-group>
             </tbody>
         </table>
+        <my-button class="add_button" @click="this.$store.commit('AddAdvantageModalWindow')">Добавить запись</my-button>
+        <transition name="fade">
+            <EditAdvantegeModalWindow v-if="this.$store.getters.EditAdvantegeModalWindow" :item="item"/>
+        </transition>
+        <transition name="fade">
+            <AddAdvantageModalWindow v-if="this.$store.getters.AddAdvantageModalWindow" />
+        </transition>
         <div class="loader">
                 <my-loader v-if="!ADVANTAGES.length"/>
             </div>
@@ -39,9 +46,18 @@
 </template>
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
+import EditAdvantegeModalWindow from '@/components/AdminPanel/modalWindows/EditAdvantegeModalWindow.vue';
+import AddAdvantageModalWindow from '@/components/AdminPanel/modalWindows/AddAdvantageModalWindow.vue';
 export default {
-    components: { MyTitle, MyLoader },
+    components: { MyTitle, MyLoader, MyButton, EditAdvantegeModalWindow, AddAdvantageModalWindow },
+
+    data() {
+        return {
+            item: {}
+        }
+    },
 
     mounted() {
         this.$store.dispatch('GET_ADVANTAGES');
@@ -54,9 +70,14 @@ export default {
     },
 
     methods: {
-        deleteFeedback(id) {
-            let url = `http://127.0.0.1:8000/api/feedback/${id}`
-            this.$store.dispatch('DELETE_FEEDBACK', url)
+        editEntry(item) {
+            this.item = item
+            this.$store.commit('EditAdvantegeModalWindow')
+        },
+
+        deleteEntry(id) {
+            let url = `http://127.0.0.1:8000/api/advantages/${id}`
+            this.$store.dispatch('DELETE_ADVANTAGE', url)
         },
     },
 }
@@ -84,6 +105,11 @@ section {
 
 
     color: #1E1E1E;
+}
+
+.add_button {
+    margin-top: 10px;
+    float: right;
 }
 
 .table td,.table th{
