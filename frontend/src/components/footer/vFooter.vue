@@ -42,7 +42,7 @@
 
                 <div class="user_column">
                     <my-button-black  @click="$router.push('/auth')">Авторизоваться</my-button-black>
-                    <my-button-black  @click="$router.push('/adminpanel')">Панель администратора</my-button-black>
+                    <my-button-black  @click="$router.push('/adminpanel'), scrollToTop()" >Панель администратора</my-button-black>
                 </div>
             </div>
 
@@ -65,6 +65,14 @@ export default {
         SERVICE() {
             return this.$store.getters.SERVICE;
         },
+    },
+
+    methods: {
+        scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 250);
+        }
     },
 
     mounted() {

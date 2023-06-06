@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <div class="service_list">
+        <div class="service_list" v-if="this.$store.getters.screenWidth > 1500">
             <service-list />
         </div>
         <div class="page_info">
@@ -17,15 +17,17 @@
                 <component :is="Component" />
             </transition>
         </router-view>
-
+        
+        <promotions-list />
         </div>
     </section>
 </template>
 <script>
 import ServiceList from '@/components/ServicePage/ServiceList.vue'
+import PromotionsList from '@/components/ServicePage/PromotionsList.vue'
 export default {
     components: {
-        ServiceList, 
+        ServiceList, PromotionsList
     }
 }
 </script>
@@ -49,7 +51,7 @@ export default {
 .page_info {
     width: 75%;
     height: fit-content;
-    margin-bottom: 40px;
+    padding-bottom: 40px;
 }
 
 .title {
@@ -118,5 +120,20 @@ export default {
     .fade-leave-active {
     transition: opacity .3s ease-in-out;
     }
+
+    @media (max-width: 1500px) {
+        .page_info {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .container {
+            width: 95%;
+        }
+    }
+
+    
 
 </style>

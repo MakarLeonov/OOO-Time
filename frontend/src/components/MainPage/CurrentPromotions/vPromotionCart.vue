@@ -15,7 +15,7 @@
                 
                 <transition name="fade">
                     <p class="promotion-date" v-show="upHere">
-                        Срок окончания акции: {{ promotion.ending }}
+                        Срок окончания акции: {{ getDate(promotion.ending)  }}
                     </p>
                 </transition>
                 
@@ -34,6 +34,12 @@ export default {
             upHere: false,
         }
     },
+
+    methods: {
+        getDate(date) {
+            return date[8] + date[9] + '.' + date[5] + date[6] + '.' + date[0] + date[1] + date[2] + date[3];
+        },
+    }
 }
 </script>
 <style lang="scss" scoped>

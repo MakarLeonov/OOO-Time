@@ -44,8 +44,8 @@
             <AddPromotionModalWindow v-if="this.$store.getters.AddPromotionModalWindow" />
         </transition>
         <div class="loader">
-                <my-loader v-if="!PROMOTIONS.length"/>
-            </div>
+            <my-loader v-if="!PROMOTIONS.length"/>
+        </div>
     </section>
 </template>
 <script>

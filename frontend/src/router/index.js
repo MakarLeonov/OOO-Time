@@ -59,6 +59,9 @@ const routes = [
   { 
     path: '/adminpanel', 
     name: 'adminpanel', 
+    scrollBehavior() {
+      window.scrollTo(0,0);
+    },
     component: AdminPanel 
   },
   { 

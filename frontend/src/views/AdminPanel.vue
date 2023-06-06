@@ -26,8 +26,8 @@
         </transition>
         
         
-        <section class="content">
-            <div class="title">Панель администратора</div>
+        <section class="content" >
+            <div class="title" id="top">Панель администратора</div>
             <hr>
             <feedback-table id="feedback_table"/>
             <repaire-types-table id="repaire_types_table"/>
