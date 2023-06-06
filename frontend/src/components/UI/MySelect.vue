@@ -156,4 +156,22 @@ export default {
   transform: translateX(20px);
   opacity: 0;
 }
+
+@media (max-width: 730px) {
+    .select-menu .select-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 525px) {
+    .select-menu.active .options {
+        width: 75%;
+    }
+}
+
+@media (max-width: 450px) {
+    .select-menu.active .options {
+        width: 82%;
+    }
+}
 </style>

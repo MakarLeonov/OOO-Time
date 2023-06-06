@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-info />
+        <!-- <v-info /> -->
         <v-marks-carusel />
         <v-map-section />
         <v-feedback-list/>

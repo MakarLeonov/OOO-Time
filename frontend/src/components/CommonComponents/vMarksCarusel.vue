@@ -2,20 +2,11 @@
 	<div>
 		<my-title class="title">Обслуживаемые марки</my-title>
 		<main>
-			<!-- <header>
-				<p>
-					<span @click="leftMove">&#139;</span>
-					<span @click="rightMove">&#155;</span>
-					<br> {{ screenWidthNow }}
-				</p>
-			</header> -->
 			<div class="caruserl">
 				<span class="move_button" @click="leftMove">&#139;</span>
 			<section>
 				<div class="product" v-for="(mark, index) in marksList" :key="index" >
-					<!-- <img class="slider_img" src="'@/assets/img/marks/' + mark" alt="img"> -->
 					<img class="slider_img" :src="getImgUrl(mark)" alt="img">
-					<!-- {{ mark.src }} -->
 				</div>
 			</section>
 			<span class="move_button" @click="rightMove">&#155;</span>
@@ -34,28 +25,12 @@ export default {
     data() {
         return {
             marksList: [
-				// 'bmw.png',
-				// 'kia.png',
-				// 'mercedes.png',
-				// 'toyota.png',
-				// 'suzuki.png',
-				// 'volvo.png',
-				// 'skoda.png',
-				// 'skoda2.png',
-				// 'wolkswagen.png',
-				// 'ford.png',
-				// 'honda.png',
-				// 'mitsubishi.png',
 				'ford.png',
 				'volkswagen2.png',
 				'toyota2.jpeg',
-				// 'toyota.jpg',
 				'honda2.jpg',
-				// 'honda.avif',
 				'chevolet2.png',
-				// 'chevrolet.jpg',
 				'kia2.jpg',
-				// 'kia.jpeg',
 				'bmw.jpg',
 				'mitsubishi.jpg',
 				'skoda.png',
@@ -71,6 +46,7 @@ export default {
             slideInterval: null,
             sliderIteration: 0,
             slidesBack: false,
+      		componentKey: 0,
         }
     },
 
@@ -100,12 +76,10 @@ export default {
 
         checkWidth() {
             if (this.screenWidthNow <= 1000) {
-                console.log(this.screenWidthNow)
                 this.movePer = 50.36;
                 this.maxMove = 504;
 				this.tail = 2;
             } else {
-                console.log(this.screenWidthNow)
                 this.movePer = 25.34;
 	            this.maxMove = 203;
 				this.tail = 4;
@@ -116,6 +90,10 @@ export default {
 			// return require('../assets/' + pic);
 			return require('../../assets/img/marks2/' + pic);
 		},
+
+		forceRerender() {
+			this.componentKey += 1;  
+		}
     },
 
     mounted() {
@@ -145,9 +123,9 @@ export default {
 
     computed: {
         screenWidthNow() {
-            return this.$store.state.screenWidth;
+            return this.$store.getters.screenWidth;
         }
-    }
+    },
 
     
 }

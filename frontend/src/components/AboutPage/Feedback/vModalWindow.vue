@@ -27,13 +27,6 @@
                 <div class="form-group mb">
                     <p class="label">Ваша оценка: </p>
                         <my-select :options="rating_types" @changeOption="(value) => rating = value" class="select"/> 
-                    <!-- <select class="input" v-model="rating">
-                        <option value="5">⭐ ⭐ ⭐ ⭐ ⭐</option>
-                        <option value="4">⭐ ⭐ ⭐ ⭐</option>
-                        <option value="3">⭐ ⭐ ⭐</option>
-                        <option value="2">⭐ ⭐</option>
-                        <option value="1">⭐</option>
-                    </select> -->
                 </div>
 
                 <div class="form-group">
@@ -231,17 +224,19 @@ export default {
     .validation_error{ 
         width: 100%;
         margin-bottom: 15px;
-        height: 15px;
+        height: 10px;
         // padding: 5px;
         text-align: right;
 
+        transition: all .2s;
+
         & > p {
-        color: $red;
+        color: $red; 
         }
     }
 
     .mb {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     .select {
@@ -298,12 +293,13 @@ export default {
         .label {
             margin-top: 10px;
             font-size: 20px;
+            width: 100%;
         }
 
         .input {
             width: 100%;
             height: 50px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             margin-left: 0;
         }
 
@@ -315,6 +311,11 @@ export default {
         .validation_error{ 
             margin-bottom: 10px;
             text-align: center;
+        }
+
+        .select{
+            margin-left: 0;
+            width: 100%;
         }
     }
 
