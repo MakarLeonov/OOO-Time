@@ -100,7 +100,7 @@
 
         <div class="links">
             <div class="link">
-                <div>Уже есть аккаунт?</div>
+                <div v-if="this.$store.getters.screenWidth > 300">Уже есть аккаунт?</div>
                 <router-link to="/auth">Войти</router-link>
             </div>
             <my-button @click="registrate()">Зарегистрироваться</my-button>
@@ -176,7 +176,6 @@ methods: {
 
 
     .form {
-        position: absolute;
         width: 500px;
 
         border-radius: 4px;
@@ -371,5 +370,31 @@ transform: translateY(10px);
 }
 .list-complete-leave-active {
 position: absolute;
+}
+
+@media (max-width: 490px) {
+    .link {
+        flex-direction: column;
+    }
+
+    .input .form-input {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .links[data-v-23dc3f11] {
+
+        align-items: flex-end;
+        flex-direction: column-reverse;
+        gap: 30px;
+    }
+
+    .link {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
 }
 </style>

@@ -39,4 +39,9 @@ main {
   transition: opacity .3s ease-in-out;
 }
 
+@media (max-width: 550px) {
+    main {
+        width: 100%;
+    }
+}
 </style>

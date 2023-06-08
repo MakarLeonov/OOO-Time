@@ -114,7 +114,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/assets.scss";
     .form {
-        // position: absolute;
         width: 500px;
 
         border-radius: 4px;
@@ -306,5 +305,22 @@ export default {
     }
     .list-complete-leave-active {
     position: absolute;
+    }
+
+    @media (max-width: 400px) {
+        .links {
+
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            gap: 30px;
+
+            
+        }
+
+        .links > a {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
