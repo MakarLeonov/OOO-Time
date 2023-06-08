@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <div class="header">
+        <div><div class="header">
             <my-title class="title">Акции</my-title>
             <my-button class="btn">Показать все акции</my-button>
         </div>
@@ -11,7 +11,7 @@
                 :key="index" 
                 :promotion="promotion"
             />
-        </div>
+        </div></div>
     </section>
 </template>
 <script>
@@ -51,12 +51,25 @@ export default {
             margin-top: 0px;
         }
     }
+}
 
-    .body {
+.body {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
         gap: 18px;
+    }
+
+@media (max-width: 1050px) {
+    .body {
+        justify-content: space-around;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .body {
+        gap: 10px;
     }
 }
 

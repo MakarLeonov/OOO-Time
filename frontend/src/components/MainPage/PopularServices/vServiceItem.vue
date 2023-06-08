@@ -1,6 +1,6 @@
 <template>
     <div class="item" @click="this.$router.push(`/services/${id}`)">
-        <img src="@/assets/img1.png" alt="img">
+        <img src="@/assets/popular_service.png" alt="img">
         <p class="title">
             <slot></slot>
         </p>
@@ -32,6 +32,7 @@ export default {
             img {
                 width: 100%;
                 z-index: 10;
+                margin: 10px;
             }
 
             p {
@@ -51,7 +52,13 @@ export default {
             }
         }
 
-        @media (max-width: 940px) {
+    @media (max-width: 1000px) {
+        .item {
+            width: 30%;
+        }
+    }
+
+    @media (max-width: 940px) {
         .title {
             font-size: 19px !important;
         }
@@ -66,6 +73,7 @@ export default {
             margin-bottom: 12px;
             padding: 22px;
         }
+
     }
 
     @media (max-width: 800px) {
@@ -86,6 +94,10 @@ export default {
     @media (max-width: 750px) {
         .item {
             padding: 15px;
+
+            &:hover {
+                padding: 11px;
+            }
         }
     }
 

@@ -3,7 +3,7 @@
         <my-title>Популярные виды услуг</my-title>
         <div class="container">
             <my-loader v-if="!SERVICE.length"/>
-            <v-service-item v-for="(service, index) in POPULAR_SERVICE.slice(0, 8)" :key="index" :id="service.id">
+            <v-service-item v-for="(service, index) in POPULAR_SERVICE.slice(0, (this.$store.getters.screenWidth > 1000) ? 8 : 6)" :key="index" :id="service.id">
                 {{ service.name }}
             </v-service-item>
         </div>
