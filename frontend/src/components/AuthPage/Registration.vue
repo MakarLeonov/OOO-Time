@@ -383,8 +383,7 @@ position: absolute;
 }
 
 @media (max-width: 430px) {
-
-    .links[data-v-23dc3f11] {
+    .links {
 
         align-items: flex-end;
         flex-direction: column-reverse;

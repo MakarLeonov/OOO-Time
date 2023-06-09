@@ -2,7 +2,7 @@
     <section class="container">
         <div><div class="header">
             <my-title class="title">Акции</my-title>
-            <my-button class="btn">Показать все акции</my-button>
+            <my-button class="btn" @click="$router.push('/services')">Показать все акции</my-button>
         </div>
         <div class="body">
             <my-loader v-if="!PROMOTIONS.length"/>
@@ -10,6 +10,7 @@
                 v-for="(promotion, index) in PROMOTIONS.slice(0, 3)" 
                 :key="index" 
                 :promotion="promotion"
+                @click="$router.push('/services')"
             />
         </div></div>
     </section>

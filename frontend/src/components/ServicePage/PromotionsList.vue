@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section id="asd">
         <p class="title">Актуальные акции</p>
         <my-accordion v-for="promotion in PROMOTIONS" :key="promotion" :promotion="promotion"/>
         <div class="loader">
@@ -12,8 +12,6 @@ import MyAccordion from "@/components/UI/MyAccordion.vue"
 import MyLoader from "@/components/UI/MyLoader.vue"
 export default {
     components: { MyAccordion, MyLoader },
-
-    
 
     computed: {
         PROMOTIONS() {

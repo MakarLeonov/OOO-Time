@@ -35,18 +35,16 @@ export default {
 				'mitsubishi.jpg',
 				'skoda.png',
 				'mercedes3.jpg',
-				'mercedes2.jpg',
+				// 'mercedes2.jpg',
             ],
 			tail: 4,
             l: 0,
             movePer: 0,
             maxMove: 0,
-            // mobView: window.matchMedia("(max-width: 768px)"),
             product: document.getElementsByClassName('product'),
             slideInterval: null,
             sliderIteration: 0,
             slidesBack: false,
-      		componentKey: 0,
         }
     },
 
@@ -76,8 +74,8 @@ export default {
 
         checkWidth() {
             if (this.screenWidthNow <= 1000) {
-                this.movePer = 50.36;
-                this.maxMove = 504;
+                this.movePer = 52.5;
+                this.maxMove = 406;
 				this.tail = 2;
             } else {
                 this.movePer = 25.34;
@@ -87,13 +85,8 @@ export default {
         },
 
 		getImgUrl(pic) {
-			// return require('../assets/' + pic);
 			return require('../../assets/img/marks2/' + pic);
 		},
-
-		forceRerender() {
-			this.componentKey += 1;  
-		}
     },
 
     mounted() {
@@ -104,15 +97,12 @@ export default {
 
         this.slideInterval = setInterval(() => {
             if (this.slidesBack === false) {
-                // this.sliderIteration++;
                 this.rightMove();
             } else {
-                // this.sliderIteration
-				// this.sliderIteration++;
                 this.leftMove();
             }
 			
-			if (this.sliderIteration === (this.marksList.length - this.tail)) {
+			if (this.sliderIteration === (this.marksList.length - 4)) {
 				this.sliderIteration = 0;
 				this.slidesBack = !this.slidesBack;
 			}
@@ -262,6 +252,18 @@ export default {
 		user-select: none;
 	}
 
+	@media (max-width: 1600px) {
+		section .product {
+			min-width: 29%;
+		}
+	}
+
+	@media (max-width: 1300px) {
+		section .product {
+			padding: 15px 32px;
+		}
+	}
+
 	@media (max-width: 1000px) {
 		.text h1{
 			font-size: 35px;
@@ -284,6 +286,24 @@ export default {
 		}
 		a{
 			padding: 6px 10px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		section .product {
+			padding: 15px 20px;
+		}
+	}
+
+	@media (max-width: 500px) {
+		section .product {
+			padding: 15px 24px;
+		}
+	}
+
+	@media (max-width: 460px) {
+		section .product {
+			padding: 15px 16px;
 		}
 	}
     
