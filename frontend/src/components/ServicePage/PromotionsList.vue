@@ -1,5 +1,5 @@
 <template>
-    <section id="asd">
+    <section class="promotions">
         <p class="title">Актуальные акции</p>
         <my-accordion v-for="promotion in PROMOTIONS" :key="promotion" :promotion="promotion"/>
         <div class="loader">
@@ -21,6 +21,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+    .promotions {
+        padding-top: 10px;
+    }
     
     .title {
         font-family: 'Rubik';

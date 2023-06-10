@@ -23,6 +23,7 @@ export default {
             return this.$store.getters.REPAIR_TYPES;
         }
     },
+
 }
 </script>
 <style lang="scss" scoped>

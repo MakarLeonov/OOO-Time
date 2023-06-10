@@ -31,6 +31,14 @@ export default {
             isOpen: false,
         }
     },
+
+    methods: {
+        hideSidebar() {
+            if (this.$store.getters.screenWidth < 700) {
+                this.$store.commit('hideServiceSidebar')
+            }
+        }
+    },
 }
 </script>
 <style lang="scss" scoped>

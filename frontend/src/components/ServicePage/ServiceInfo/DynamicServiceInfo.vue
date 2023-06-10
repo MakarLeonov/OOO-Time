@@ -87,6 +87,13 @@ export default {
         }
     }
 
+    @media (max-width: 800px) {
+        .service_title {
+            font-size: 33px;
+            line-height: 46px;
+        }
+    }
+
     @media (max-width: 650px) {
         .service_title {
             line-height: 40px;
@@ -102,7 +109,7 @@ export default {
     @media (max-width: 500px) {
         .service_title {
             line-height: 40px;
-            font-size: 31px;
+            font-size: 29px;
         }
         .description {
             margin-top: 5px;
@@ -112,11 +119,11 @@ export default {
 
     @media (max-width: 450px) {
         .service_title {
-            font-size: 29px;
+            font-size: 27px;
         }
         .description {
             margin-top: 5px;
-            font-size: 19px;
+            font-size: 18px;
         }
         .cost {
             font-size: 22px;
@@ -125,19 +132,19 @@ export default {
 
     @media (max-width: 389px) {
         .service_title {
-            font-size: 27px;
+            font-size: 26px;
         }
     }
 
     @media (max-width: 360px) {
         .service_title {
-            font-size: 26px;
+            font-size: 25px;
         }
     }
 
     @media (max-width: 350px) {
         .service_title {
-            font-size: 26px;
+            font-size: 25px;
         }
         .description {
             margin-top: 5px;
@@ -147,7 +154,7 @@ export default {
 
     @media (max-width: 340px) {
         .service_title {
-            font-size: 25px;
+            font-size: 24px;
         }
         .description {
             margin-top: 5px;

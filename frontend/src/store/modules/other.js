@@ -3,6 +3,7 @@ export default {
     state: {
         screenWidth: 0,
         isSidebarActive: false,
+        isServiceSidebarActive: false,
         isFeedbackModalWindowActive: false,
 
         AddRepaireTypesModalWindow: false,
@@ -22,6 +23,10 @@ export default {
 
       isSidebarActive (state) {
         return state.isSidebarActive;
+      },
+
+      isServiceSidebarActive(state) {
+        return state.isServiceSidebarActive;
       },
   
       screenWidth (state) {
@@ -73,6 +78,10 @@ export default {
 
         updateScreenWidth(state, payload) {
         state.screenWidth = payload;
+        },
+
+        hideServiceSidebar(state) {
+        state.isServiceSidebarActive = !state.isServiceSidebarActive;
         },
 
         changeFeedbackModalWindowstatus(state) {
