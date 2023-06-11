@@ -1,22 +1,18 @@
 <template>
     <section class="container">
-        <div class="photo">
-            <img src="@/assets/about.jpg" alt="photo">
-        </div>
-        <div class="info">
+        <div class="page_info">
             <p class="title">О нашей компании</p>
-            <div class="hr"></div>    
-            <div>
-                <div class="info_p">
-                    <p>Наш автосервис - это место, где вы можете получить качественный и профессиональный ремонт вашего автомобиля. Мы предлагаем широкий спектр услуг, включая техническое обслуживание, ремонт и замену деталей, диагностику и многое другое. Наша команда профессиональных механиков готова помочь вам в любое время, чтобы ваш автомобиль был в отличном состоянии и готов к дороге.</p>
+            <div class="content">
+                <div class="text_info">
+                    <p class="info">
+                        Автосервис ООО Тайм - это место, где вы можете получить качественный и профессиональный ремонт вашего автомобиля. Мы предлагаем широкий спектр услуг, включая техническое обслуживание, ремонт и замену деталей, диагностику и многое другое. Наша команда профессиональных механиков готова помочь вам в любое время, чтобы ваш автомобиль был в отличном состоянии и готов к дороге.
+                    </p>
                     <br>
-                    <p>Мы стремимся предоставлять нашим клиентам не только качественный ремонт, но и отличный сервис. Наша команда готова ответить на все ваши вопросы, предоставить вам подробную информацию о наших услугах и ценах, а также помочь вам с подбором наиболее подходящего ремонта для вашего автомобиля. Мы также предоставляем замену автомобиля на время ремонта, чтобы вы могли продолжать свою жизнь, не теряя времени на ожидание ремонта.</p>
-                    <br>
-                    <p>Кроме того, мы часто проводим акции и предлагаем специальные скидки на наши услуги, чтобы сделать ремонт вашего автомобиля еще более доступным. Мы ценим каждого нашего клиента и готовы предоставить индивидуальный подход к каждому случаю. Мы приглашаем вас посетить наш автосервис и убедиться в качестве наших услуг на собственном опыте.</p>
+                    <p class="info">
+                        Мы стремимся предоставлять нашим клиентам не только качественный ремонт, но и отличный сервис. Наша команда готова ответить на все ваши вопросы, предоставить вам подробную информацию о наших услугах и ценах, а также помочь вам с подбором наиболее подходящего ремонта для вашего автомобиля. Мы также предоставляем замену автомобиля на время ремонта, чтобы вы могли продолжать свою жизнь, не теряя времени на ожидание ремонта.
+                    </p>
                 </div>
-                <div class="logo">
-                    <img src="@/assets/img/logo.png" alt="logo">
-                </div>
+                <img src="@/assets/img/logo.png" alt="logo" class="logo">
             </div>
         </div>
     </section>
@@ -30,106 +26,177 @@ export default {
     
     .container {
         padding: 90px 0 0;
-        width: 64%;
+        width: 80%;
         margin: 0 auto;
 
         display: flex;
     }
-
-    .photo > img {
-        width: 350px;
-        border-radius: 3px;
-    }
-
-    .info {
-        margin-left: 20px;
+    .page_info {
         width: 100%;
-
-        & > div {
-            display: flex;
-        }
+        
     }
-
-    .info_p {
-        width: 80%;
+    .title {
         font-family: 'Rubik';
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
+        font-size: 48px;
+        line-height: 57px;
+        display: flex;
+        align-items: center;
+
+        color: #000000;
+        margin-bottom: 15px;
+    }
+
+    .content {
+        display: flex;
+    }
+
+    .logo {
+        width: 255px;
+        height: 255px;
+        margin-left: 10px;
+    }
+    .info {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+
         color: #000000;
     }
 
-    .title {
-        text-align: left;
-        font-size: 32px;
-        font-weight: regular;
-        color: #000;
-    }
 
-    .hr {
-        width: 100%;
-        height: 1px;
-        background: #868D89;
-        margin: 15px 0 20px;
-        border-radius: 3px;
-    }
+    @media (max-width: 1350px) {
 
-    .logo > img {
-        width: 169px;
-    }
-
-    @media (max-width: 1230px) {
-        .title {
-            font-size: 30px;
+        .container {
+            padding: 60px 0 0;
         }
+        .title {
+            font-size: 47px;
+            margin-bottom: 10px;
+        }
+        .info {
+            font-size: 19px;
+            line-height: 23px;
+        }
+
     }
 
-    @media (max-width: 1170px) {
-        .title {
-            font-size: 31px;
+    @media (max-width: 1250px) {
+        .logo {
+            width: 240px;
+            height: 240px;
+            margin-left: 7px;
         }
+
+        .container {
+            width: 85%;
+            padding: 40px 0 0;
+        }
+
     }
 
-    @media (max-width: 1100px) {
-        .title {
-            font-size: 29px;
+    @media (max-width: 1150px) {
+        .text_info {
+            margin-bottom: 20px;
         }
-    }
+        .logo {
+            margin: 0 auto;
+        }
+        .info {
+            text-align: justify;
+        }
+        .info:first-child {
+            text-indent: 30px;
+        }
 
-    @media (max-width: 1050px) {
-        .title {
-            font-size: 28px;
+        .content {
+            flex-direction: column;
         }
-    }
 
-    @media (max-width: 850px) {
-        .title {
-            font-size: 27px;
-        }
     }
 
     @media (max-width: 800px) {
         .title {
-            font-size: 26px;
+            font-size: 45px;
         }
     }
 
-    @media (max-width: 570px) {
+    @media (max-width: 600px) {
         .title {
-            font-size: 25px;
+            font-size: 43px;
+            margin-bottom: 0;
+        }
+
+        .info {
+            font-size: 18px;
+            line-height: 22px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .title {
+            font-size: 41px;
+            line-height: 45px;
+        }
+    }
+
+    @media (max-width: 450px) {
+        .title {
+            font-size: 39px;
+        }
+
+        .container {
+            padding: 30px 0 0;
+        }
+    }
+
+    @media (max-width: 430px) {
+        .title {
+            font-size: 37px;
+        }
+        .container {
+            padding: 25px 0 0;
         }
     }
 
     @media (max-width: 400px) {
         .title {
-            font-size: 24px;
+            font-size: 35px;
+        }
+    }
+
+    @media (max-width: 385px) {
+        .title {
+            font-size: 34px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .title {
+            font-size: 33px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .title {
+            font-size: 32px;
         }
     }
 
     @media (max-width: 350px) {
         .title {
-            font-size: 23px;
+            font-size: 31px;
+            line-height: 40px;
         }
     }
+
+    @media (max-width: 340px) {
+        .title {
+            font-size: 30px;
+        }
+    }
+       
 </style>

@@ -5,13 +5,17 @@
             :key="index" 
             :repair_type="repair_type"
             />
+        <div class="loader">
+            <my-loader v-if="!repair_types.length"/>
+        </div>
     </div>
 </template>
 <script>
 import vServiceItem from '@/components/ServicePage/vServiceItem.vue'
+import MyLoader from "@/components/UI/MyLoader.vue"
 export default {
     components: {
-        vServiceItem,
+        vServiceItem, MyLoader
     },
 
     mounted() {

@@ -91,7 +91,7 @@ export default {
     width: 400px;
     padding: 15px;
     background: #fff;
-    position: absolute;
+    position: fixed;
     top: 86px;
     top: 80px;
     right: 0;
@@ -267,9 +267,16 @@ export default {
         }
     }
 
+    @media (max-width: 470px) {
+        .title {
+            font-size: 41px;
+        }
+    }
+
+
     @media (max-width: 450px) {
         .title {
-            font-size: 40px;
+            font-size: 39px;
         }
 
         hr {
@@ -286,6 +293,13 @@ export default {
 
         .service_list_aside {
             width: 100%;
+            border-radius: 0;
+        }
+    }
+
+    @media (max-width: 440px) {
+        .title {
+            font-size: 37px;
         }
     }
 
@@ -297,7 +311,7 @@ export default {
 
     @media (max-width: 410px) {
         .title {
-            font-size: 38px;
+            font-size: 36px;
         }
 
         hr {
@@ -305,7 +319,49 @@ export default {
         }
 
         .info {
-            font-size: 18px;
+            font-size: 17px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .title {
+            font-size: 34px;
+        }
+    }
+
+    @media (max-width: 385px) {
+        .title {
+            font-size: 33px;
+        }
+    }
+
+    @media (max-width: 370px) {
+        .title {
+            font-size: 31px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .title {
+            font-size: 30px;
+        }
+    }
+
+    @media (max-width: 350px) {
+        .title {
+            font-size: 29px;
+        }
+    }
+
+    @media (max-width: 340px) {
+        .title {
+            font-size: 28px;
+        }
+    }
+
+    @media (max-width: 330px) {
+        .title {
+            font-size: 27px;
         }
     }
 

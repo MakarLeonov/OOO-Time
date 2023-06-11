@@ -8,8 +8,9 @@
             <div  
                 v-for="(service_item, index) in repair_type.service" 
                 :key="index"
-                @click="$router.push(`/services/${service_item.id}`)"
+                @click="$router.push(`/services/${service_item.id}`), hideSidebar()"
                 class="service_link2"
+
                 >
                     {{ service_item.name }}
             </div>
