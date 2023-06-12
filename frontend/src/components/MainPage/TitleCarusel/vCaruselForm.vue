@@ -9,9 +9,15 @@
             </label>
         </div>
         <div class="validation_error">
-            <transition name="fade">
-                <p v-if="v$.name.$error"> Это поле обязательно для заполнения</p>
-            </transition>
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.name.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
         </div>
 
         <div class="input">
@@ -21,11 +27,18 @@
             </label>
         </div>
         <div class="validation_error">
-            <transition name="fade">
-                <p v-if="v$.tel.$error"> Это поле обязательно для заполнения</p>
-            </transition>
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.tel.$errors.slice(0, 1)" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
         </div>
-        
+
+
         <div class="confirm">
             <div class="checkbox">
                 <input type="checkbox" id="checkboxID" hidden v-model="checked"> 
@@ -34,14 +47,35 @@
             <p class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</p>
         </div>
 
-        <div class="checkbox-error-message">
+        
+        <div class="validation_error">
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.checked.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    Нужно ваше согласие на обработку данных
+                </p>
+            </transition-group>
+        </div>
+
+        <!-- <div class="checkbox-error-message">
             <transition name="fade">
                 <p v-if="v$.checked.$error">Нужно ваше согласие на обработку данных</p>
-            </transition>
-        </div>
+            </transition> -->
+        <!-- </div> -->
 
         <my-button class="btn" @click="addEntry()">Оставить заявку</my-button>
 
+        <transition name="fade">
+            <div class="message_modal" v-if="showMessage">
+                <div class="modal_window">
+                    <p class="message_h">Спасибо!</p>
+                    <p class="message">Ваша заявка отправлена!</p>
+                </div>
+            </div>
+        </transition>
     </form>
 </template>
 <script>
@@ -49,7 +83,7 @@ import MyInput from "@/components/UI/MyInput.vue";
 import MyCheckbox from "@/components/UI/MyCheckbox.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 import { useVuelidate } from '@vuelidate/core'
-import { helpers, required, sameAs } from '@vuelidate/validators'
+import { helpers, required, sameAs, maxLength, minLength, numeric } from '@vuelidate/validators'
 export default {
     components: { MyInput, MyCheckbox, MyButton,},
     data() {
@@ -58,6 +92,7 @@ export default {
             name: '',
             tel: '',
             checked: false,
+            showMessage: false,
         }
     },
 
@@ -67,10 +102,13 @@ export default {
                 required: helpers.withMessage('Это поле обязательно для заполнения', required),
             },
             tel: {
-                required: helpers.withMessage('Это поле обязательно для заполнения', required)
+                required: helpers.withMessage('Это поле обязательно для заполнения', required),
+                numeric: helpers.withMessage('В номере могут присутствовать только цифры', numeric),
+                maxLength: helpers.withMessage("Номер должен быть не больше 12 символов", maxLength(12)),
+                minLength: helpers.withMessage("Номер должен быть не меньше 11 символов", minLength(11)),
             },
             checked: {
-                sameAs: sameAs(true)
+                sameAs: sameAs(true),
             }
         }
     },
@@ -85,7 +123,7 @@ export default {
                 this.tel = ''
                 this.checked = false
                 this.v$.$reset();
-                this.$emit('toShowMessage')
+                this.$emit('showMessage')
 
             } else {
                 console.log('error')
@@ -100,7 +138,8 @@ export default {
 .form {
         position: absolute;
         width: 440px;
-        left: 1189px;
+        height: fit-content;
+        right: 11%;
         top: 25%;
         box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.25);
 
@@ -108,16 +147,7 @@ export default {
         border-radius: 6px;
         padding: 30px;
 
-        .form-title{
-
-            font-weight: 500;
-            font-size: 24px;
-            line-height: 29px;
-            margin-bottom: 60px;
-            
-
-            color: #000000;
-        }
+        
 
         .validation_error{ 
             margin-bottom: 30px;
@@ -162,6 +192,17 @@ export default {
         }
 
         
+    }
+
+    .form-title{
+
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 60px;
+
+
+    color: #000000;
     }
 
     .input {
@@ -241,4 +282,95 @@ export default {
         .fade-leave-to {
         opacity: 0;
         }
+
+        .list-enter-from,
+        .list-leave-to {
+        opacity: 0;
+        transform: translateY(-10px);
+        }
+
+
+        .list-complete-item {
+        transition: all .13s ease-in;
+        display: inline-block;
+        }
+        .list-complete-enter, .list-complete-leave-to
+        /* .list-complete-leave-active до версии 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(10px);
+        }
+        .list-complete-leave-active {
+        position: absolute;
+        }
+    
+        .message_modal {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:  rgba(0, 0, 0, .15);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (max-width: 1300px) {
+        .form {
+            right: 7%;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .form {
+            top: 20%;
+            width: 420px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .form {
+            top: 15%;
+            right: 4%;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .form {
+            top: 12%;
+            width: 400px;
+        }
+    }
+
+    @media (max-width: 650px) {
+        .form {
+            position: relative;
+            right: 0;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: none;
+            padding: 15px 10% 60px;
+        }
+
+        .form-title{
+            
+            font-family: "Rubik";
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            margin-bottom: 45px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .form {
+            width: 100%;
+            padding: 15px 7% 60px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .form {
+            padding: 15px 5% 50px;
+        }
+    }
 </style>

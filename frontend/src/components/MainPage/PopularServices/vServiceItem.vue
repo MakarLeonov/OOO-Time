@@ -28,6 +28,7 @@ export default {
             flex-direction: column;
 
             cursor: pointer;
+            z-index: 4;
 
             img {
                 width: 100%;
