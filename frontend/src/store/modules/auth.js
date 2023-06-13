@@ -1,9 +1,8 @@
 import axios from 'axios'
 export default {
     state: {
-        user: {},
         authorized: false,
-        token: '',
+        is_admin: false,
     },
 
     getters: {
@@ -11,31 +10,30 @@ export default {
         authorized (state) {
           return state.authorized;
         },
-    
-        user (state) {
-          return state.user;
-        },
+
+        is_admin (state) {
+          return state.is_admin;
+        }
 
     },
 
     mutations: {
 
-        SET_USER_TO_STATE: (state) => {
-          let user = JSON.parse(localStorage.getItem('user'));
-
-          if(user != null) {
-            console.log('Есть такой юзер')
-          } else {
-            console.log('Такого юзера нет')
-
-          }
-          // let user = JSON.parse(localStorage.getItem('user'));
-          // state.user = user.user;
-        },
-
         IS_AUTORIZED(state) {
-          state.authorized = false;
-        }
+          let user = JSON.parse(localStorage.getItem('user'))
+          if (user != null) {
+            state.authorized = true;
+            state.is_admin = (user.is_admin == 1) ? true : false;
+          } else {
+            state.authorized = false;
+            state.is_admin = false;
+          }
+        },
+        
+        LOGOUT(commit) {
+          localStorage.clear()
+          commit('IS_AUTORIZED')
+        },
 
     },
 
@@ -44,8 +42,10 @@ export default {
         REGISTRATE({commit}, payload) {
           axios.post(payload)
             .then((response) => {
-              localStorage.user = JSON.stringify(response.data);
-              commit('SET_USER_TO_STATE', response.data.data);
+              localStorage.setItem('user', JSON.stringify(response.data.user)) 
+              localStorage.setItem('token', JSON.stringify(response.data.token))
+              commit('IS_AUTORIZED')
+              console.log('registrate')
             })
             .catch((error) => {
                 console.log(error);
@@ -55,13 +55,20 @@ export default {
         LOGIN({commit}, payload) {
           axios.post(payload)
             .then((response) => {
-              localStorage.user = JSON.stringify(response.data);
-              commit('SET_USER_TO_STATE');
-              // commit('AUTORIZE_USER');
+              localStorage.setItem('user', JSON.stringify(response.data.user)) 
+              localStorage.setItem('token', JSON.stringify(response.data.token))
+              commit('IS_AUTORIZED')
+              console.log('logged in')
             })
             .catch((error) => {
                 console.log(error);
             });
+        },
+
+        LOGOUT({commit}) {
+          localStorage.clear()
+          commit('IS_AUTORIZED')
+          console.log('logged out')
         },
 
     },

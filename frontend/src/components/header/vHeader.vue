@@ -10,7 +10,7 @@
           <router-link to="/services">Услуги</router-link>
           <router-link to="/about">О нас</router-link>
           <my-button-black @click="$router.push('/auth')" v-if="!this.$store.getters.authorized">Авторизоваться</my-button-black>
-          <my-button-black v-else>Выйти из аккаунта</my-button-black>
+          <my-button-black @click="this.$store.dispatch('LOGOUT')" v-else>Выйти из аккаунта</my-button-black>
           
         </nav>
         <v-burger-element v-else @click="this.$store.commit('showSidebar')" />
@@ -32,8 +32,7 @@ export default {
   },
 
   mounted() {
-    this.$store.commit('SET_USER_TO_STATE')
-    console.log(this.$store.getters.user)
+    this.$store.commit('IS_AUTORIZED')
   },
 }
 </script>

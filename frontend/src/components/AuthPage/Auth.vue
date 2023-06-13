@@ -59,8 +59,6 @@
                     <my-button @click="auth()">Авторизоваться</my-button>
                 </div>
 
-                {{ this.$store.state.user }}
-
             </form>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div class="modal" @keyup.ctrl.enter="sendFeedback()">
-        <div class="modal-window">
+        <div class="modal-window" v-if="this.$store.getters.authorized">
             <div class="modal-window-head">
                 <p class="title">Оставить свой отзыв</p>
                 <div class="close" @click="this.$store.commit('changeFeedbackModalWindowstatus')">
@@ -47,6 +47,14 @@
                 <my-button @click="sendFeedback()">Оставить отзыв</my-button>
             </div>
         </div>
+        <div class="unauthorized-message-window" v-else>
+            <div class="close" @click="this.$store.commit('changeFeedbackModalWindowstatus')">
+                <img src="@/assets/img/icons/close.png" alt="close" class="close-img">
+            </div>
+            <div class="message">
+                <p>Чтобы оставить свой отзыв необходимо <span @click="$router.push('/auth')">авторизоваться</span></p>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -63,7 +71,7 @@ export default {
     data() {
         return {
             v$: useVuelidate(),
-            author: '',
+            author: JSON.parse(localStorage.getItem('user')).name,
             rating: 5,
             feedback: '',
             rating_types: [
@@ -133,6 +141,42 @@ export default {
         box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
         border-radius: 9px;
         padding: 25px 25px 0;
+    }
+
+    .unauthorized-message-window {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+        border-radius: 9px;
+        align-items: flex-end;
+    }
+
+    .message {
+        height: 80px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > p {
+            font-family: "Rubik";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 19px;
+            line-height: 23px;
+            color: #454545;
+
+            & > span:hover {  
+                @extend %linkshover;
+            }
+
+            & > span {  
+                @extend %linkshover;
+            }
+        }
     }
 
     .modal-window-head {

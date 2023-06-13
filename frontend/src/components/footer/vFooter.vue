@@ -41,8 +41,9 @@
                 </div>
 
                 <div class="user_column">
-                    <my-button-black  @click="$router.push('/auth')">Авторизоваться</my-button-black>
-                    <my-button-black  @click="$router.push('/adminpanel'), scrollToTop()" >Панель администратора</my-button-black>
+                    <my-button-black @click="$router.push('/auth')" v-if="!this.$store.getters.authorized">Авторизоваться</my-button-black>
+                    <my-button-black @click="this.$store.dispatch('LOGOUT')" v-else>Выйти из аккаунта</my-button-black>
+                    <my-button-black @click="$router.push('/adminpanel'), scrollToTop()" v-if="this.$store.getters.is_admin">Панель администратора</my-button-black>
                 </div>
             </div>
 
@@ -65,6 +66,10 @@ export default {
         SERVICE() {
             return this.$store.getters.SERVICE;
         },
+
+        IS_ADMIN() {
+            return (JSON.parse(localStorage.getItem('user')).is_admin) ? true : false;
+        }
     },
 
     methods: {

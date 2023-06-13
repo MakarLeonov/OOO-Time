@@ -30,12 +30,16 @@ export default {
         },
 
         ADD_FEEDBACK({dispatch}, payload) {
-          axios.post(payload)
+          axios.post(payload, null, {
+            headers: { Authorization: `'Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+          })
             .then(function (response) {
                 console.log(response);
+                dispatch('GET_FEEDBACK');
             })
             .catch(function (error) {
                 console.log(error);
+                alert('asdf')
             });
           
           dispatch('GET_FEEDBACK');

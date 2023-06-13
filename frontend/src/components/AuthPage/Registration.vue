@@ -105,6 +105,8 @@
             </div>
             <my-button @click="registrate()">Зарегистрироваться</my-button>
         </div>
+
+        {{ this.$store.getters.user }}
     </form>
 </template>
 <script>
