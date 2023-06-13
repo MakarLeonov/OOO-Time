@@ -71,7 +71,7 @@ export default {
     data() {
         return {
             v$: useVuelidate(),
-            author: JSON.parse(localStorage.getItem('user')).name,
+            author: (localStorage.length > 0) ? JSON.parse(localStorage.getItem('user')).name : '',
             rating: 5,
             feedback: '',
             rating_types: [
@@ -144,7 +144,7 @@ export default {
     }
 
     .unauthorized-message-window {
-        width: 400px;
+        width: 370px;
         display: flex;
         flex-direction: column;
         padding: 20px;
@@ -165,7 +165,7 @@ export default {
             font-family: "Rubik";
             font-style: normal;
             font-weight: 400;
-            font-size: 19px;
+            font-size: 21px;
             line-height: 23px;
             color: #454545;
 
@@ -386,10 +386,19 @@ export default {
             font-size: 22px;
         }
 
-        .label[data-v-535f7b4a] {
+        .label {
             margin-top: 7px;
             font-size: 18px;
         }
+
+        .unauthorized-message-window {
+            width: 330px;
+        }
+
+        .message > p {
+            font-size: 20px;
+        }
+
     }
 
     @media (max-width: 450px) {

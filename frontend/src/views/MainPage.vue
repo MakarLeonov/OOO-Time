@@ -123,7 +123,7 @@ export default {
         }
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 430px) {
         .modal_window {
             width: 85%;
             height: 190px;

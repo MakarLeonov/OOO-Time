@@ -1,65 +1,59 @@
 <template>
     <form class="form">
         
-                <my-title class="title">Авторизация</my-title>
+        <my-title class="title">Авторизация</my-title>
 
-                <div class="input">
-                    <input type="email" class="form-input" placeholder=" " v-model.trim="email">
-                    <label class="form-label">
-                        Ваш email:
-                    </label>
-                </div>
-                <div class="validation_error">
-                    <transition-group name="list" mode="out-in">
-                        <p 
-                            v-for="err in v$.email.$errors" 
-                            :key="err.$uid"
-                            class="list-complete-item"
-                            >
-                            {{ err.$message }}
-                        </p>
-                    </transition-group>
-                </div>
+        <div class="input">
+            <input type="email" class="form-input" placeholder=" " v-model.trim="email">
+            <label class="form-label">
+                Ваш email:
+            </label>
+        </div>
+        <div class="validation_error">
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.email.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
+        </div>
 
-                <div class="input">
-                    <input type="password" class="form-input" placeholder=" " v-model.trim="password">
-                    <label class="form-label">
-                        Введите пароль:
-                    </label>
-                </div>
-                <div class="validation_error">
-                    <transition-group name="list" mode="out-in">
-                        <p 
-                            v-for="err in v$.password.$errors" 
-                            :key="err.$uid"
-                            class="list-complete-item"
-                            >
-                            {{ err.$message }}
-                        </p>
-                    </transition-group>
-                </div>
-                
-                <div class="confirm">
-                    <div class="checkbox">
-                        <input type="checkbox" id="checkboxID" hidden v-model="checked"> 
-                        <label for="checkboxID" class="checkmark"></label>
-                    </div>
-                    <p class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</p>
-                </div>
+        <div class="input">
+            <input type="password" class="form-input" placeholder=" " v-model.trim="password">
+            <label class="form-label">
+                Введите пароль:
+            </label>
+        </div>
+        <div class="validation_error">
+            <transition-group name="list" mode="out-in">
+                <p 
+                    v-for="err in v$.password.$errors" 
+                    :key="err.$uid"
+                    class="list-complete-item"
+                    >
+                    {{ err.$message }}
+                </p>
+            </transition-group>
+        </div>
 
-                <div class="checkbox-error-message">
-                    <transition name="list">
-                        <p v-if="v$.checked.$error" 
-                            class="list-complete-item">Нужно ваше согласие на обработку данных</p>
-                    </transition>
-                </div>
+        <div class="links">
+            <router-link to="/auth/registration">Ещё нет аккаунта?</router-link>
+            <my-button @click="auth()">Авторизоваться</my-button>
+        </div>
 
-                <div class="links">
-                    <router-link to="/auth/registration">Ещё нет аккаунта?</router-link>
-                    <my-button @click="auth()">Авторизоваться</my-button>
+        <transition name="fade">
+            <div class="message_modal" v-if="showMessage">
+                <div class="modal_window">
+                    <p class="message_h">Ошибка!</p>
+                    <p class="message">Проверьте введённые данные!</p>
                 </div>
+            </div>
+        </transition>
 
-            </form>
+    </form>
 </template>
 <script>
 import MyTitle from '@/components/UI/MyTitle.vue'
@@ -76,7 +70,7 @@ export default {
             v$: useVuelidate(),
             email: '',
             password: '',
-            checked: false,
+            showMessage: false,
         }
     },
 
@@ -90,9 +84,6 @@ export default {
                 required: helpers.withMessage('Это поле обязательно для заполнения', required),
                 minLength: helpers.withMessage("Пароль должен быть не меньше 6 символов", minLength(6)),
             },
-            checked: {
-                sameAs: sameAs(true)
-            }
         }
     },
 
@@ -102,8 +93,12 @@ export default {
             if (!this.v$.$error) {
                 let url = `http://127.0.0.1:8000/api/login?email=${this.email}&password=${this.password}`;
                 this.$store.dispatch('LOGIN', url);
+                history.back()
             } else {
-                console.log('error')
+                this.showMessage = true;
+                setTimeout(() => {
+                    this.showMessage = false;
+                }, 2000);
             }
         },
     },
@@ -305,20 +300,114 @@ export default {
     position: absolute;
     }
 
-    @media (max-width: 400px) {
-        .links {
+    
+.message_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 
-            align-items: flex-end;
-            flex-direction: column-reverse;
-            gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
 
-            
+.modal_window {
+        width: 460px;
+        height: 250px;
+        background: #fff;
+        box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .message_h {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 35px;
+        line-height: 26px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .message {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    
+    .fade-enter-active,
+    .fade-leave-active {
+    transition: opacity 0.5s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+    opacity: 0;
+    }
+    
+    @media (max-width: 500px) {
+        .modal_window {
+            width: 85%;
+            height: 200px;
+            border-radius: 7px;
         }
 
-        .links > a {
-            display: block;
-            width: 100%;
-            text-align: center;
+        .message_h {
+            font-size: 33px;
+        }
+
+        .message {
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 430px) {
+        .modal_window {
+            width: 85%;
+            height: 190px;
+        }
+    }
+
+        @media (max-width: 400px) {
+            .links {
+
+                align-items: flex-end;
+                flex-direction: column-reverse;
+                gap: 30px;
+
+                
+            }
+
+            .links > a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    @media (max-width: 370px) {
+        .modal_window {
+            width: 90%;
+            height: 180px;
+            border-radius: 7px;
+        }
+
+        .message_h {
+            font-size: 32px;
+        }
+
+        .message {
+            font-size: 19px;
         }
     }
 </style>

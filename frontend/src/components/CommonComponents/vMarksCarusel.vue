@@ -74,7 +74,7 @@ export default {
 
         checkWidth() {
             if (this.screenWidthNow <= 1000) {
-                this.movePer = 52.5;
+                this.movePer = 50.8;
                 this.maxMove = 406;
 				this.tail = 2;
             } else {
@@ -149,10 +149,7 @@ export default {
 	}
 	
 	section{
-		width: 80%;
 		width: 64%;
-		// height: 230px;
-		/*background: red;*/
 		display: flex;
 		align-items: center;
 		overflow-x: auto;
@@ -162,8 +159,6 @@ export default {
 	}
 	section .product{
 		min-width: 24%;
-		// height: 90%;
-		// background: whitesmoke;
 		margin:  0 20px  0 0;
 		padding: 15px 55px;
 		border-radius: 20px;
@@ -292,6 +287,10 @@ export default {
 	@media (max-width: 600px) {
 		section .product {
 			padding: 15px 20px;
+		}
+
+		section {
+			width: 80%;
 		}
 	}
 

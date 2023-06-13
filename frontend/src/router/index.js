@@ -76,4 +76,21 @@ const router = createRouter({
   routes
 })
 
+
+// router.beforeEach(async (to, from, next) => {
+//   let user = JSON.parse(localStorage.getItem('user') || '{}');
+//   window.addEventListener('user', () => {
+//     user = this.$store.getters.user;
+//   })
+//   if (to?.meta?.forAdmin) {
+//     if (user.is_admin) {
+//       next();
+//       return;
+//     } else {
+//       next('/404')
+//       return
+//     }
+//   }
+// })
+
 export default router

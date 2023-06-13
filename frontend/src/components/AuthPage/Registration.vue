@@ -106,7 +106,14 @@
             <my-button @click="registrate()">Зарегистрироваться</my-button>
         </div>
 
-        {{ this.$store.getters.user }}
+        <transition name="message">
+            <div class="message_modal" v-if="showMessage">
+                <div class="modal_window">
+                    <p class="message_h">Отлично!</p>
+                    <p class="message">Вы зарегистрированы!</p>
+                </div>
+            </div>
+        </transition>
     </form>
 </template>
 <script>
@@ -128,6 +135,7 @@ export default {
             password_confirmation: '',
             checked: false,
             unconfirmed: false,
+            showMessage: false,
         }
     },
 
@@ -163,6 +171,7 @@ methods: {
             if (this.password === this.password_confirmation) {
                 let url = `http://127.0.0.1:8000/api/register?name=${this.name}&email=${this.email}&password=${this.password}&password_confirmation=${this.password_confirmation}`;
                 this.$store.dispatch('REGISTRATE', url);
+                this.toShowMessage()
             } else {
                 this.unconfirmed = true;
             }
@@ -170,6 +179,14 @@ methods: {
             console.log('error')
         }
     },
+
+    toShowMessage() {
+            this.showMessage = true;
+            setTimeout(() => {
+                this.showMessage = false;
+                this.$router.go(-2);
+            }, 2000);
+        }
 },  
 }
 </script>
@@ -374,6 +391,76 @@ transform: translateY(10px);
 position: absolute;
 }
 
+.message_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.modal_window {
+        width: 460px;
+        height: 250px;
+        background: #fff;
+        box-shadow: 0px 10px 14px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .message_h {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 35px;
+        line-height: 26px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .message {
+        font-family: 'Rubik';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    
+    .message-enter-active,
+    .message-leave-active {
+    transition: opacity 0.5s ease;
+    }
+
+    .message-enter-from,
+    .message-leave-to {
+    opacity: 0;
+    }
+
+    @media (max-width: 500px) {
+        .modal_window {
+            width: 85%;
+            height: 200px;
+            border-radius: 7px;
+        }
+
+        .message_h {
+            font-size: 33px;
+        }
+
+        .message {
+            font-size: 20px;
+        }
+    }
+
 @media (max-width: 490px) {
     .link {
         flex-direction: column;
@@ -396,6 +483,27 @@ position: absolute;
         width: 100%;
         flex-direction: row;
         justify-content: center;
+    }
+
+    .modal_window {
+        width: 85%;
+        height: 190px;
+    }
+}
+
+@media (max-width: 370px) {
+    .modal_window {
+        width: 90%;
+        height: 180px;
+        border-radius: 7px;
+    }
+
+    .message_h {
+        font-size: 32px;
+    }
+
+    .message {
+        font-size: 19px;
     }
 }
 </style>

@@ -73,9 +73,10 @@ Route::delete('/service/{id}', [ServiceController::class, 'destroy']);
 
 
 // Protected routes
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     
-    Route::post('/feedback', [FeedbackController::class, 'store']);
+    // Route::post('/feedback', [FeedbackController::class, 'store']);
+    Route::post('/feedback', [FeedbackController::class, 'store'])->middleware('admin');
     Route::post('/logout', [AuthController::class, 'logout']);
     // Route::post('/logout', [AuthController::class, 'logout']);
     // Route::post('/advantages', [AdventagesController::class, 'store']);
