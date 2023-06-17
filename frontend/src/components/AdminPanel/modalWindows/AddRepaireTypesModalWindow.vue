@@ -46,6 +46,7 @@
     </div>
 </template>
 <script>
+import url from '@/url.js'
 import MyButton from '@/components/UI/MyButton.vue';
 import { useVuelidate } from '@vuelidate/core'
 import { helpers, required, maxLength } from '@vuelidate/validators'
@@ -78,9 +79,9 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let url = `http://127.0.0.1:8000/api/repair_types?name=${this.title}&description=${this.description}`;
+                let request = `${url}/repair_types?name=${this.title}&description=${this.description}`;
                 this.$store.commit('RepaireTypesModalWindow');
-                this.$store.dispatch('ADD_REPAIR_TYPES', url);
+                this.$store.dispatch('ADD_REPAIR_TYPES', request);
             } else {
                 console.log('error')
             }

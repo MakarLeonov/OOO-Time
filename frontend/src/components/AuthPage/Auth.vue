@@ -56,6 +56,7 @@
     </form>
 </template>
 <script>
+import url from '@/url.js'
 import MyTitle from '@/components/UI/MyTitle.vue'
 import MyButton from '@/components/UI/MyButton.vue'
 import { useVuelidate } from '@vuelidate/core'
@@ -91,8 +92,8 @@ export default {
         auth() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let url = `http://127.0.0.1:8000/api/login?email=${this.email}&password=${this.password}`;
-                this.$store.dispatch('LOGIN', url);
+                let request = `${url}/login?email=${this.email}&password=${this.password}`;
+                this.$store.dispatch('LOGIN', request);
                 history.back()
             } else {
                 this.showMessage = true;

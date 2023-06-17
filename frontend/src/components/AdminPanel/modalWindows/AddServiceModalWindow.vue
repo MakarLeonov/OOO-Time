@@ -86,6 +86,7 @@
     </div>
 </template>
 <script>
+import url from '@/url.js'
 import MyButton from '@/components/UI/MyButton.vue';
 import MySelect from '@/components/UI/MySelect.vue'
 import MyCheckbox from '@/components/UI/MyCheckbox.vue'
@@ -130,9 +131,9 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let url = `http://127.0.0.1:8000/api/service?name=${this.title}&cost=${this.cost}&is_popular=${this.is_popular}&repair_types_id=${this.repair_types_id}&description=${this.description}`;
+                let request = `${url}/service?name=${this.title}&cost=${this.cost}&is_popular=${this.is_popular}&repair_types_id=${this.repair_types_id}&description=${this.description}`;
                 this.$store.commit('AddServiceModalWindow');
-                this.$store.dispatch('ADD_SERVICE_ENTRY', url);
+                this.$store.dispatch('ADD_SERVICE_ENTRY', request);
             }
         },
     },

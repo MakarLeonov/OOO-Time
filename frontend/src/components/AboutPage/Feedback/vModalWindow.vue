@@ -58,6 +58,7 @@
     </div>
 </template>
 <script>
+import url from '@/url.js'
 import MyButton from '@/components/UI/MyButton.vue';
 import MySelect from '@/components/UI/MySelect.vue';
 import { useVuelidate } from '@vuelidate/core'
@@ -101,8 +102,8 @@ export default {
             this.v$.$validate();
             if (!this.v$.$error) {
                 let date = new Date()
-                let url = `http://127.0.0.1:8000/api/feedback?author=${ this.author }&rating=${ this.rating }&feedback_text=${ this.feedback }&date=${ date.toISOString().split('T')[0] }`;
-                this.$store.dispatch('ADD_FEEDBACK', url);
+                let request = `${url}/feedback?author=${ this.author }&rating=${ this.rating }&feedback_text=${ this.feedback }&date=${ date.toISOString().split('T')[0] }`;
+                this.$store.dispatch('ADD_FEEDBACK', request);
                 this.$store.commit('changeFeedbackModalWindowstatus')
             }
 

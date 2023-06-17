@@ -46,6 +46,7 @@
     </section>
 </template>
 <script>
+import url from '@/url.js'
 import MyTitle from '@/components/UI/MyTitle.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
 export default {
@@ -75,8 +76,8 @@ export default {
         },
 
         deleteFeedback(id) {
-            let url = `http://127.0.0.1:8000/api/feedback/${id}`
-            this.$store.dispatch('DELETE_FEEDBACK', url)
+            let request = `${url}/feedback/${id}`
+            this.$store.dispatch('DELETE_FEEDBACK', request)
         },
     },
 }

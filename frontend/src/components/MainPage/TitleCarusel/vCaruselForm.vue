@@ -60,12 +60,6 @@
             </transition-group>
         </div>
 
-        <!-- <div class="checkbox-error-message">
-            <transition name="fade">
-                <p v-if="v$.checked.$error">Нужно ваше согласие на обработку данных</p>
-            </transition> -->
-        <!-- </div> -->
-
         <my-button class="btn" @click="addEntry()">Оставить заявку</my-button>
 
         <transition name="fade">
@@ -79,6 +73,7 @@
     </form>
 </template>
 <script>
+import url from '@/url.js'
 import MyInput from "@/components/UI/MyInput.vue";
 import MyCheckbox from "@/components/UI/MyCheckbox.vue";
 import MyButton from "@/components/UI/MyButton.vue";
@@ -117,8 +112,8 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let url = `http://127.0.0.1:8000/api/consultation?name=${this.name}&phone=${this.tel}`;
-                this.$store.dispatch('ADD_CONSULTATION', url);
+                let request = `${url}/consultation?name=${this.name}&phone=${this.tel}`;
+                this.$store.dispatch('ADD_CONSULTATION', request);
                 this.name = ''
                 this.tel = ''
                 this.checked = false

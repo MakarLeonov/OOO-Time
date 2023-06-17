@@ -51,6 +51,7 @@
     </section>
 </template>
 <script>
+import url from '@/url.js'
 import MyTitle from '@/components/UI/MyTitle.vue'
 import MyButton from '@/components/UI/MyButton.vue'
 import MyLoader from '@/components/UI/MyLoader.vue';
@@ -98,8 +99,8 @@ export default {
         },
 
         deleteEntry(id) {
-            let url = `http://127.0.0.1:8000/api/service/${id}`
-            this.$store.dispatch('DELETE_SERVICE_ENTRY', url)
+            let request = `${url}/service/${id}`
+            this.$store.dispatch('DELETE_SERVICE_ENTRY', request)
         },
     },
 }

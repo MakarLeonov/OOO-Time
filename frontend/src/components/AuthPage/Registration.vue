@@ -117,6 +117,7 @@
     </form>
 </template>
 <script>
+import url from '@/url.js'
 import MyTitle from '@/components/UI/MyTitle.vue'
 import MyButton from '@/components/UI/MyButton.vue'
 import { useVuelidate } from '@vuelidate/core'
@@ -169,8 +170,8 @@ methods: {
         this.v$.$validate();
         if (!this.v$.$error) {
             if (this.password === this.password_confirmation) {
-                let url = `http://127.0.0.1:8000/api/register?name=${this.name}&email=${this.email}&password=${this.password}&password_confirmation=${this.password_confirmation}`;
-                this.$store.dispatch('REGISTRATE', url);
+                let request = `${url}/register?name=${this.name}&email=${this.email}&password=${this.password}&password_confirmation=${this.password_confirmation}`;
+                this.$store.dispatch('REGISTRATE', request);
                 this.toShowMessage()
             } else {
                 this.unconfirmed = true;
