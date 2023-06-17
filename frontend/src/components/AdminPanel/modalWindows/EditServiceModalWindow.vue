@@ -135,7 +135,7 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/service/${this.item.id}?name=${this.title}&cost=${this.cost}&is_popular=${this.is_popular}&repair_types_id=${this.repair_types_id}&description=${this.description}`;
+                let request = `${url}/api/service/${this.item.id}?name=${this.title}&cost=${this.cost}&is_popular=${this.is_popular}&repair_types_id=${this.repair_types_id}&description=${this.description}`;
                 this.$store.commit('EditServiceModalWindow');
                 this.$store.dispatch('EDIT_SERVICE_ENTRY', request);
             }

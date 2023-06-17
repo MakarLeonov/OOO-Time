@@ -83,7 +83,7 @@ export default {
         editEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/repair_types/${this.item.id}?name=${this.title}&description=${this.description}`;
+                let request = `${url}/api/repair_types/${this.item.id}?name=${this.title}&description=${this.description}`;
                 this.$store.commit('EditRepairTypesModalWindow');
                 this.$store.dispatch('EDIT_REPAIR_TYPES', request);
             } else {

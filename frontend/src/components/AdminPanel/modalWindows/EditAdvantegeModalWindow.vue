@@ -83,7 +83,7 @@ export default {
         editEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/advantages/${this.item.id}?title=${this.title}&description=${this.description}`;
+                let request = `${url}/api/advantages/${this.item.id}?title=${this.title}&description=${this.description}`;
                 this.$store.commit('EditAdvantegeModalWindow');
                 this.$store.dispatch('EDIT_ADVANTAGE', request);
             } else {

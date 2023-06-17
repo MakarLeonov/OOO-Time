@@ -119,7 +119,7 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/promotions?title=${this.title}&description=${this.description}&beginning=${this.beginning}&ending=${this.ending}`;
+                let request = `${url}/api/promotions?title=${this.title}&description=${this.description}&beginning=${this.beginning}&ending=${this.ending}`;
                 this.$store.commit('AddPromotionModalWindow');
                 this.$store.dispatch('ADD_PROMOTION', request);
             } else {

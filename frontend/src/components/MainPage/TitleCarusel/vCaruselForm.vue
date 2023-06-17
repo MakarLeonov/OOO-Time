@@ -112,7 +112,7 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/consultation?name=${this.name}&phone=${this.tel}`;
+                let request = `${url}/api/consultation?name=${this.name}&phone=${this.tel}`;
                 this.$store.dispatch('ADD_CONSULTATION', request);
                 this.name = ''
                 this.tel = ''

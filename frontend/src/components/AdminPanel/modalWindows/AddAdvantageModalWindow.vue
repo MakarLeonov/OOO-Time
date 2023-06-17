@@ -79,7 +79,7 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/advantages?title=${this.title}&description=${this.description}`;
+                let request = `${url}/api/advantages?title=${this.title}&description=${this.description}`;
                 this.$store.commit('AddAdvantageModalWindow');
                 this.$store.dispatch('ADD_ADVANTAGE', request);
             } else {

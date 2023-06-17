@@ -131,7 +131,7 @@ export default {
         addEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/service?name=${this.title}&cost=${this.cost}&is_popular=${this.is_popular}&repair_types_id=${this.repair_types_id}&description=${this.description}`;
+                let request = `${url}/api/service?name=${this.title}&cost=${this.cost}&is_popular=${this.is_popular}&repair_types_id=${this.repair_types_id}&description=${this.description}`;
                 this.$store.commit('AddServiceModalWindow');
                 this.$store.dispatch('ADD_SERVICE_ENTRY', request);
             }

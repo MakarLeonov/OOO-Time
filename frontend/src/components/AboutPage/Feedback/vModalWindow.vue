@@ -102,7 +102,7 @@ export default {
             this.v$.$validate();
             if (!this.v$.$error) {
                 let date = new Date()
-                let request = `${url}/feedback?author=${ this.author }&rating=${ this.rating }&feedback_text=${ this.feedback }&date=${ date.toISOString().split('T')[0] }`;
+                let request = `${url}/api/feedback?author=${ this.author }&rating=${ this.rating }&feedback_text=${ this.feedback }&date=${ date.toISOString().split('T')[0] }`;
                 this.$store.dispatch('ADD_FEEDBACK', request);
                 this.$store.commit('changeFeedbackModalWindowstatus')
             }

@@ -123,7 +123,7 @@ export default {
         editEntry() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/promotions/${this.item.id}?title=${this.title}&description=${this.description}&beginning=${this.beginning}&ending=${this.ending}`;
+                let request = `${url}/api/promotions/${this.item.id}?title=${this.title}&description=${this.description}&beginning=${this.beginning}&ending=${this.ending}`;
                 this.$store.commit('EditPromotionModalWindow');
                 this.$store.dispatch('EDIT_PROMOTION', request);
             } else {
