@@ -92,7 +92,7 @@ export default {
         auth() {
             this.v$.$validate();
             if (!this.v$.$error) {
-                let request = `${url}/login?email=${this.email}&password=${this.password}`;
+                let request = `${url}/api/login?email=${this.email}&password=${this.password}`;
                 this.$store.dispatch('LOGIN', request);
                 history.back()
             } else {

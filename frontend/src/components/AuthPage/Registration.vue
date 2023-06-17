@@ -170,7 +170,7 @@ methods: {
         this.v$.$validate();
         if (!this.v$.$error) {
             if (this.password === this.password_confirmation) {
-                let request = `${url}/register?name=${this.name}&email=${this.email}&password=${this.password}&password_confirmation=${this.password_confirmation}`;
+                let request = `${url}/api/register?name=${this.name}&email=${this.email}&password=${this.password}&password_confirmation=${this.password_confirmation}`;
                 this.$store.dispatch('REGISTRATE', request);
                 this.toShowMessage()
             } else {
