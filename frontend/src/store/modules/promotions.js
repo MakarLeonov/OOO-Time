@@ -1,4 +1,5 @@
 import axios from 'axios'
+import url from '@/url.js'
 export default {
     state: {
         promotions: [],
@@ -23,7 +24,7 @@ export default {
     actions: {
 
         GET_PROMOTIONS({commit}) {
-          axios.get('http://127.0.0.1:8000/api/promotions')
+          axios.get(`${url}/api/promotions`)
           .then(response => {
             commit('SET_PROMOTIONS_TO_STATE', response.data.data);
           })

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import url from '@/url.js'
 export default {
     state: {
         advantages: [],
@@ -23,7 +24,7 @@ export default {
     actions: {
 
         GET_ADVANTAGES({commit}) {
-          axios.get('http://127.0.0.1:8000/api/advantages')
+          axios.get(`${url}/api/advantages`)
           .then(response => {
             commit('SET_ADVANTAGES_TO_STATE', response.data.data);
           })

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import url from '@/url.js'
 export default {
     state: {
 
@@ -43,7 +44,7 @@ export default {
     actions: {
 
         GET_REPAIR_TYPES({commit}) {
-            axios.get('http://127.0.0.1:8000/api/repair_types')
+            axios.get(`${url}/api/repair_types`)
             .then(response => {
                 commit('SET_REPAIR_TYPES_TO_STATE', response.data.data);
             })
@@ -71,14 +72,14 @@ export default {
         },
 
         GET_SERVICE({commit}) {
-            axios.get('http://127.0.0.1:8000/api/service')
+            axios.get(`${url}/api/service`)
             .then(response => {
                 commit('SET_SERVICE_TO_STATE', response.data.data);
             })
         },
 
         GET_SERVICE_ENTRY({commit}, payload) {
-            axios.get(`http://127.0.0.1:8000/api/service/${payload}`)
+            axios.get(`${url}/api/service/${payload}`)
             .then(response => {
                 commit('SET_SERVICE_ENTRY_TO_STATE', response.data.data);
             })

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import url from '@/url.js'
 export default {
     state: {
         feedback: [],
@@ -23,7 +24,7 @@ export default {
     actions: {
     
         GET_FEEDBACK({commit}) {
-          axios.get('http://127.0.0.1:8000/api/feedback')
+          axios.get(`${url}/api/feedback`)
           .then(response => {
             commit('SET_FEEDBACK_TO_STATE', response.data.data);
           })
