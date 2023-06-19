@@ -60,7 +60,7 @@ export default {
         },
 
         deleteConsultation(id) {
-            let request = `${url}/consultation/${id}`
+            let request = `${url}/api/consultation/${id}`
             this.$store.dispatch('DELETE_CONSULTATIONS', request)
         },
     },

@@ -89,7 +89,7 @@ export default {
         },
 
         dleteEntry(id) {
-            let request = `${url}/repair_types/${id}`
+            let request = `${url}/api/repair_types/${id}`
             this.$store.dispatch('DELETE_REPAIR_TYPE', request)
         },
     },

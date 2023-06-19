@@ -77,7 +77,7 @@ export default {
         },
 
         deleteEntry(id) {
-            let request = `${url}/advantages/${id}`
+            let request = `${url}/api/advantages/${id}`
             this.$store.dispatch('DELETE_ADVANTAGE', request)
         },
     },

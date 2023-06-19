@@ -99,7 +99,7 @@ export default {
         },
 
         deleteEntry(id) {
-            let request = `${url}/service/${id}`
+            let request = `${url}/api/service/${id}`
             this.$store.dispatch('DELETE_SERVICE_ENTRY', request)
         },
     },

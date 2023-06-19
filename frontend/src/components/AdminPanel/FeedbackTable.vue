@@ -76,7 +76,7 @@ export default {
         },
 
         deleteFeedback(id) {
-            let request = `${url}/feedback/${id}`
+            let request = `${url}/api/feedback/${id}`
             this.$store.dispatch('DELETE_FEEDBACK', request)
         },
     },

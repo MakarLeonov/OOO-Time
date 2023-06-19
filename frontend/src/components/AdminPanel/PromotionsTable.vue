@@ -80,7 +80,7 @@ export default {
         },
 
         deleteEntry(id) {
-            let request = `${url}/promotions/${id}`
+            let request = `${url}/api/promotions/${id}`
             this.$store.dispatch('DELETE_PROMOTION', request)
         },
     },
