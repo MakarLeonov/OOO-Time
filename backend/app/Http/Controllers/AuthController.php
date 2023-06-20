@@ -38,13 +38,12 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        // Check email
         $user = User::where('email', $fields['email'])->first();
 
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
-                'message' => 'Bad creds'
+                'message' => 'Неверные данные!'
             ], 401);
         }
 
@@ -62,7 +61,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return [
-            'message' => 'Logged out'
+            'message' => 'Авторизация прошла успешно!'
         ];
     }
 }

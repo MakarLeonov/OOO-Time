@@ -44,7 +44,7 @@
                 <input type="checkbox" id="checkboxID" hidden v-model="checked"> 
                 <label for="checkboxID" class="checkmark"></label>
             </div>
-            <p class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</p>
+            <a href="https://drive.google.com/drive/folders/15wKu_3--EFuj991XmB7U7MFJqfgGMDra?usp=sharing" class="checkbock-p">Я даю согласие на обработку персональных данных в соответствии с законом № 152-ФЗ «О персональных данных»</a>
         </div>
 
         

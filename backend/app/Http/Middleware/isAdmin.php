@@ -15,7 +15,7 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth('sanctum')->check() && auth('sanctum')->user()->admin) {
+        if (auth('sanctum')->check() && auth('sanctum')->user()->is_admin) {
             return $next($request);
         }
 

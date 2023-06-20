@@ -24,7 +24,9 @@ export default {
     actions: {
 
         GET_CONSULTATIONS({commit}) {
-          axios.get(`${url}/api/consultation`)
+          axios.get(`${url}/api/consultation`, {
+            headers: { Authorization: `'Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+          })
           .then(response => {
               commit('SET_CONSULTATIONS_TO_STATE', response.data.data);
             })
@@ -42,7 +44,9 @@ export default {
         },
 
         DELETE_CONSULTATIONS({dispatch}, payload) {
-          axios.delete(payload)
+          axios.delete(payload, null, {
+            headers: { Authorization: `'Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+          })
             .then((response) => {
                 dispatch('GET_CONSULTATIONS');
             })

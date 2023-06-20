@@ -9,6 +9,7 @@ import Registration from '@/components/AuthPage/Registration.vue'
 import StaticInfo from '@/components/ServicePage/ServiceInfo/StaticInfo.vue'
 import DynamicServiceInfo from '@/components/ServicePage/ServiceInfo/DynamicServiceInfo.vue'
 import NotFoundPage from '@/views/NotFoundPage.vue'
+import store from '@/store'
 
 const routes = [
   { 
@@ -59,6 +60,9 @@ const routes = [
   { 
     path: '/adminpanel', 
     name: 'adminpanel', 
+    meta: {
+      forAdmin: true,
+    },
     scrollBehavior() {
       window.scrollTo(0,0);
     },
@@ -77,20 +81,18 @@ const router = createRouter({
 })
 
 
-// router.beforeEach(async (to, from, next) => {
-//   let user = JSON.parse(localStorage.getItem('user') || '{}');
-//   window.addEventListener('user', () => {
-//     user = this.$store.getters.user;
-//   })
-//   if (to?.meta?.forAdmin) {
-//     if (user.is_admin) {
-//       next();
-//       return;
-//     } else {
-//       next('/404')
-//       return
-//     }
-//   }
-// })
+router.beforeEach(async (to, from, next) => {
+  if (to?.meta?.forAdmin) {
+    if (store.getters.is_admin) {
+      console.log(store.getters);
+      next();
+      return;
+    } else {
+      next('/404');
+      return;
+    }
+  }
+  next()
+})
 
 export default router
