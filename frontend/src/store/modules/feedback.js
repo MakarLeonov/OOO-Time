@@ -47,7 +47,9 @@ export default {
         },
     
         DELETE_FEEDBACK({dispatch}, payload) {
-          axios.delete(payload)
+          axios.delete(payload, {
+            headers: { Authorization: `'Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+          })
             .then((response) => {
                 dispatch('GET_FEEDBACK');
             })

@@ -108,7 +108,7 @@ export default {
             description: this.item.description,
             cost: this.item.cost,
             repair_types_id: this.item.repair_types_id,
-            checked: this.isChecked(this.item.repair_types_id),
+            checked: this.isChecked(this.item.is_popular),
         }
     },
 
@@ -142,7 +142,7 @@ export default {
         },
 
         isChecked(is_popular) {
-            return (is_popular === 1) ? false : true;
+            return (is_popular === 1) ? true : false;
         }
     },
 

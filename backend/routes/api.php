@@ -78,15 +78,15 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/repair_types/{id}', [RepairTypesController::class, 'update']);
     Route::delete('/repair_types/{id}', [RepairTypesController::class, 'destroy']);
 
-    Route::post('/advantages', [AdventagesController::class, 'store'])->middleware('admin');
-    Route::put('/advantages/{id}', [AdventagesController::class, 'update'])->middleware('admin');
-    Route::delete('/advantages/{id}', [AdventagesController::class, 'destroy'])->middleware('admin');
+    Route::post('/advantages', [AdventagesController::class, 'store'])->middleware('isAdmin');
+    Route::put('/advantages/{id}', [AdventagesController::class, 'update'])->middleware('isAdmin');
+    Route::delete('/advantages/{id}', [AdventagesController::class, 'destroy'])->middleware('isAdmin');
 
-    Route::post('/promotions', [PromotionsController::class, 'store'])->middleware('admin');
-    Route::put('/promotions/{id}', [PromotionsController::class, 'update'])->middleware('admin');
-    Route::delete('/promotions/{id}', [PromotionsController::class, 'destroy'])->middleware('admin');
+    Route::post('/promotions', [PromotionsController::class, 'store'])->middleware('isAdmin');
+    Route::put('/promotions/{id}', [PromotionsController::class, 'update'])->middleware('isAdmin');
+    Route::delete('/promotions/{id}', [PromotionsController::class, 'destroy'])->middleware('isAdmin');
 
-    Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy'])->middleware('admin');
+    Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy'])->middleware('isAdmin');
     Route::get('/consultation', [ConsultationController::class, 'index'])->middleware('isAdmin');
     Route::get('/consultation/{id}', [ConsultationController::class, 'show'])->middleware('isAdmin');
     Route::delete('/consultation/{id}', [ConsultationController::class, 'destroy'])->middleware('isAdmin');

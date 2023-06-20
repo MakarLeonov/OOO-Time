@@ -31,21 +31,27 @@ export default {
         },
 
         ADD_PROMOTION({dispatch}, payload) {
-          axios.post(payload)
+          axios.post(payload, null, {
+            headers: { Authorization: `'Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+          })
           .then(response => {
               dispatch('GET_PROMOTIONS');
           })
         },
 
         EDIT_PROMOTION({dispatch}, payload) {
-          axios.put(payload)
+          axios.put(payload, null, {
+            headers: { Authorization: `'Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+          })
           .then(response => {
               dispatch('GET_PROMOTIONS');
           })
         },
 
         DELETE_PROMOTION({dispatch}, payload) {
-          axios.delete(payload)
+          axios.delete(payload, {
+            headers: { Authorization: `'Bearer ${JSON.parse(localStorage.getItem('token'))}` },
+          })
           .then(response => {
               dispatch('GET_PROMOTIONS');
           })
