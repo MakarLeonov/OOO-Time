@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
     
 .promotion {
-    background: url('@/assets/img/promotions-img/promo.jpg');
+    background: url('@/assets/img/promotions-img/promo.webp');
     background-size: cover;
     width: 49.2%;
     height: 300px;

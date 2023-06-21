@@ -2,7 +2,6 @@
     <section class="container">
         <div class="page_info">
             <p class="title">О нашей компании</p>
-            <hr>
             <div class="content">
                 <div class="text_info">
                     <p class="info">
@@ -147,6 +146,7 @@ export default {
     @media (max-width: 450px) {
         .title {
             font-size: 39px;
+            margin-bottom: 7px;
         }
 
         .container {

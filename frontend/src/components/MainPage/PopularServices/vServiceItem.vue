@@ -1,6 +1,6 @@
 <template>
     <div class="item" @click="this.$router.push(`/services/${id}`)">
-        <img src="@/assets/popular_service.png" alt="img">
+        <img src="@/assets/popular_service.webp" alt="img">
         <p class="title">
             <slot></slot>
         </p>

@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <img src="@/assets/about.jpg" alt="image">
+            <img src="@/assets/about.webp" alt="image">
         </div>
     </section>
 </template>

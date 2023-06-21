@@ -2,7 +2,7 @@
     <section class="container">
         <div><div class="header">
             <my-title class="title">Акции</my-title>
-            <my-button class="btn" @click="$router.push('/services')">Показать все акции</my-button>
+            <my-button class="btn" @click="$router.push('/services'), scrollToTop()">Показать все акции</my-button>
         </div>
         <div class="body">
             <my-loader v-if="!PROMOTIONS.length"/>
@@ -29,6 +29,14 @@ export default {
     computed: {
         PROMOTIONS() {
             return this.$store.getters.PROMOTIONS;
+        }
+    },
+
+    methods: {
+        scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0,0);
+            }, 250);
         }
     },
 }

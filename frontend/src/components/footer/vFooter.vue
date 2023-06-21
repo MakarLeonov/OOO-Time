@@ -32,12 +32,12 @@
 
                 <div class="service_column">
                     <p class="title">Услуги</p>
-                        <router-link :to="{path: `/services/${service.id}`}" class="footer_link" v-for="service in SERVICE.slice(0, 5)" :key="service">{{ service.name }}</router-link>
+                        <router-link :to="{path: `/services/${service.id}`}" @click="scrollToTop()"  class="footer_link" v-for="service in SERVICE.slice(0, 5)" :key="service">{{ service.name }}</router-link>
                 </div>
 
                 <div class="promotion_column">
                     <p class="title">Акции</p>
-                        <router-link to="#" class="footer_link" v-for="(promotion, index) in PROMOTIONS.slice(0, 5)" :key="index" >{{ promotion.title }}</router-link>
+                        <router-link to="/services" @click="scrollToTop()" class="footer_link" v-for="(promotion, index) in PROMOTIONS.slice(0, 5)" :key="index" >{{ promotion.title }}</router-link>
                 </div>
 
                 <div class="user_column">

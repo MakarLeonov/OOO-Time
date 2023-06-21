@@ -11,7 +11,7 @@
     </div>
 </template>
 <script>
-import vMarksCarusel from "@/components/CommonComponents/vMarksCarusel.vue";
+import vMarksCarusel from "@/components/AboutPage/vMarksCarusel.vue";
 import vInfo from "@/components/AboutPage/vInfo.vue";
 import vMapSection from "@/components/AboutPage/vMapSection.vue";
 import vFeedbackList from "@/components/AboutPage/Feedback/vFeedbackList.vue";

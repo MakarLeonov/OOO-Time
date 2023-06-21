@@ -322,6 +322,12 @@ export default {
         }
     }
 
+    @media (max-width: 950px) {
+        .form {
+            top: 17%;
+        }
+    }
+
     @media (max-width: 900px) {
         .form {
             top: 15%;
@@ -329,14 +335,21 @@ export default {
         }
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 860px) {
         .form {
             top: 12%;
             width: 400px;
         }
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 800px) {
+        .form {
+            top: 10%;
+            width: 400px;
+        }
+    }
+
+    @media (max-width: 760px) {
         .form {
             position: relative;
             right: 0;
@@ -366,6 +379,14 @@ export default {
     @media (max-width: 500px) {
         .form {
             padding: 15px 5% 50px;
+        }
+
+        .input .form-label {
+            font-size: 18px;
+        }
+
+        .form-title {
+            font-size: 22px;
         }
     }
 </style>

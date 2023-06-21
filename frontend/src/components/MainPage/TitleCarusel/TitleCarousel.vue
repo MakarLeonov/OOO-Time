@@ -21,10 +21,9 @@ export default {
             currentSlide: 1,
             sectionHeight: 0,
             carouselSlides: [
-                // "fon1.jpg",
-                "fon3.jpg",
-                "fon8.jpg",
-                "fon10.jpg",
+                "fon1.webp",
+                "fon2.webp",
+                "fon3.webp",
             ], 
         }
     },
@@ -36,7 +35,7 @@ export default {
             } else {
                 this.currentSlide -= 2;
             }
-        }, 3000);
+        }, 5000);
     },
 }
 </script>
